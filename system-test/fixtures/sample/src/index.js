@@ -17,7 +17,7 @@
 // ** All changes to this file may be overwritten. **
 
 /* eslint-disable node/no-missing-require, no-unused-vars */
-const data = require('data');
+const data = require('@google-analytics/data');
 
 function main() {
   const alphaAnalyticsDataClient = new data.AlphaAnalyticsDataClient();
