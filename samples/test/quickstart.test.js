@@ -22,6 +22,7 @@ const {describe, it, before} = require('mocha');
 
 const execSync = cmd => cp.execSync(cmd, {encoding: 'utf-8'});
 
+// eslint-disable-next-line node/no-extraneous-require, node/no-missing-require
 const {AlphaAnalyticsDataClient} = require('@google-analytics/data');
 
 const client = new AlphaAnalyticsDataClient();

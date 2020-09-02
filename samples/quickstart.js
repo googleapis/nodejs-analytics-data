@@ -24,7 +24,7 @@ async function main(
   // [START cloud_data_analytics_quickstart]
   // Imports the Google Cloud client library
 
-  // remove this line after package is released
+  // eslint-disable-next-line node/no-extraneous-require, node/no-missing-require
   const {AlphaAnalyticsDataClient} = require('@google-analytics/data');
 
   // TODO(developer): replace with your prefered project ID.
