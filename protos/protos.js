@@ -231,314 +231,39 @@
                          */
     
                         /**
-                         * Callback as used by {@link google.analytics.data.v1alpha.AlphaAnalyticsData#getMetadata}.
+                         * Callback as used by {@link google.analytics.data.v1alpha.AlphaAnalyticsData#getUniversalMetadata}.
                          * @memberof google.analytics.data.v1alpha.AlphaAnalyticsData
-                         * @typedef GetMetadataCallback
+                         * @typedef GetUniversalMetadataCallback
                          * @type {function}
                          * @param {Error|null} error Error, if any
-                         * @param {google.analytics.data.v1alpha.Metadata} [response] Metadata
+                         * @param {google.analytics.data.v1alpha.UniversalMetadata} [response] UniversalMetadata
                          */
     
                         /**
-                         * Calls GetMetadata.
-                         * @function getMetadata
+                         * Calls GetUniversalMetadata.
+                         * @function getUniversalMetadata
                          * @memberof google.analytics.data.v1alpha.AlphaAnalyticsData
                          * @instance
-                         * @param {google.analytics.data.v1alpha.IGetMetadataRequest} request GetMetadataRequest message or plain object
-                         * @param {google.analytics.data.v1alpha.AlphaAnalyticsData.GetMetadataCallback} callback Node-style callback called with the error, if any, and Metadata
+                         * @param {google.analytics.data.v1alpha.IGetUniversalMetadataRequest} request GetUniversalMetadataRequest message or plain object
+                         * @param {google.analytics.data.v1alpha.AlphaAnalyticsData.GetUniversalMetadataCallback} callback Node-style callback called with the error, if any, and UniversalMetadata
                          * @returns {undefined}
                          * @variation 1
                          */
-                        Object.defineProperty(AlphaAnalyticsData.prototype.getMetadata = function getMetadata(request, callback) {
-                            return this.rpcCall(getMetadata, $root.google.analytics.data.v1alpha.GetMetadataRequest, $root.google.analytics.data.v1alpha.Metadata, request, callback);
-                        }, "name", { value: "GetMetadata" });
+                        Object.defineProperty(AlphaAnalyticsData.prototype.getUniversalMetadata = function getUniversalMetadata(request, callback) {
+                            return this.rpcCall(getUniversalMetadata, $root.google.analytics.data.v1alpha.GetUniversalMetadataRequest, $root.google.analytics.data.v1alpha.UniversalMetadata, request, callback);
+                        }, "name", { value: "GetUniversalMetadata" });
     
                         /**
-                         * Calls GetMetadata.
-                         * @function getMetadata
+                         * Calls GetUniversalMetadata.
+                         * @function getUniversalMetadata
                          * @memberof google.analytics.data.v1alpha.AlphaAnalyticsData
                          * @instance
-                         * @param {google.analytics.data.v1alpha.IGetMetadataRequest} request GetMetadataRequest message or plain object
-                         * @returns {Promise<google.analytics.data.v1alpha.Metadata>} Promise
+                         * @param {google.analytics.data.v1alpha.IGetUniversalMetadataRequest} request GetUniversalMetadataRequest message or plain object
+                         * @returns {Promise<google.analytics.data.v1alpha.UniversalMetadata>} Promise
                          * @variation 2
                          */
     
                         return AlphaAnalyticsData;
-                    })();
-    
-                    v1alpha.Metadata = (function() {
-    
-                        /**
-                         * Properties of a Metadata.
-                         * @memberof google.analytics.data.v1alpha
-                         * @interface IMetadata
-                         * @property {string|null} [name] Metadata name
-                         * @property {Array.<google.analytics.data.v1alpha.IDimensionMetadata>|null} [dimensions] Metadata dimensions
-                         * @property {Array.<google.analytics.data.v1alpha.IMetricMetadata>|null} [metrics] Metadata metrics
-                         */
-    
-                        /**
-                         * Constructs a new Metadata.
-                         * @memberof google.analytics.data.v1alpha
-                         * @classdesc Represents a Metadata.
-                         * @implements IMetadata
-                         * @constructor
-                         * @param {google.analytics.data.v1alpha.IMetadata=} [properties] Properties to set
-                         */
-                        function Metadata(properties) {
-                            this.dimensions = [];
-                            this.metrics = [];
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * Metadata name.
-                         * @member {string} name
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @instance
-                         */
-                        Metadata.prototype.name = "";
-    
-                        /**
-                         * Metadata dimensions.
-                         * @member {Array.<google.analytics.data.v1alpha.IDimensionMetadata>} dimensions
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @instance
-                         */
-                        Metadata.prototype.dimensions = $util.emptyArray;
-    
-                        /**
-                         * Metadata metrics.
-                         * @member {Array.<google.analytics.data.v1alpha.IMetricMetadata>} metrics
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @instance
-                         */
-                        Metadata.prototype.metrics = $util.emptyArray;
-    
-                        /**
-                         * Creates a new Metadata instance using the specified properties.
-                         * @function create
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @static
-                         * @param {google.analytics.data.v1alpha.IMetadata=} [properties] Properties to set
-                         * @returns {google.analytics.data.v1alpha.Metadata} Metadata instance
-                         */
-                        Metadata.create = function create(properties) {
-                            return new Metadata(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified Metadata message. Does not implicitly {@link google.analytics.data.v1alpha.Metadata.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @static
-                         * @param {google.analytics.data.v1alpha.IMetadata} message Metadata message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Metadata.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.dimensions != null && message.dimensions.length)
-                                for (var i = 0; i < message.dimensions.length; ++i)
-                                    $root.google.analytics.data.v1alpha.DimensionMetadata.encode(message.dimensions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
-                            if (message.metrics != null && message.metrics.length)
-                                for (var i = 0; i < message.metrics.length; ++i)
-                                    $root.google.analytics.data.v1alpha.MetricMetadata.encode(message.metrics[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                                writer.uint32(/* id 3, wireType 2 =*/26).string(message.name);
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified Metadata message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.Metadata.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @static
-                         * @param {google.analytics.data.v1alpha.IMetadata} message Metadata message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        Metadata.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes a Metadata message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.analytics.data.v1alpha.Metadata} Metadata
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Metadata.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.analytics.data.v1alpha.Metadata();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 3:
-                                    message.name = reader.string();
-                                    break;
-                                case 1:
-                                    if (!(message.dimensions && message.dimensions.length))
-                                        message.dimensions = [];
-                                    message.dimensions.push($root.google.analytics.data.v1alpha.DimensionMetadata.decode(reader, reader.uint32()));
-                                    break;
-                                case 2:
-                                    if (!(message.metrics && message.metrics.length))
-                                        message.metrics = [];
-                                    message.metrics.push($root.google.analytics.data.v1alpha.MetricMetadata.decode(reader, reader.uint32()));
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes a Metadata message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.analytics.data.v1alpha.Metadata} Metadata
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        Metadata.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies a Metadata message.
-                         * @function verify
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        Metadata.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                if (!$util.isString(message.name))
-                                    return "name: string expected";
-                            if (message.dimensions != null && message.hasOwnProperty("dimensions")) {
-                                if (!Array.isArray(message.dimensions))
-                                    return "dimensions: array expected";
-                                for (var i = 0; i < message.dimensions.length; ++i) {
-                                    var error = $root.google.analytics.data.v1alpha.DimensionMetadata.verify(message.dimensions[i]);
-                                    if (error)
-                                        return "dimensions." + error;
-                                }
-                            }
-                            if (message.metrics != null && message.hasOwnProperty("metrics")) {
-                                if (!Array.isArray(message.metrics))
-                                    return "metrics: array expected";
-                                for (var i = 0; i < message.metrics.length; ++i) {
-                                    var error = $root.google.analytics.data.v1alpha.MetricMetadata.verify(message.metrics[i]);
-                                    if (error)
-                                        return "metrics." + error;
-                                }
-                            }
-                            return null;
-                        };
-    
-                        /**
-                         * Creates a Metadata message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.analytics.data.v1alpha.Metadata} Metadata
-                         */
-                        Metadata.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.analytics.data.v1alpha.Metadata)
-                                return object;
-                            var message = new $root.google.analytics.data.v1alpha.Metadata();
-                            if (object.name != null)
-                                message.name = String(object.name);
-                            if (object.dimensions) {
-                                if (!Array.isArray(object.dimensions))
-                                    throw TypeError(".google.analytics.data.v1alpha.Metadata.dimensions: array expected");
-                                message.dimensions = [];
-                                for (var i = 0; i < object.dimensions.length; ++i) {
-                                    if (typeof object.dimensions[i] !== "object")
-                                        throw TypeError(".google.analytics.data.v1alpha.Metadata.dimensions: object expected");
-                                    message.dimensions[i] = $root.google.analytics.data.v1alpha.DimensionMetadata.fromObject(object.dimensions[i]);
-                                }
-                            }
-                            if (object.metrics) {
-                                if (!Array.isArray(object.metrics))
-                                    throw TypeError(".google.analytics.data.v1alpha.Metadata.metrics: array expected");
-                                message.metrics = [];
-                                for (var i = 0; i < object.metrics.length; ++i) {
-                                    if (typeof object.metrics[i] !== "object")
-                                        throw TypeError(".google.analytics.data.v1alpha.Metadata.metrics: object expected");
-                                    message.metrics[i] = $root.google.analytics.data.v1alpha.MetricMetadata.fromObject(object.metrics[i]);
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from a Metadata message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @static
-                         * @param {google.analytics.data.v1alpha.Metadata} message Metadata
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        Metadata.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.arrays || options.defaults) {
-                                object.dimensions = [];
-                                object.metrics = [];
-                            }
-                            if (options.defaults)
-                                object.name = "";
-                            if (message.dimensions && message.dimensions.length) {
-                                object.dimensions = [];
-                                for (var j = 0; j < message.dimensions.length; ++j)
-                                    object.dimensions[j] = $root.google.analytics.data.v1alpha.DimensionMetadata.toObject(message.dimensions[j], options);
-                            }
-                            if (message.metrics && message.metrics.length) {
-                                object.metrics = [];
-                                for (var j = 0; j < message.metrics.length; ++j)
-                                    object.metrics[j] = $root.google.analytics.data.v1alpha.MetricMetadata.toObject(message.metrics[j], options);
-                            }
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                object.name = message.name;
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this Metadata to JSON.
-                         * @function toJSON
-                         * @memberof google.analytics.data.v1alpha.Metadata
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        Metadata.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        return Metadata;
                     })();
     
                     v1alpha.RunReportRequest = (function() {
@@ -1215,6 +940,7 @@
                          * @property {Array.<google.analytics.data.v1alpha.IRow>|null} [totals] RunReportResponse totals
                          * @property {Array.<google.analytics.data.v1alpha.IRow>|null} [maximums] RunReportResponse maximums
                          * @property {Array.<google.analytics.data.v1alpha.IRow>|null} [minimums] RunReportResponse minimums
+                         * @property {number|null} [rowCount] RunReportResponse rowCount
                          * @property {google.analytics.data.v1alpha.IResponseMetaData|null} [metadata] RunReportResponse metadata
                          * @property {google.analytics.data.v1alpha.IPropertyQuota|null} [propertyQuota] RunReportResponse propertyQuota
                          */
@@ -1289,6 +1015,14 @@
                         RunReportResponse.prototype.minimums = $util.emptyArray;
     
                         /**
+                         * RunReportResponse rowCount.
+                         * @member {number} rowCount
+                         * @memberof google.analytics.data.v1alpha.RunReportResponse
+                         * @instance
+                         */
+                        RunReportResponse.prototype.rowCount = 0;
+    
+                        /**
                          * RunReportResponse metadata.
                          * @member {google.analytics.data.v1alpha.IResponseMetaData|null|undefined} metadata
                          * @memberof google.analytics.data.v1alpha.RunReportResponse
@@ -1350,6 +1084,8 @@
                             if (message.dimensionHeaders != null && message.dimensionHeaders.length)
                                 for (var i = 0; i < message.dimensionHeaders.length; ++i)
                                     $root.google.analytics.data.v1alpha.DimensionHeader.encode(message.dimensionHeaders[i], writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
+                            if (message.rowCount != null && Object.hasOwnProperty.call(message, "rowCount"))
+                                writer.uint32(/* id 12, wireType 0 =*/96).int32(message.rowCount);
                             return writer;
                         };
     
@@ -1413,6 +1149,9 @@
                                     if (!(message.minimums && message.minimums.length))
                                         message.minimums = [];
                                     message.minimums.push($root.google.analytics.data.v1alpha.Row.decode(reader, reader.uint32()));
+                                    break;
+                                case 12:
+                                    message.rowCount = reader.int32();
                                     break;
                                 case 6:
                                     message.metadata = $root.google.analytics.data.v1alpha.ResponseMetaData.decode(reader, reader.uint32());
@@ -1509,6 +1248,9 @@
                                         return "minimums." + error;
                                 }
                             }
+                            if (message.rowCount != null && message.hasOwnProperty("rowCount"))
+                                if (!$util.isInteger(message.rowCount))
+                                    return "rowCount: integer expected";
                             if (message.metadata != null && message.hasOwnProperty("metadata")) {
                                 var error = $root.google.analytics.data.v1alpha.ResponseMetaData.verify(message.metadata);
                                 if (error)
@@ -1594,6 +1336,8 @@
                                     message.minimums[i] = $root.google.analytics.data.v1alpha.Row.fromObject(object.minimums[i]);
                                 }
                             }
+                            if (object.rowCount != null)
+                                message.rowCount = object.rowCount | 0;
                             if (object.metadata != null) {
                                 if (typeof object.metadata !== "object")
                                     throw TypeError(".google.analytics.data.v1alpha.RunReportResponse.metadata: object expected");
@@ -1631,6 +1375,7 @@
                             if (options.defaults) {
                                 object.metadata = null;
                                 object.propertyQuota = null;
+                                object.rowCount = 0;
                             }
                             if (message.metricHeaders && message.metricHeaders.length) {
                                 object.metricHeaders = [];
@@ -1666,6 +1411,8 @@
                                 for (var j = 0; j < message.dimensionHeaders.length; ++j)
                                     object.dimensionHeaders[j] = $root.google.analytics.data.v1alpha.DimensionHeader.toObject(message.dimensionHeaders[j], options);
                             }
+                            if (message.rowCount != null && message.hasOwnProperty("rowCount"))
+                                object.rowCount = message.rowCount;
                             return object;
                         };
     
@@ -3522,24 +3269,23 @@
                         return BatchRunPivotReportsResponse;
                     })();
     
-                    v1alpha.GetMetadataRequest = (function() {
+                    v1alpha.GetUniversalMetadataRequest = (function() {
     
                         /**
-                         * Properties of a GetMetadataRequest.
+                         * Properties of a GetUniversalMetadataRequest.
                          * @memberof google.analytics.data.v1alpha
-                         * @interface IGetMetadataRequest
-                         * @property {string|null} [name] GetMetadataRequest name
+                         * @interface IGetUniversalMetadataRequest
                          */
     
                         /**
-                         * Constructs a new GetMetadataRequest.
+                         * Constructs a new GetUniversalMetadataRequest.
                          * @memberof google.analytics.data.v1alpha
-                         * @classdesc Represents a GetMetadataRequest.
-                         * @implements IGetMetadataRequest
+                         * @classdesc Represents a GetUniversalMetadataRequest.
+                         * @implements IGetUniversalMetadataRequest
                          * @constructor
-                         * @param {google.analytics.data.v1alpha.IGetMetadataRequest=} [properties] Properties to set
+                         * @param {google.analytics.data.v1alpha.IGetUniversalMetadataRequest=} [properties] Properties to set
                          */
-                        function GetMetadataRequest(properties) {
+                        function GetUniversalMetadataRequest(properties) {
                             if (properties)
                                 for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                                     if (properties[keys[i]] != null)
@@ -3547,75 +3293,258 @@
                         }
     
                         /**
-                         * GetMetadataRequest name.
-                         * @member {string} name
-                         * @memberof google.analytics.data.v1alpha.GetMetadataRequest
-                         * @instance
-                         */
-                        GetMetadataRequest.prototype.name = "";
-    
-                        /**
-                         * Creates a new GetMetadataRequest instance using the specified properties.
+                         * Creates a new GetUniversalMetadataRequest instance using the specified properties.
                          * @function create
-                         * @memberof google.analytics.data.v1alpha.GetMetadataRequest
+                         * @memberof google.analytics.data.v1alpha.GetUniversalMetadataRequest
                          * @static
-                         * @param {google.analytics.data.v1alpha.IGetMetadataRequest=} [properties] Properties to set
-                         * @returns {google.analytics.data.v1alpha.GetMetadataRequest} GetMetadataRequest instance
+                         * @param {google.analytics.data.v1alpha.IGetUniversalMetadataRequest=} [properties] Properties to set
+                         * @returns {google.analytics.data.v1alpha.GetUniversalMetadataRequest} GetUniversalMetadataRequest instance
                          */
-                        GetMetadataRequest.create = function create(properties) {
-                            return new GetMetadataRequest(properties);
+                        GetUniversalMetadataRequest.create = function create(properties) {
+                            return new GetUniversalMetadataRequest(properties);
                         };
     
                         /**
-                         * Encodes the specified GetMetadataRequest message. Does not implicitly {@link google.analytics.data.v1alpha.GetMetadataRequest.verify|verify} messages.
+                         * Encodes the specified GetUniversalMetadataRequest message. Does not implicitly {@link google.analytics.data.v1alpha.GetUniversalMetadataRequest.verify|verify} messages.
                          * @function encode
-                         * @memberof google.analytics.data.v1alpha.GetMetadataRequest
+                         * @memberof google.analytics.data.v1alpha.GetUniversalMetadataRequest
                          * @static
-                         * @param {google.analytics.data.v1alpha.IGetMetadataRequest} message GetMetadataRequest message or plain object to encode
+                         * @param {google.analytics.data.v1alpha.IGetUniversalMetadataRequest} message GetUniversalMetadataRequest message or plain object to encode
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        GetMetadataRequest.encode = function encode(message, writer) {
+                        GetUniversalMetadataRequest.encode = function encode(message, writer) {
                             if (!writer)
                                 writer = $Writer.create();
-                            if (message.name != null && Object.hasOwnProperty.call(message, "name"))
-                                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
                             return writer;
                         };
     
                         /**
-                         * Encodes the specified GetMetadataRequest message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.GetMetadataRequest.verify|verify} messages.
+                         * Encodes the specified GetUniversalMetadataRequest message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.GetUniversalMetadataRequest.verify|verify} messages.
                          * @function encodeDelimited
-                         * @memberof google.analytics.data.v1alpha.GetMetadataRequest
+                         * @memberof google.analytics.data.v1alpha.GetUniversalMetadataRequest
                          * @static
-                         * @param {google.analytics.data.v1alpha.IGetMetadataRequest} message GetMetadataRequest message or plain object to encode
+                         * @param {google.analytics.data.v1alpha.IGetUniversalMetadataRequest} message GetUniversalMetadataRequest message or plain object to encode
                          * @param {$protobuf.Writer} [writer] Writer to encode to
                          * @returns {$protobuf.Writer} Writer
                          */
-                        GetMetadataRequest.encodeDelimited = function encodeDelimited(message, writer) {
+                        GetUniversalMetadataRequest.encodeDelimited = function encodeDelimited(message, writer) {
                             return this.encode(message, writer).ldelim();
                         };
     
                         /**
-                         * Decodes a GetMetadataRequest message from the specified reader or buffer.
+                         * Decodes a GetUniversalMetadataRequest message from the specified reader or buffer.
                          * @function decode
-                         * @memberof google.analytics.data.v1alpha.GetMetadataRequest
+                         * @memberof google.analytics.data.v1alpha.GetUniversalMetadataRequest
                          * @static
                          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
                          * @param {number} [length] Message length if known beforehand
-                         * @returns {google.analytics.data.v1alpha.GetMetadataRequest} GetMetadataRequest
+                         * @returns {google.analytics.data.v1alpha.GetUniversalMetadataRequest} GetUniversalMetadataRequest
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetMetadataRequest.decode = function decode(reader, length) {
+                        GetUniversalMetadataRequest.decode = function decode(reader, length) {
                             if (!(reader instanceof $Reader))
                                 reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.analytics.data.v1alpha.GetMetadataRequest();
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.analytics.data.v1alpha.GetUniversalMetadataRequest();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a GetUniversalMetadataRequest message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.analytics.data.v1alpha.GetUniversalMetadataRequest
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.analytics.data.v1alpha.GetUniversalMetadataRequest} GetUniversalMetadataRequest
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        GetUniversalMetadataRequest.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a GetUniversalMetadataRequest message.
+                         * @function verify
+                         * @memberof google.analytics.data.v1alpha.GetUniversalMetadataRequest
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        GetUniversalMetadataRequest.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a GetUniversalMetadataRequest message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.analytics.data.v1alpha.GetUniversalMetadataRequest
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.analytics.data.v1alpha.GetUniversalMetadataRequest} GetUniversalMetadataRequest
+                         */
+                        GetUniversalMetadataRequest.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.analytics.data.v1alpha.GetUniversalMetadataRequest)
+                                return object;
+                            return new $root.google.analytics.data.v1alpha.GetUniversalMetadataRequest();
+                        };
+    
+                        /**
+                         * Creates a plain object from a GetUniversalMetadataRequest message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.analytics.data.v1alpha.GetUniversalMetadataRequest
+                         * @static
+                         * @param {google.analytics.data.v1alpha.GetUniversalMetadataRequest} message GetUniversalMetadataRequest
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        GetUniversalMetadataRequest.toObject = function toObject() {
+                            return {};
+                        };
+    
+                        /**
+                         * Converts this GetUniversalMetadataRequest to JSON.
+                         * @function toJSON
+                         * @memberof google.analytics.data.v1alpha.GetUniversalMetadataRequest
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        GetUniversalMetadataRequest.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return GetUniversalMetadataRequest;
+                    })();
+    
+                    v1alpha.UniversalMetadata = (function() {
+    
+                        /**
+                         * Properties of an UniversalMetadata.
+                         * @memberof google.analytics.data.v1alpha
+                         * @interface IUniversalMetadata
+                         * @property {Array.<google.analytics.data.v1alpha.IDimensionMetadata>|null} [dimensions] UniversalMetadata dimensions
+                         * @property {Array.<google.analytics.data.v1alpha.IMetricMetadata>|null} [metrics] UniversalMetadata metrics
+                         */
+    
+                        /**
+                         * Constructs a new UniversalMetadata.
+                         * @memberof google.analytics.data.v1alpha
+                         * @classdesc Represents an UniversalMetadata.
+                         * @implements IUniversalMetadata
+                         * @constructor
+                         * @param {google.analytics.data.v1alpha.IUniversalMetadata=} [properties] Properties to set
+                         */
+                        function UniversalMetadata(properties) {
+                            this.dimensions = [];
+                            this.metrics = [];
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * UniversalMetadata dimensions.
+                         * @member {Array.<google.analytics.data.v1alpha.IDimensionMetadata>} dimensions
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
+                         * @instance
+                         */
+                        UniversalMetadata.prototype.dimensions = $util.emptyArray;
+    
+                        /**
+                         * UniversalMetadata metrics.
+                         * @member {Array.<google.analytics.data.v1alpha.IMetricMetadata>} metrics
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
+                         * @instance
+                         */
+                        UniversalMetadata.prototype.metrics = $util.emptyArray;
+    
+                        /**
+                         * Creates a new UniversalMetadata instance using the specified properties.
+                         * @function create
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
+                         * @static
+                         * @param {google.analytics.data.v1alpha.IUniversalMetadata=} [properties] Properties to set
+                         * @returns {google.analytics.data.v1alpha.UniversalMetadata} UniversalMetadata instance
+                         */
+                        UniversalMetadata.create = function create(properties) {
+                            return new UniversalMetadata(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified UniversalMetadata message. Does not implicitly {@link google.analytics.data.v1alpha.UniversalMetadata.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
+                         * @static
+                         * @param {google.analytics.data.v1alpha.IUniversalMetadata} message UniversalMetadata message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        UniversalMetadata.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.dimensions != null && message.dimensions.length)
+                                for (var i = 0; i < message.dimensions.length; ++i)
+                                    $root.google.analytics.data.v1alpha.DimensionMetadata.encode(message.dimensions[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
+                            if (message.metrics != null && message.metrics.length)
+                                for (var i = 0; i < message.metrics.length; ++i)
+                                    $root.google.analytics.data.v1alpha.MetricMetadata.encode(message.metrics[i], writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified UniversalMetadata message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.UniversalMetadata.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
+                         * @static
+                         * @param {google.analytics.data.v1alpha.IUniversalMetadata} message UniversalMetadata message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        UniversalMetadata.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes an UniversalMetadata message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.analytics.data.v1alpha.UniversalMetadata} UniversalMetadata
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        UniversalMetadata.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.analytics.data.v1alpha.UniversalMetadata();
                             while (reader.pos < end) {
                                 var tag = reader.uint32();
                                 switch (tag >>> 3) {
                                 case 1:
-                                    message.name = reader.string();
+                                    if (!(message.dimensions && message.dimensions.length))
+                                        message.dimensions = [];
+                                    message.dimensions.push($root.google.analytics.data.v1alpha.DimensionMetadata.decode(reader, reader.uint32()));
+                                    break;
+                                case 2:
+                                    if (!(message.metrics && message.metrics.length))
+                                        message.metrics = [];
+                                    message.metrics.push($root.google.analytics.data.v1alpha.MetricMetadata.decode(reader, reader.uint32()));
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -3626,87 +3555,130 @@
                         };
     
                         /**
-                         * Decodes a GetMetadataRequest message from the specified reader or buffer, length delimited.
+                         * Decodes an UniversalMetadata message from the specified reader or buffer, length delimited.
                          * @function decodeDelimited
-                         * @memberof google.analytics.data.v1alpha.GetMetadataRequest
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
                          * @static
                          * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.analytics.data.v1alpha.GetMetadataRequest} GetMetadataRequest
+                         * @returns {google.analytics.data.v1alpha.UniversalMetadata} UniversalMetadata
                          * @throws {Error} If the payload is not a reader or valid buffer
                          * @throws {$protobuf.util.ProtocolError} If required fields are missing
                          */
-                        GetMetadataRequest.decodeDelimited = function decodeDelimited(reader) {
+                        UniversalMetadata.decodeDelimited = function decodeDelimited(reader) {
                             if (!(reader instanceof $Reader))
                                 reader = new $Reader(reader);
                             return this.decode(reader, reader.uint32());
                         };
     
                         /**
-                         * Verifies a GetMetadataRequest message.
+                         * Verifies an UniversalMetadata message.
                          * @function verify
-                         * @memberof google.analytics.data.v1alpha.GetMetadataRequest
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
                          * @static
                          * @param {Object.<string,*>} message Plain object to verify
                          * @returns {string|null} `null` if valid, otherwise the reason why it is not
                          */
-                        GetMetadataRequest.verify = function verify(message) {
+                        UniversalMetadata.verify = function verify(message) {
                             if (typeof message !== "object" || message === null)
                                 return "object expected";
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                if (!$util.isString(message.name))
-                                    return "name: string expected";
+                            if (message.dimensions != null && message.hasOwnProperty("dimensions")) {
+                                if (!Array.isArray(message.dimensions))
+                                    return "dimensions: array expected";
+                                for (var i = 0; i < message.dimensions.length; ++i) {
+                                    var error = $root.google.analytics.data.v1alpha.DimensionMetadata.verify(message.dimensions[i]);
+                                    if (error)
+                                        return "dimensions." + error;
+                                }
+                            }
+                            if (message.metrics != null && message.hasOwnProperty("metrics")) {
+                                if (!Array.isArray(message.metrics))
+                                    return "metrics: array expected";
+                                for (var i = 0; i < message.metrics.length; ++i) {
+                                    var error = $root.google.analytics.data.v1alpha.MetricMetadata.verify(message.metrics[i]);
+                                    if (error)
+                                        return "metrics." + error;
+                                }
+                            }
                             return null;
                         };
     
                         /**
-                         * Creates a GetMetadataRequest message from a plain object. Also converts values to their respective internal types.
+                         * Creates an UniversalMetadata message from a plain object. Also converts values to their respective internal types.
                          * @function fromObject
-                         * @memberof google.analytics.data.v1alpha.GetMetadataRequest
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
                          * @static
                          * @param {Object.<string,*>} object Plain object
-                         * @returns {google.analytics.data.v1alpha.GetMetadataRequest} GetMetadataRequest
+                         * @returns {google.analytics.data.v1alpha.UniversalMetadata} UniversalMetadata
                          */
-                        GetMetadataRequest.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.analytics.data.v1alpha.GetMetadataRequest)
+                        UniversalMetadata.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.analytics.data.v1alpha.UniversalMetadata)
                                 return object;
-                            var message = new $root.google.analytics.data.v1alpha.GetMetadataRequest();
-                            if (object.name != null)
-                                message.name = String(object.name);
+                            var message = new $root.google.analytics.data.v1alpha.UniversalMetadata();
+                            if (object.dimensions) {
+                                if (!Array.isArray(object.dimensions))
+                                    throw TypeError(".google.analytics.data.v1alpha.UniversalMetadata.dimensions: array expected");
+                                message.dimensions = [];
+                                for (var i = 0; i < object.dimensions.length; ++i) {
+                                    if (typeof object.dimensions[i] !== "object")
+                                        throw TypeError(".google.analytics.data.v1alpha.UniversalMetadata.dimensions: object expected");
+                                    message.dimensions[i] = $root.google.analytics.data.v1alpha.DimensionMetadata.fromObject(object.dimensions[i]);
+                                }
+                            }
+                            if (object.metrics) {
+                                if (!Array.isArray(object.metrics))
+                                    throw TypeError(".google.analytics.data.v1alpha.UniversalMetadata.metrics: array expected");
+                                message.metrics = [];
+                                for (var i = 0; i < object.metrics.length; ++i) {
+                                    if (typeof object.metrics[i] !== "object")
+                                        throw TypeError(".google.analytics.data.v1alpha.UniversalMetadata.metrics: object expected");
+                                    message.metrics[i] = $root.google.analytics.data.v1alpha.MetricMetadata.fromObject(object.metrics[i]);
+                                }
+                            }
                             return message;
                         };
     
                         /**
-                         * Creates a plain object from a GetMetadataRequest message. Also converts values to other types if specified.
+                         * Creates a plain object from an UniversalMetadata message. Also converts values to other types if specified.
                          * @function toObject
-                         * @memberof google.analytics.data.v1alpha.GetMetadataRequest
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
                          * @static
-                         * @param {google.analytics.data.v1alpha.GetMetadataRequest} message GetMetadataRequest
+                         * @param {google.analytics.data.v1alpha.UniversalMetadata} message UniversalMetadata
                          * @param {$protobuf.IConversionOptions} [options] Conversion options
                          * @returns {Object.<string,*>} Plain object
                          */
-                        GetMetadataRequest.toObject = function toObject(message, options) {
+                        UniversalMetadata.toObject = function toObject(message, options) {
                             if (!options)
                                 options = {};
                             var object = {};
-                            if (options.defaults)
-                                object.name = "";
-                            if (message.name != null && message.hasOwnProperty("name"))
-                                object.name = message.name;
+                            if (options.arrays || options.defaults) {
+                                object.dimensions = [];
+                                object.metrics = [];
+                            }
+                            if (message.dimensions && message.dimensions.length) {
+                                object.dimensions = [];
+                                for (var j = 0; j < message.dimensions.length; ++j)
+                                    object.dimensions[j] = $root.google.analytics.data.v1alpha.DimensionMetadata.toObject(message.dimensions[j], options);
+                            }
+                            if (message.metrics && message.metrics.length) {
+                                object.metrics = [];
+                                for (var j = 0; j < message.metrics.length; ++j)
+                                    object.metrics[j] = $root.google.analytics.data.v1alpha.MetricMetadata.toObject(message.metrics[j], options);
+                            }
                             return object;
                         };
     
                         /**
-                         * Converts this GetMetadataRequest to JSON.
+                         * Converts this UniversalMetadata to JSON.
                          * @function toJSON
-                         * @memberof google.analytics.data.v1alpha.GetMetadataRequest
+                         * @memberof google.analytics.data.v1alpha.UniversalMetadata
                          * @instance
                          * @returns {Object.<string,*>} JSON object
                          */
-                        GetMetadataRequest.prototype.toJSON = function toJSON() {
+                        UniversalMetadata.prototype.toJSON = function toJSON() {
                             return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
                         };
     
-                        return GetMetadataRequest;
+                        return UniversalMetadata;
                     })();
     
                     v1alpha.DateRange = (function() {
@@ -13739,565 +13711,6 @@
                 return values;
             })();
     
-            api.ResourceDescriptor = (function() {
-    
-                /**
-                 * Properties of a ResourceDescriptor.
-                 * @memberof google.api
-                 * @interface IResourceDescriptor
-                 * @property {string|null} [type] ResourceDescriptor type
-                 * @property {Array.<string>|null} [pattern] ResourceDescriptor pattern
-                 * @property {string|null} [nameField] ResourceDescriptor nameField
-                 * @property {google.api.ResourceDescriptor.History|null} [history] ResourceDescriptor history
-                 * @property {string|null} [plural] ResourceDescriptor plural
-                 * @property {string|null} [singular] ResourceDescriptor singular
-                 */
-    
-                /**
-                 * Constructs a new ResourceDescriptor.
-                 * @memberof google.api
-                 * @classdesc Represents a ResourceDescriptor.
-                 * @implements IResourceDescriptor
-                 * @constructor
-                 * @param {google.api.IResourceDescriptor=} [properties] Properties to set
-                 */
-                function ResourceDescriptor(properties) {
-                    this.pattern = [];
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * ResourceDescriptor type.
-                 * @member {string} type
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.type = "";
-    
-                /**
-                 * ResourceDescriptor pattern.
-                 * @member {Array.<string>} pattern
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.pattern = $util.emptyArray;
-    
-                /**
-                 * ResourceDescriptor nameField.
-                 * @member {string} nameField
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.nameField = "";
-    
-                /**
-                 * ResourceDescriptor history.
-                 * @member {google.api.ResourceDescriptor.History} history
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.history = 0;
-    
-                /**
-                 * ResourceDescriptor plural.
-                 * @member {string} plural
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.plural = "";
-    
-                /**
-                 * ResourceDescriptor singular.
-                 * @member {string} singular
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 */
-                ResourceDescriptor.prototype.singular = "";
-    
-                /**
-                 * Creates a new ResourceDescriptor instance using the specified properties.
-                 * @function create
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {google.api.IResourceDescriptor=} [properties] Properties to set
-                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor instance
-                 */
-                ResourceDescriptor.create = function create(properties) {
-                    return new ResourceDescriptor(properties);
-                };
-    
-                /**
-                 * Encodes the specified ResourceDescriptor message. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {google.api.IResourceDescriptor} message ResourceDescriptor message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ResourceDescriptor.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.type != null && Object.hasOwnProperty.call(message, "type"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.type);
-                    if (message.pattern != null && message.pattern.length)
-                        for (var i = 0; i < message.pattern.length; ++i)
-                            writer.uint32(/* id 2, wireType 2 =*/18).string(message.pattern[i]);
-                    if (message.nameField != null && Object.hasOwnProperty.call(message, "nameField"))
-                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.nameField);
-                    if (message.history != null && Object.hasOwnProperty.call(message, "history"))
-                        writer.uint32(/* id 4, wireType 0 =*/32).int32(message.history);
-                    if (message.plural != null && Object.hasOwnProperty.call(message, "plural"))
-                        writer.uint32(/* id 5, wireType 2 =*/42).string(message.plural);
-                    if (message.singular != null && Object.hasOwnProperty.call(message, "singular"))
-                        writer.uint32(/* id 6, wireType 2 =*/50).string(message.singular);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified ResourceDescriptor message, length delimited. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {google.api.IResourceDescriptor} message ResourceDescriptor message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ResourceDescriptor.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a ResourceDescriptor message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ResourceDescriptor.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceDescriptor();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.type = reader.string();
-                            break;
-                        case 2:
-                            if (!(message.pattern && message.pattern.length))
-                                message.pattern = [];
-                            message.pattern.push(reader.string());
-                            break;
-                        case 3:
-                            message.nameField = reader.string();
-                            break;
-                        case 4:
-                            message.history = reader.int32();
-                            break;
-                        case 5:
-                            message.plural = reader.string();
-                            break;
-                        case 6:
-                            message.singular = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a ResourceDescriptor message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ResourceDescriptor.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a ResourceDescriptor message.
-                 * @function verify
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                ResourceDescriptor.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.type != null && message.hasOwnProperty("type"))
-                        if (!$util.isString(message.type))
-                            return "type: string expected";
-                    if (message.pattern != null && message.hasOwnProperty("pattern")) {
-                        if (!Array.isArray(message.pattern))
-                            return "pattern: array expected";
-                        for (var i = 0; i < message.pattern.length; ++i)
-                            if (!$util.isString(message.pattern[i]))
-                                return "pattern: string[] expected";
-                    }
-                    if (message.nameField != null && message.hasOwnProperty("nameField"))
-                        if (!$util.isString(message.nameField))
-                            return "nameField: string expected";
-                    if (message.history != null && message.hasOwnProperty("history"))
-                        switch (message.history) {
-                        default:
-                            return "history: enum value expected";
-                        case 0:
-                        case 1:
-                        case 2:
-                            break;
-                        }
-                    if (message.plural != null && message.hasOwnProperty("plural"))
-                        if (!$util.isString(message.plural))
-                            return "plural: string expected";
-                    if (message.singular != null && message.hasOwnProperty("singular"))
-                        if (!$util.isString(message.singular))
-                            return "singular: string expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a ResourceDescriptor message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.api.ResourceDescriptor} ResourceDescriptor
-                 */
-                ResourceDescriptor.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.api.ResourceDescriptor)
-                        return object;
-                    var message = new $root.google.api.ResourceDescriptor();
-                    if (object.type != null)
-                        message.type = String(object.type);
-                    if (object.pattern) {
-                        if (!Array.isArray(object.pattern))
-                            throw TypeError(".google.api.ResourceDescriptor.pattern: array expected");
-                        message.pattern = [];
-                        for (var i = 0; i < object.pattern.length; ++i)
-                            message.pattern[i] = String(object.pattern[i]);
-                    }
-                    if (object.nameField != null)
-                        message.nameField = String(object.nameField);
-                    switch (object.history) {
-                    case "HISTORY_UNSPECIFIED":
-                    case 0:
-                        message.history = 0;
-                        break;
-                    case "ORIGINALLY_SINGLE_PATTERN":
-                    case 1:
-                        message.history = 1;
-                        break;
-                    case "FUTURE_MULTI_PATTERN":
-                    case 2:
-                        message.history = 2;
-                        break;
-                    }
-                    if (object.plural != null)
-                        message.plural = String(object.plural);
-                    if (object.singular != null)
-                        message.singular = String(object.singular);
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a ResourceDescriptor message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.api.ResourceDescriptor
-                 * @static
-                 * @param {google.api.ResourceDescriptor} message ResourceDescriptor
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                ResourceDescriptor.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.arrays || options.defaults)
-                        object.pattern = [];
-                    if (options.defaults) {
-                        object.type = "";
-                        object.nameField = "";
-                        object.history = options.enums === String ? "HISTORY_UNSPECIFIED" : 0;
-                        object.plural = "";
-                        object.singular = "";
-                    }
-                    if (message.type != null && message.hasOwnProperty("type"))
-                        object.type = message.type;
-                    if (message.pattern && message.pattern.length) {
-                        object.pattern = [];
-                        for (var j = 0; j < message.pattern.length; ++j)
-                            object.pattern[j] = message.pattern[j];
-                    }
-                    if (message.nameField != null && message.hasOwnProperty("nameField"))
-                        object.nameField = message.nameField;
-                    if (message.history != null && message.hasOwnProperty("history"))
-                        object.history = options.enums === String ? $root.google.api.ResourceDescriptor.History[message.history] : message.history;
-                    if (message.plural != null && message.hasOwnProperty("plural"))
-                        object.plural = message.plural;
-                    if (message.singular != null && message.hasOwnProperty("singular"))
-                        object.singular = message.singular;
-                    return object;
-                };
-    
-                /**
-                 * Converts this ResourceDescriptor to JSON.
-                 * @function toJSON
-                 * @memberof google.api.ResourceDescriptor
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                ResourceDescriptor.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                /**
-                 * History enum.
-                 * @name google.api.ResourceDescriptor.History
-                 * @enum {number}
-                 * @property {number} HISTORY_UNSPECIFIED=0 HISTORY_UNSPECIFIED value
-                 * @property {number} ORIGINALLY_SINGLE_PATTERN=1 ORIGINALLY_SINGLE_PATTERN value
-                 * @property {number} FUTURE_MULTI_PATTERN=2 FUTURE_MULTI_PATTERN value
-                 */
-                ResourceDescriptor.History = (function() {
-                    var valuesById = {}, values = Object.create(valuesById);
-                    values[valuesById[0] = "HISTORY_UNSPECIFIED"] = 0;
-                    values[valuesById[1] = "ORIGINALLY_SINGLE_PATTERN"] = 1;
-                    values[valuesById[2] = "FUTURE_MULTI_PATTERN"] = 2;
-                    return values;
-                })();
-    
-                return ResourceDescriptor;
-            })();
-    
-            api.ResourceReference = (function() {
-    
-                /**
-                 * Properties of a ResourceReference.
-                 * @memberof google.api
-                 * @interface IResourceReference
-                 * @property {string|null} [type] ResourceReference type
-                 * @property {string|null} [childType] ResourceReference childType
-                 */
-    
-                /**
-                 * Constructs a new ResourceReference.
-                 * @memberof google.api
-                 * @classdesc Represents a ResourceReference.
-                 * @implements IResourceReference
-                 * @constructor
-                 * @param {google.api.IResourceReference=} [properties] Properties to set
-                 */
-                function ResourceReference(properties) {
-                    if (properties)
-                        for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                            if (properties[keys[i]] != null)
-                                this[keys[i]] = properties[keys[i]];
-                }
-    
-                /**
-                 * ResourceReference type.
-                 * @member {string} type
-                 * @memberof google.api.ResourceReference
-                 * @instance
-                 */
-                ResourceReference.prototype.type = "";
-    
-                /**
-                 * ResourceReference childType.
-                 * @member {string} childType
-                 * @memberof google.api.ResourceReference
-                 * @instance
-                 */
-                ResourceReference.prototype.childType = "";
-    
-                /**
-                 * Creates a new ResourceReference instance using the specified properties.
-                 * @function create
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {google.api.IResourceReference=} [properties] Properties to set
-                 * @returns {google.api.ResourceReference} ResourceReference instance
-                 */
-                ResourceReference.create = function create(properties) {
-                    return new ResourceReference(properties);
-                };
-    
-                /**
-                 * Encodes the specified ResourceReference message. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
-                 * @function encode
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {google.api.IResourceReference} message ResourceReference message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ResourceReference.encode = function encode(message, writer) {
-                    if (!writer)
-                        writer = $Writer.create();
-                    if (message.type != null && Object.hasOwnProperty.call(message, "type"))
-                        writer.uint32(/* id 1, wireType 2 =*/10).string(message.type);
-                    if (message.childType != null && Object.hasOwnProperty.call(message, "childType"))
-                        writer.uint32(/* id 2, wireType 2 =*/18).string(message.childType);
-                    return writer;
-                };
-    
-                /**
-                 * Encodes the specified ResourceReference message, length delimited. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
-                 * @function encodeDelimited
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {google.api.IResourceReference} message ResourceReference message or plain object to encode
-                 * @param {$protobuf.Writer} [writer] Writer to encode to
-                 * @returns {$protobuf.Writer} Writer
-                 */
-                ResourceReference.encodeDelimited = function encodeDelimited(message, writer) {
-                    return this.encode(message, writer).ldelim();
-                };
-    
-                /**
-                 * Decodes a ResourceReference message from the specified reader or buffer.
-                 * @function decode
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @param {number} [length] Message length if known beforehand
-                 * @returns {google.api.ResourceReference} ResourceReference
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ResourceReference.decode = function decode(reader, length) {
-                    if (!(reader instanceof $Reader))
-                        reader = $Reader.create(reader);
-                    var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.api.ResourceReference();
-                    while (reader.pos < end) {
-                        var tag = reader.uint32();
-                        switch (tag >>> 3) {
-                        case 1:
-                            message.type = reader.string();
-                            break;
-                        case 2:
-                            message.childType = reader.string();
-                            break;
-                        default:
-                            reader.skipType(tag & 7);
-                            break;
-                        }
-                    }
-                    return message;
-                };
-    
-                /**
-                 * Decodes a ResourceReference message from the specified reader or buffer, length delimited.
-                 * @function decodeDelimited
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                 * @returns {google.api.ResourceReference} ResourceReference
-                 * @throws {Error} If the payload is not a reader or valid buffer
-                 * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                 */
-                ResourceReference.decodeDelimited = function decodeDelimited(reader) {
-                    if (!(reader instanceof $Reader))
-                        reader = new $Reader(reader);
-                    return this.decode(reader, reader.uint32());
-                };
-    
-                /**
-                 * Verifies a ResourceReference message.
-                 * @function verify
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {Object.<string,*>} message Plain object to verify
-                 * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                 */
-                ResourceReference.verify = function verify(message) {
-                    if (typeof message !== "object" || message === null)
-                        return "object expected";
-                    if (message.type != null && message.hasOwnProperty("type"))
-                        if (!$util.isString(message.type))
-                            return "type: string expected";
-                    if (message.childType != null && message.hasOwnProperty("childType"))
-                        if (!$util.isString(message.childType))
-                            return "childType: string expected";
-                    return null;
-                };
-    
-                /**
-                 * Creates a ResourceReference message from a plain object. Also converts values to their respective internal types.
-                 * @function fromObject
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {Object.<string,*>} object Plain object
-                 * @returns {google.api.ResourceReference} ResourceReference
-                 */
-                ResourceReference.fromObject = function fromObject(object) {
-                    if (object instanceof $root.google.api.ResourceReference)
-                        return object;
-                    var message = new $root.google.api.ResourceReference();
-                    if (object.type != null)
-                        message.type = String(object.type);
-                    if (object.childType != null)
-                        message.childType = String(object.childType);
-                    return message;
-                };
-    
-                /**
-                 * Creates a plain object from a ResourceReference message. Also converts values to other types if specified.
-                 * @function toObject
-                 * @memberof google.api.ResourceReference
-                 * @static
-                 * @param {google.api.ResourceReference} message ResourceReference
-                 * @param {$protobuf.IConversionOptions} [options] Conversion options
-                 * @returns {Object.<string,*>} Plain object
-                 */
-                ResourceReference.toObject = function toObject(message, options) {
-                    if (!options)
-                        options = {};
-                    var object = {};
-                    if (options.defaults) {
-                        object.type = "";
-                        object.childType = "";
-                    }
-                    if (message.type != null && message.hasOwnProperty("type"))
-                        object.type = message.type;
-                    if (message.childType != null && message.hasOwnProperty("childType"))
-                        object.childType = message.childType;
-                    return object;
-                };
-    
-                /**
-                 * Converts this ResourceReference to JSON.
-                 * @function toJSON
-                 * @memberof google.api.ResourceReference
-                 * @instance
-                 * @returns {Object.<string,*>} JSON object
-                 */
-                ResourceReference.prototype.toJSON = function toJSON() {
-                    return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                };
-    
-                return ResourceReference;
-            })();
-    
             return api;
         })();
     
@@ -18491,7 +17904,6 @@
                  * @property {string|null} [phpMetadataNamespace] FileOptions phpMetadataNamespace
                  * @property {string|null} [rubyPackage] FileOptions rubyPackage
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] FileOptions uninterpretedOption
-                 * @property {Array.<google.api.IResourceDescriptor>|null} [".google.api.resourceDefinition"] FileOptions .google.api.resourceDefinition
                  */
     
                 /**
@@ -18504,7 +17916,6 @@
                  */
                 function FileOptions(properties) {
                     this.uninterpretedOption = [];
-                    this[".google.api.resourceDefinition"] = [];
                     if (properties)
                         for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                             if (properties[keys[i]] != null)
@@ -18680,14 +18091,6 @@
                 FileOptions.prototype.uninterpretedOption = $util.emptyArray;
     
                 /**
-                 * FileOptions .google.api.resourceDefinition.
-                 * @member {Array.<google.api.IResourceDescriptor>} .google.api.resourceDefinition
-                 * @memberof google.protobuf.FileOptions
-                 * @instance
-                 */
-                FileOptions.prototype[".google.api.resourceDefinition"] = $util.emptyArray;
-    
-                /**
                  * Creates a new FileOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.FileOptions
@@ -18754,9 +18157,6 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.resourceDefinition"] != null && message[".google.api.resourceDefinition"].length)
-                        for (var i = 0; i < message[".google.api.resourceDefinition"].length; ++i)
-                            $root.google.api.ResourceDescriptor.encode(message[".google.api.resourceDefinition"][i], writer.uint32(/* id 1053, wireType 2 =*/8426).fork()).ldelim();
                     return writer;
                 };
     
@@ -18855,11 +18255,6 @@
                             if (!(message.uninterpretedOption && message.uninterpretedOption.length))
                                 message.uninterpretedOption = [];
                             message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                            break;
-                        case 1053:
-                            if (!(message[".google.api.resourceDefinition"] && message[".google.api.resourceDefinition"].length))
-                                message[".google.api.resourceDefinition"] = [];
-                            message[".google.api.resourceDefinition"].push($root.google.api.ResourceDescriptor.decode(reader, reader.uint32()));
                             break;
                         default:
                             reader.skipType(tag & 7);
@@ -18971,15 +18366,6 @@
                                 return "uninterpretedOption." + error;
                         }
                     }
-                    if (message[".google.api.resourceDefinition"] != null && message.hasOwnProperty(".google.api.resourceDefinition")) {
-                        if (!Array.isArray(message[".google.api.resourceDefinition"]))
-                            return ".google.api.resourceDefinition: array expected";
-                        for (var i = 0; i < message[".google.api.resourceDefinition"].length; ++i) {
-                            var error = $root.google.api.ResourceDescriptor.verify(message[".google.api.resourceDefinition"][i]);
-                            if (error)
-                                return ".google.api.resourceDefinition." + error;
-                        }
-                    }
                     return null;
                 };
     
@@ -19057,16 +18443,6 @@
                             message.uninterpretedOption[i] = $root.google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
                         }
                     }
-                    if (object[".google.api.resourceDefinition"]) {
-                        if (!Array.isArray(object[".google.api.resourceDefinition"]))
-                            throw TypeError(".google.protobuf.FileOptions..google.api.resourceDefinition: array expected");
-                        message[".google.api.resourceDefinition"] = [];
-                        for (var i = 0; i < object[".google.api.resourceDefinition"].length; ++i) {
-                            if (typeof object[".google.api.resourceDefinition"][i] !== "object")
-                                throw TypeError(".google.protobuf.FileOptions..google.api.resourceDefinition: object expected");
-                            message[".google.api.resourceDefinition"][i] = $root.google.api.ResourceDescriptor.fromObject(object[".google.api.resourceDefinition"][i]);
-                        }
-                    }
                     return message;
                 };
     
@@ -19083,10 +18459,8 @@
                     if (!options)
                         options = {};
                     var object = {};
-                    if (options.arrays || options.defaults) {
+                    if (options.arrays || options.defaults)
                         object.uninterpretedOption = [];
-                        object[".google.api.resourceDefinition"] = [];
-                    }
                     if (options.defaults) {
                         object.javaPackage = "";
                         object.javaOuterClassname = "";
@@ -19154,11 +18528,6 @@
                         for (var j = 0; j < message.uninterpretedOption.length; ++j)
                             object.uninterpretedOption[j] = $root.google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
                     }
-                    if (message[".google.api.resourceDefinition"] && message[".google.api.resourceDefinition"].length) {
-                        object[".google.api.resourceDefinition"] = [];
-                        for (var j = 0; j < message[".google.api.resourceDefinition"].length; ++j)
-                            object[".google.api.resourceDefinition"][j] = $root.google.api.ResourceDescriptor.toObject(message[".google.api.resourceDefinition"][j], options);
-                    }
                     return object;
                 };
     
@@ -19203,7 +18572,6 @@
                  * @property {boolean|null} [deprecated] MessageOptions deprecated
                  * @property {boolean|null} [mapEntry] MessageOptions mapEntry
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] MessageOptions uninterpretedOption
-                 * @property {google.api.IResourceDescriptor|null} [".google.api.resource"] MessageOptions .google.api.resource
                  */
     
                 /**
@@ -19263,14 +18631,6 @@
                 MessageOptions.prototype.uninterpretedOption = $util.emptyArray;
     
                 /**
-                 * MessageOptions .google.api.resource.
-                 * @member {google.api.IResourceDescriptor|null|undefined} .google.api.resource
-                 * @memberof google.protobuf.MessageOptions
-                 * @instance
-                 */
-                MessageOptions.prototype[".google.api.resource"] = null;
-    
-                /**
                  * Creates a new MessageOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.MessageOptions
@@ -19305,8 +18665,6 @@
                     if (message.uninterpretedOption != null && message.uninterpretedOption.length)
                         for (var i = 0; i < message.uninterpretedOption.length; ++i)
                             $root.google.protobuf.UninterpretedOption.encode(message.uninterpretedOption[i], writer.uint32(/* id 999, wireType 2 =*/7994).fork()).ldelim();
-                    if (message[".google.api.resource"] != null && Object.hasOwnProperty.call(message, ".google.api.resource"))
-                        $root.google.api.ResourceDescriptor.encode(message[".google.api.resource"], writer.uint32(/* id 1053, wireType 2 =*/8426).fork()).ldelim();
                     return writer;
                 };
     
@@ -19357,9 +18715,6 @@
                             if (!(message.uninterpretedOption && message.uninterpretedOption.length))
                                 message.uninterpretedOption = [];
                             message.uninterpretedOption.push($root.google.protobuf.UninterpretedOption.decode(reader, reader.uint32()));
-                            break;
-                        case 1053:
-                            message[".google.api.resource"] = $root.google.api.ResourceDescriptor.decode(reader, reader.uint32());
                             break;
                         default:
                             reader.skipType(tag & 7);
@@ -19417,11 +18772,6 @@
                                 return "uninterpretedOption." + error;
                         }
                     }
-                    if (message[".google.api.resource"] != null && message.hasOwnProperty(".google.api.resource")) {
-                        var error = $root.google.api.ResourceDescriptor.verify(message[".google.api.resource"]);
-                        if (error)
-                            return ".google.api.resource." + error;
-                    }
                     return null;
                 };
     
@@ -19455,11 +18805,6 @@
                             message.uninterpretedOption[i] = $root.google.protobuf.UninterpretedOption.fromObject(object.uninterpretedOption[i]);
                         }
                     }
-                    if (object[".google.api.resource"] != null) {
-                        if (typeof object[".google.api.resource"] !== "object")
-                            throw TypeError(".google.protobuf.MessageOptions..google.api.resource: object expected");
-                        message[".google.api.resource"] = $root.google.api.ResourceDescriptor.fromObject(object[".google.api.resource"]);
-                    }
                     return message;
                 };
     
@@ -19483,7 +18828,6 @@
                         object.noStandardDescriptorAccessor = false;
                         object.deprecated = false;
                         object.mapEntry = false;
-                        object[".google.api.resource"] = null;
                     }
                     if (message.messageSetWireFormat != null && message.hasOwnProperty("messageSetWireFormat"))
                         object.messageSetWireFormat = message.messageSetWireFormat;
@@ -19498,8 +18842,6 @@
                         for (var j = 0; j < message.uninterpretedOption.length; ++j)
                             object.uninterpretedOption[j] = $root.google.protobuf.UninterpretedOption.toObject(message.uninterpretedOption[j], options);
                     }
-                    if (message[".google.api.resource"] != null && message.hasOwnProperty(".google.api.resource"))
-                        object[".google.api.resource"] = $root.google.api.ResourceDescriptor.toObject(message[".google.api.resource"], options);
                     return object;
                 };
     
@@ -19531,7 +18873,6 @@
                  * @property {boolean|null} [weak] FieldOptions weak
                  * @property {Array.<google.protobuf.IUninterpretedOption>|null} [uninterpretedOption] FieldOptions uninterpretedOption
                  * @property {Array.<google.api.FieldBehavior>|null} [".google.api.fieldBehavior"] FieldOptions .google.api.fieldBehavior
-                 * @property {google.api.IResourceReference|null} [".google.api.resourceReference"] FieldOptions .google.api.resourceReference
                  */
     
                 /**
@@ -19616,14 +18957,6 @@
                 FieldOptions.prototype[".google.api.fieldBehavior"] = $util.emptyArray;
     
                 /**
-                 * FieldOptions .google.api.resourceReference.
-                 * @member {google.api.IResourceReference|null|undefined} .google.api.resourceReference
-                 * @memberof google.protobuf.FieldOptions
-                 * @instance
-                 */
-                FieldOptions.prototype[".google.api.resourceReference"] = null;
-    
-                /**
                  * Creates a new FieldOptions instance using the specified properties.
                  * @function create
                  * @memberof google.protobuf.FieldOptions
@@ -19668,8 +19001,6 @@
                             writer.int32(message[".google.api.fieldBehavior"][i]);
                         writer.ldelim();
                     }
-                    if (message[".google.api.resourceReference"] != null && Object.hasOwnProperty.call(message, ".google.api.resourceReference"))
-                        $root.google.api.ResourceReference.encode(message[".google.api.resourceReference"], writer.uint32(/* id 1055, wireType 2 =*/8442).fork()).ldelim();
                     return writer;
                 };
     
@@ -19736,9 +19067,6 @@
                                     message[".google.api.fieldBehavior"].push(reader.int32());
                             } else
                                 message[".google.api.fieldBehavior"].push(reader.int32());
-                            break;
-                        case 1055:
-                            message[".google.api.resourceReference"] = $root.google.api.ResourceReference.decode(reader, reader.uint32());
                             break;
                         default:
                             reader.skipType(tag & 7);
@@ -19829,11 +19157,6 @@
                             case 5:
                                 break;
                             }
-                    }
-                    if (message[".google.api.resourceReference"] != null && message.hasOwnProperty(".google.api.resourceReference")) {
-                        var error = $root.google.api.ResourceReference.verify(message[".google.api.resourceReference"]);
-                        if (error)
-                            return ".google.api.resourceReference." + error;
                     }
                     return null;
                 };
@@ -19929,11 +19252,6 @@
                                 break;
                             }
                     }
-                    if (object[".google.api.resourceReference"] != null) {
-                        if (typeof object[".google.api.resourceReference"] !== "object")
-                            throw TypeError(".google.protobuf.FieldOptions..google.api.resourceReference: object expected");
-                        message[".google.api.resourceReference"] = $root.google.api.ResourceReference.fromObject(object[".google.api.resourceReference"]);
-                    }
                     return message;
                 };
     
@@ -19961,7 +19279,6 @@
                         object.lazy = false;
                         object.jstype = options.enums === String ? "JS_NORMAL" : 0;
                         object.weak = false;
-                        object[".google.api.resourceReference"] = null;
                     }
                     if (message.ctype != null && message.hasOwnProperty("ctype"))
                         object.ctype = options.enums === String ? $root.google.protobuf.FieldOptions.CType[message.ctype] : message.ctype;
@@ -19985,8 +19302,6 @@
                         for (var j = 0; j < message[".google.api.fieldBehavior"].length; ++j)
                             object[".google.api.fieldBehavior"][j] = options.enums === String ? $root.google.api.FieldBehavior[message[".google.api.fieldBehavior"][j]] : message[".google.api.fieldBehavior"][j];
                     }
-                    if (message[".google.api.resourceReference"] != null && message.hasOwnProperty(".google.api.resourceReference"))
-                        object[".google.api.resourceReference"] = $root.google.api.ResourceReference.toObject(message[".google.api.resourceReference"], options);
                     return object;
                 };
     

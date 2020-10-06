@@ -103,18 +103,18 @@ export namespace google {
                     public batchRunPivotReports(request: google.analytics.data.v1alpha.IBatchRunPivotReportsRequest): Promise<google.analytics.data.v1alpha.BatchRunPivotReportsResponse>;
 
                     /**
-                     * Calls GetMetadata.
-                     * @param request GetMetadataRequest message or plain object
-                     * @param callback Node-style callback called with the error, if any, and Metadata
+                     * Calls GetUniversalMetadata.
+                     * @param request GetUniversalMetadataRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and UniversalMetadata
                      */
-                    public getMetadata(request: google.analytics.data.v1alpha.IGetMetadataRequest, callback: google.analytics.data.v1alpha.AlphaAnalyticsData.GetMetadataCallback): void;
+                    public getUniversalMetadata(request: google.analytics.data.v1alpha.IGetUniversalMetadataRequest, callback: google.analytics.data.v1alpha.AlphaAnalyticsData.GetUniversalMetadataCallback): void;
 
                     /**
-                     * Calls GetMetadata.
-                     * @param request GetMetadataRequest message or plain object
+                     * Calls GetUniversalMetadata.
+                     * @param request GetUniversalMetadataRequest message or plain object
                      * @returns Promise
                      */
-                    public getMetadata(request: google.analytics.data.v1alpha.IGetMetadataRequest): Promise<google.analytics.data.v1alpha.Metadata>;
+                    public getUniversalMetadata(request: google.analytics.data.v1alpha.IGetUniversalMetadataRequest): Promise<google.analytics.data.v1alpha.UniversalMetadata>;
                 }
 
                 namespace AlphaAnalyticsData {
@@ -148,113 +148,11 @@ export namespace google {
                     type BatchRunPivotReportsCallback = (error: (Error|null), response?: google.analytics.data.v1alpha.BatchRunPivotReportsResponse) => void;
 
                     /**
-                     * Callback as used by {@link google.analytics.data.v1alpha.AlphaAnalyticsData#getMetadata}.
+                     * Callback as used by {@link google.analytics.data.v1alpha.AlphaAnalyticsData#getUniversalMetadata}.
                      * @param error Error, if any
-                     * @param [response] Metadata
+                     * @param [response] UniversalMetadata
                      */
-                    type GetMetadataCallback = (error: (Error|null), response?: google.analytics.data.v1alpha.Metadata) => void;
-                }
-
-                /** Properties of a Metadata. */
-                interface IMetadata {
-
-                    /** Metadata name */
-                    name?: (string|null);
-
-                    /** Metadata dimensions */
-                    dimensions?: (google.analytics.data.v1alpha.IDimensionMetadata[]|null);
-
-                    /** Metadata metrics */
-                    metrics?: (google.analytics.data.v1alpha.IMetricMetadata[]|null);
-                }
-
-                /** Represents a Metadata. */
-                class Metadata implements IMetadata {
-
-                    /**
-                     * Constructs a new Metadata.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.analytics.data.v1alpha.IMetadata);
-
-                    /** Metadata name. */
-                    public name: string;
-
-                    /** Metadata dimensions. */
-                    public dimensions: google.analytics.data.v1alpha.IDimensionMetadata[];
-
-                    /** Metadata metrics. */
-                    public metrics: google.analytics.data.v1alpha.IMetricMetadata[];
-
-                    /**
-                     * Creates a new Metadata instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns Metadata instance
-                     */
-                    public static create(properties?: google.analytics.data.v1alpha.IMetadata): google.analytics.data.v1alpha.Metadata;
-
-                    /**
-                     * Encodes the specified Metadata message. Does not implicitly {@link google.analytics.data.v1alpha.Metadata.verify|verify} messages.
-                     * @param message Metadata message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.analytics.data.v1alpha.IMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified Metadata message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.Metadata.verify|verify} messages.
-                     * @param message Metadata message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.analytics.data.v1alpha.IMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a Metadata message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns Metadata
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.Metadata;
-
-                    /**
-                     * Decodes a Metadata message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns Metadata
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.Metadata;
-
-                    /**
-                     * Verifies a Metadata message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a Metadata message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns Metadata
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.Metadata;
-
-                    /**
-                     * Creates a plain object from a Metadata message. Also converts values to other types if specified.
-                     * @param message Metadata
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.analytics.data.v1alpha.Metadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this Metadata to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
+                    type GetUniversalMetadataCallback = (error: (Error|null), response?: google.analytics.data.v1alpha.UniversalMetadata) => void;
                 }
 
                 /** Properties of a RunReportRequest. */
@@ -446,6 +344,9 @@ export namespace google {
                     /** RunReportResponse minimums */
                     minimums?: (google.analytics.data.v1alpha.IRow[]|null);
 
+                    /** RunReportResponse rowCount */
+                    rowCount?: (number|null);
+
                     /** RunReportResponse metadata */
                     metadata?: (google.analytics.data.v1alpha.IResponseMetaData|null);
 
@@ -479,6 +380,9 @@ export namespace google {
 
                     /** RunReportResponse minimums. */
                     public minimums: google.analytics.data.v1alpha.IRow[];
+
+                    /** RunReportResponse rowCount. */
+                    public rowCount: number;
 
                     /** RunReportResponse metadata. */
                     public metadata?: (google.analytics.data.v1alpha.IResponseMetaData|null);
@@ -1205,91 +1109,181 @@ export namespace google {
                     public toJSON(): { [k: string]: any };
                 }
 
-                /** Properties of a GetMetadataRequest. */
-                interface IGetMetadataRequest {
-
-                    /** GetMetadataRequest name */
-                    name?: (string|null);
+                /** Properties of a GetUniversalMetadataRequest. */
+                interface IGetUniversalMetadataRequest {
                 }
 
-                /** Represents a GetMetadataRequest. */
-                class GetMetadataRequest implements IGetMetadataRequest {
+                /** Represents a GetUniversalMetadataRequest. */
+                class GetUniversalMetadataRequest implements IGetUniversalMetadataRequest {
 
                     /**
-                     * Constructs a new GetMetadataRequest.
+                     * Constructs a new GetUniversalMetadataRequest.
                      * @param [properties] Properties to set
                      */
-                    constructor(properties?: google.analytics.data.v1alpha.IGetMetadataRequest);
-
-                    /** GetMetadataRequest name. */
-                    public name: string;
+                    constructor(properties?: google.analytics.data.v1alpha.IGetUniversalMetadataRequest);
 
                     /**
-                     * Creates a new GetMetadataRequest instance using the specified properties.
+                     * Creates a new GetUniversalMetadataRequest instance using the specified properties.
                      * @param [properties] Properties to set
-                     * @returns GetMetadataRequest instance
+                     * @returns GetUniversalMetadataRequest instance
                      */
-                    public static create(properties?: google.analytics.data.v1alpha.IGetMetadataRequest): google.analytics.data.v1alpha.GetMetadataRequest;
+                    public static create(properties?: google.analytics.data.v1alpha.IGetUniversalMetadataRequest): google.analytics.data.v1alpha.GetUniversalMetadataRequest;
 
                     /**
-                     * Encodes the specified GetMetadataRequest message. Does not implicitly {@link google.analytics.data.v1alpha.GetMetadataRequest.verify|verify} messages.
-                     * @param message GetMetadataRequest message or plain object to encode
+                     * Encodes the specified GetUniversalMetadataRequest message. Does not implicitly {@link google.analytics.data.v1alpha.GetUniversalMetadataRequest.verify|verify} messages.
+                     * @param message GetUniversalMetadataRequest message or plain object to encode
                      * @param [writer] Writer to encode to
                      * @returns Writer
                      */
-                    public static encode(message: google.analytics.data.v1alpha.IGetMetadataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+                    public static encode(message: google.analytics.data.v1alpha.IGetUniversalMetadataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
                     /**
-                     * Encodes the specified GetMetadataRequest message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.GetMetadataRequest.verify|verify} messages.
-                     * @param message GetMetadataRequest message or plain object to encode
+                     * Encodes the specified GetUniversalMetadataRequest message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.GetUniversalMetadataRequest.verify|verify} messages.
+                     * @param message GetUniversalMetadataRequest message or plain object to encode
                      * @param [writer] Writer to encode to
                      * @returns Writer
                      */
-                    public static encodeDelimited(message: google.analytics.data.v1alpha.IGetMetadataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+                    public static encodeDelimited(message: google.analytics.data.v1alpha.IGetUniversalMetadataRequest, writer?: $protobuf.Writer): $protobuf.Writer;
 
                     /**
-                     * Decodes a GetMetadataRequest message from the specified reader or buffer.
+                     * Decodes a GetUniversalMetadataRequest message from the specified reader or buffer.
                      * @param reader Reader or buffer to decode from
                      * @param [length] Message length if known beforehand
-                     * @returns GetMetadataRequest
+                     * @returns GetUniversalMetadataRequest
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.GetMetadataRequest;
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.GetUniversalMetadataRequest;
 
                     /**
-                     * Decodes a GetMetadataRequest message from the specified reader or buffer, length delimited.
+                     * Decodes a GetUniversalMetadataRequest message from the specified reader or buffer, length delimited.
                      * @param reader Reader or buffer to decode from
-                     * @returns GetMetadataRequest
+                     * @returns GetUniversalMetadataRequest
                      * @throws {Error} If the payload is not a reader or valid buffer
                      * @throws {$protobuf.util.ProtocolError} If required fields are missing
                      */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.GetMetadataRequest;
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.GetUniversalMetadataRequest;
 
                     /**
-                     * Verifies a GetMetadataRequest message.
+                     * Verifies a GetUniversalMetadataRequest message.
                      * @param message Plain object to verify
                      * @returns `null` if valid, otherwise the reason why it is not
                      */
                     public static verify(message: { [k: string]: any }): (string|null);
 
                     /**
-                     * Creates a GetMetadataRequest message from a plain object. Also converts values to their respective internal types.
+                     * Creates a GetUniversalMetadataRequest message from a plain object. Also converts values to their respective internal types.
                      * @param object Plain object
-                     * @returns GetMetadataRequest
+                     * @returns GetUniversalMetadataRequest
                      */
-                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.GetMetadataRequest;
+                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.GetUniversalMetadataRequest;
 
                     /**
-                     * Creates a plain object from a GetMetadataRequest message. Also converts values to other types if specified.
-                     * @param message GetMetadataRequest
+                     * Creates a plain object from a GetUniversalMetadataRequest message. Also converts values to other types if specified.
+                     * @param message GetUniversalMetadataRequest
                      * @param [options] Conversion options
                      * @returns Plain object
                      */
-                    public static toObject(message: google.analytics.data.v1alpha.GetMetadataRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+                    public static toObject(message: google.analytics.data.v1alpha.GetUniversalMetadataRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
 
                     /**
-                     * Converts this GetMetadataRequest to JSON.
+                     * Converts this GetUniversalMetadataRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of an UniversalMetadata. */
+                interface IUniversalMetadata {
+
+                    /** UniversalMetadata dimensions */
+                    dimensions?: (google.analytics.data.v1alpha.IDimensionMetadata[]|null);
+
+                    /** UniversalMetadata metrics */
+                    metrics?: (google.analytics.data.v1alpha.IMetricMetadata[]|null);
+                }
+
+                /** Represents an UniversalMetadata. */
+                class UniversalMetadata implements IUniversalMetadata {
+
+                    /**
+                     * Constructs a new UniversalMetadata.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.analytics.data.v1alpha.IUniversalMetadata);
+
+                    /** UniversalMetadata dimensions. */
+                    public dimensions: google.analytics.data.v1alpha.IDimensionMetadata[];
+
+                    /** UniversalMetadata metrics. */
+                    public metrics: google.analytics.data.v1alpha.IMetricMetadata[];
+
+                    /**
+                     * Creates a new UniversalMetadata instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns UniversalMetadata instance
+                     */
+                    public static create(properties?: google.analytics.data.v1alpha.IUniversalMetadata): google.analytics.data.v1alpha.UniversalMetadata;
+
+                    /**
+                     * Encodes the specified UniversalMetadata message. Does not implicitly {@link google.analytics.data.v1alpha.UniversalMetadata.verify|verify} messages.
+                     * @param message UniversalMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.analytics.data.v1alpha.IUniversalMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified UniversalMetadata message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.UniversalMetadata.verify|verify} messages.
+                     * @param message UniversalMetadata message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.analytics.data.v1alpha.IUniversalMetadata, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes an UniversalMetadata message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns UniversalMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.UniversalMetadata;
+
+                    /**
+                     * Decodes an UniversalMetadata message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns UniversalMetadata
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.UniversalMetadata;
+
+                    /**
+                     * Verifies an UniversalMetadata message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates an UniversalMetadata message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns UniversalMetadata
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.UniversalMetadata;
+
+                    /**
+                     * Creates a plain object from an UniversalMetadata message. Also converts values to other types if specified.
+                     * @param message UniversalMetadata
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.analytics.data.v1alpha.UniversalMetadata, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this UniversalMetadata to JSON.
                      * @returns JSON object
                      */
                     public toJSON(): { [k: string]: any };
@@ -5397,232 +5391,6 @@ export namespace google {
             INPUT_ONLY = 4,
             IMMUTABLE = 5
         }
-
-        /** Properties of a ResourceDescriptor. */
-        interface IResourceDescriptor {
-
-            /** ResourceDescriptor type */
-            type?: (string|null);
-
-            /** ResourceDescriptor pattern */
-            pattern?: (string[]|null);
-
-            /** ResourceDescriptor nameField */
-            nameField?: (string|null);
-
-            /** ResourceDescriptor history */
-            history?: (google.api.ResourceDescriptor.History|keyof typeof google.api.ResourceDescriptor.History|null);
-
-            /** ResourceDescriptor plural */
-            plural?: (string|null);
-
-            /** ResourceDescriptor singular */
-            singular?: (string|null);
-        }
-
-        /** Represents a ResourceDescriptor. */
-        class ResourceDescriptor implements IResourceDescriptor {
-
-            /**
-             * Constructs a new ResourceDescriptor.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: google.api.IResourceDescriptor);
-
-            /** ResourceDescriptor type. */
-            public type: string;
-
-            /** ResourceDescriptor pattern. */
-            public pattern: string[];
-
-            /** ResourceDescriptor nameField. */
-            public nameField: string;
-
-            /** ResourceDescriptor history. */
-            public history: (google.api.ResourceDescriptor.History|keyof typeof google.api.ResourceDescriptor.History);
-
-            /** ResourceDescriptor plural. */
-            public plural: string;
-
-            /** ResourceDescriptor singular. */
-            public singular: string;
-
-            /**
-             * Creates a new ResourceDescriptor instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns ResourceDescriptor instance
-             */
-            public static create(properties?: google.api.IResourceDescriptor): google.api.ResourceDescriptor;
-
-            /**
-             * Encodes the specified ResourceDescriptor message. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
-             * @param message ResourceDescriptor message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: google.api.IResourceDescriptor, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified ResourceDescriptor message, length delimited. Does not implicitly {@link google.api.ResourceDescriptor.verify|verify} messages.
-             * @param message ResourceDescriptor message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: google.api.IResourceDescriptor, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a ResourceDescriptor message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns ResourceDescriptor
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.ResourceDescriptor;
-
-            /**
-             * Decodes a ResourceDescriptor message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns ResourceDescriptor
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.ResourceDescriptor;
-
-            /**
-             * Verifies a ResourceDescriptor message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a ResourceDescriptor message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns ResourceDescriptor
-             */
-            public static fromObject(object: { [k: string]: any }): google.api.ResourceDescriptor;
-
-            /**
-             * Creates a plain object from a ResourceDescriptor message. Also converts values to other types if specified.
-             * @param message ResourceDescriptor
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: google.api.ResourceDescriptor, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this ResourceDescriptor to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-        }
-
-        namespace ResourceDescriptor {
-
-            /** History enum. */
-            enum History {
-                HISTORY_UNSPECIFIED = 0,
-                ORIGINALLY_SINGLE_PATTERN = 1,
-                FUTURE_MULTI_PATTERN = 2
-            }
-        }
-
-        /** Properties of a ResourceReference. */
-        interface IResourceReference {
-
-            /** ResourceReference type */
-            type?: (string|null);
-
-            /** ResourceReference childType */
-            childType?: (string|null);
-        }
-
-        /** Represents a ResourceReference. */
-        class ResourceReference implements IResourceReference {
-
-            /**
-             * Constructs a new ResourceReference.
-             * @param [properties] Properties to set
-             */
-            constructor(properties?: google.api.IResourceReference);
-
-            /** ResourceReference type. */
-            public type: string;
-
-            /** ResourceReference childType. */
-            public childType: string;
-
-            /**
-             * Creates a new ResourceReference instance using the specified properties.
-             * @param [properties] Properties to set
-             * @returns ResourceReference instance
-             */
-            public static create(properties?: google.api.IResourceReference): google.api.ResourceReference;
-
-            /**
-             * Encodes the specified ResourceReference message. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
-             * @param message ResourceReference message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encode(message: google.api.IResourceReference, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Encodes the specified ResourceReference message, length delimited. Does not implicitly {@link google.api.ResourceReference.verify|verify} messages.
-             * @param message ResourceReference message or plain object to encode
-             * @param [writer] Writer to encode to
-             * @returns Writer
-             */
-            public static encodeDelimited(message: google.api.IResourceReference, writer?: $protobuf.Writer): $protobuf.Writer;
-
-            /**
-             * Decodes a ResourceReference message from the specified reader or buffer.
-             * @param reader Reader or buffer to decode from
-             * @param [length] Message length if known beforehand
-             * @returns ResourceReference
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.api.ResourceReference;
-
-            /**
-             * Decodes a ResourceReference message from the specified reader or buffer, length delimited.
-             * @param reader Reader or buffer to decode from
-             * @returns ResourceReference
-             * @throws {Error} If the payload is not a reader or valid buffer
-             * @throws {$protobuf.util.ProtocolError} If required fields are missing
-             */
-            public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.api.ResourceReference;
-
-            /**
-             * Verifies a ResourceReference message.
-             * @param message Plain object to verify
-             * @returns `null` if valid, otherwise the reason why it is not
-             */
-            public static verify(message: { [k: string]: any }): (string|null);
-
-            /**
-             * Creates a ResourceReference message from a plain object. Also converts values to their respective internal types.
-             * @param object Plain object
-             * @returns ResourceReference
-             */
-            public static fromObject(object: { [k: string]: any }): google.api.ResourceReference;
-
-            /**
-             * Creates a plain object from a ResourceReference message. Also converts values to other types if specified.
-             * @param message ResourceReference
-             * @param [options] Conversion options
-             * @returns Plain object
-             */
-            public static toObject(message: google.api.ResourceReference, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-            /**
-             * Converts this ResourceReference to JSON.
-             * @returns JSON object
-             */
-            public toJSON(): { [k: string]: any };
-        }
     }
 
     /** Namespace protobuf. */
@@ -7189,9 +6957,6 @@ export namespace google {
 
             /** FileOptions uninterpretedOption */
             uninterpretedOption?: (google.protobuf.IUninterpretedOption[]|null);
-
-            /** FileOptions .google.api.resourceDefinition */
-            ".google.api.resourceDefinition"?: (google.api.IResourceDescriptor[]|null);
         }
 
         /** Represents a FileOptions. */
@@ -7364,9 +7129,6 @@ export namespace google {
 
             /** MessageOptions uninterpretedOption */
             uninterpretedOption?: (google.protobuf.IUninterpretedOption[]|null);
-
-            /** MessageOptions .google.api.resource */
-            ".google.api.resource"?: (google.api.IResourceDescriptor|null);
         }
 
         /** Represents a MessageOptions. */
@@ -7490,9 +7252,6 @@ export namespace google {
 
             /** FieldOptions .google.api.fieldBehavior */
             ".google.api.fieldBehavior"?: (google.api.FieldBehavior[]|null);
-
-            /** FieldOptions .google.api.resourceReference */
-            ".google.api.resourceReference"?: (google.api.IResourceReference|null);
         }
 
         /** Represents a FieldOptions. */

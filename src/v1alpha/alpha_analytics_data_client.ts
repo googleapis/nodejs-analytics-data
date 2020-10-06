@@ -45,7 +45,6 @@ export class AlphaAnalyticsDataClient {
     batching: {},
   };
   innerApiCalls: {[name: string]: Function};
-  pathTemplates: {[name: string]: gax.PathTemplate};
   alphaAnalyticsDataStub?: Promise<{[name: string]: Function}>;
 
   /**
@@ -147,15 +146,6 @@ export class AlphaAnalyticsDataClient {
         : nodejsProtoPath
     );
 
-    // This API contains "path templates"; forward-slash-separated
-    // identifiers to uniquely identify resources within the API.
-    // Create useful helper objects for these.
-    this.pathTemplates = {
-      propertyMetadataPathTemplate: new this._gaxModule.PathTemplate(
-        'properties/{property}/metadata'
-      ),
-    };
-
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
       'google.analytics.data.v1alpha.AlphaAnalyticsData',
@@ -207,7 +197,7 @@ export class AlphaAnalyticsDataClient {
       'runPivotReport',
       'batchRunReports',
       'batchRunPivotReports',
-      'getMetadata',
+      'getUniversalMetadata',
     ];
     for (const methodName of alphaAnalyticsDataStubMethods) {
       const callPromise = this.alphaAnalyticsDataStub.then(
@@ -715,32 +705,35 @@ export class AlphaAnalyticsDataClient {
     this.initialize();
     return this.innerApiCalls.batchRunPivotReports(request, options, callback);
   }
-  getMetadata(
-    request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
+  getUniversalMetadata(
+    request: protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest,
     options?: gax.CallOptions
   ): Promise<
     [
-      protos.google.analytics.data.v1alpha.IMetadata,
-      protos.google.analytics.data.v1alpha.IGetMetadataRequest | undefined,
+      protos.google.analytics.data.v1alpha.IUniversalMetadata,
+      (
+        | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
+        | undefined
+      ),
       {} | undefined
     ]
   >;
-  getMetadata(
-    request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
+  getUniversalMetadata(
+    request: protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest,
     options: gax.CallOptions,
     callback: Callback<
-      protos.google.analytics.data.v1alpha.IMetadata,
-      | protos.google.analytics.data.v1alpha.IGetMetadataRequest
+      protos.google.analytics.data.v1alpha.IUniversalMetadata,
+      | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
       | null
       | undefined,
       {} | null | undefined
     >
   ): void;
-  getMetadata(
-    request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
+  getUniversalMetadata(
+    request: protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest,
     callback: Callback<
-      protos.google.analytics.data.v1alpha.IMetadata,
-      | protos.google.analytics.data.v1alpha.IGetMetadataRequest
+      protos.google.analytics.data.v1alpha.IUniversalMetadata,
+      | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
       | null
       | undefined,
       {} | null | undefined
@@ -751,41 +744,42 @@ export class AlphaAnalyticsDataClient {
    * Used to explore the dimensions and metrics. Dimensions and metrics will be
    * mostly added over time, but renames and deletions may occur.
    *
+   * This method returns Universal Metadata. Universal Metadata are dimensions
+   * and metrics applicable to any property such as `country` and `totalUsers`.
+   *
    * @param {Object} request
    *   The request object that will be sent.
-   * @param {string} request.name
-   *   Required. The name of the metadata to retrieve. Either has the form
-   *   'metadata' or 'properties/{property}/metadata'. This name field is
-   *   specified in the URL path and not URL parameters. Property is a numeric
-   *   Google Analytics App + Web Property Id.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [Metadata]{@link google.analytics.data.v1alpha.Metadata}.
+   *   The first element of the array is an object representing [UniversalMetadata]{@link google.analytics.data.v1alpha.UniversalMetadata}.
    *   The promise has a method named "cancel" which cancels the ongoing API call.
    */
-  getMetadata(
-    request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
+  getUniversalMetadata(
+    request: protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest,
     optionsOrCallback?:
       | gax.CallOptions
       | Callback<
-          protos.google.analytics.data.v1alpha.IMetadata,
-          | protos.google.analytics.data.v1alpha.IGetMetadataRequest
+          protos.google.analytics.data.v1alpha.IUniversalMetadata,
+          | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
           | null
           | undefined,
           {} | null | undefined
         >,
     callback?: Callback<
-      protos.google.analytics.data.v1alpha.IMetadata,
-      | protos.google.analytics.data.v1alpha.IGetMetadataRequest
+      protos.google.analytics.data.v1alpha.IUniversalMetadata,
+      | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
       | null
       | undefined,
       {} | null | undefined
     >
   ): Promise<
     [
-      protos.google.analytics.data.v1alpha.IMetadata,
-      protos.google.analytics.data.v1alpha.IGetMetadataRequest | undefined,
+      protos.google.analytics.data.v1alpha.IUniversalMetadata,
+      (
+        | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
+        | undefined
+      ),
       {} | undefined
     ]
   > | void {
@@ -798,44 +792,8 @@ export class AlphaAnalyticsDataClient {
       options = optionsOrCallback as gax.CallOptions;
     }
     options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      name: request.name || '',
-    });
     this.initialize();
-    return this.innerApiCalls.getMetadata(request, options, callback);
-  }
-
-  // --------------------
-  // -- Path templates --
-  // --------------------
-
-  /**
-   * Return a fully-qualified propertyMetadata resource name string.
-   *
-   * @param {string} property
-   * @returns {string} Resource name string.
-   */
-  propertyMetadataPath(property: string) {
-    return this.pathTemplates.propertyMetadataPathTemplate.render({
-      property: property,
-    });
-  }
-
-  /**
-   * Parse the property from PropertyMetadata resource.
-   *
-   * @param {string} propertyMetadataName
-   *   A fully-qualified path representing property_metadata resource.
-   * @returns {string} A string representing the property.
-   */
-  matchPropertyFromPropertyMetadataName(propertyMetadataName: string) {
-    return this.pathTemplates.propertyMetadataPathTemplate.match(
-      propertyMetadataName
-    ).property;
+    return this.innerApiCalls.getUniversalMetadata(request, options, callback);
   }
 
   /**

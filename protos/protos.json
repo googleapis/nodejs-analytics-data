@@ -52,36 +52,12 @@
                             "(google.api.http).body": "*"
                           }
                         },
-                        "GetMetadata": {
-                          "requestType": "GetMetadataRequest",
-                          "responseType": "Metadata",
+                        "GetUniversalMetadata": {
+                          "requestType": "GetUniversalMetadataRequest",
+                          "responseType": "UniversalMetadata",
                           "options": {
-                            "(google.api.http).get": "/v1alpha/{name=metadata}",
-                            "(google.api.http).additional_bindings.get": "/v1alpha/{name=properties/*/metadata}",
-                            "(google.api.method_signature)": "name"
+                            "(google.api.http).get": "/v1alpha/universalMetadata"
                           }
-                        }
-                      }
-                    },
-                    "Metadata": {
-                      "options": {
-                        "(google.api.resource).type": "analyticsdata.googleapis.com/Metadata",
-                        "(google.api.resource).pattern": "properties/{property}/metadata"
-                      },
-                      "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 3
-                        },
-                        "dimensions": {
-                          "rule": "repeated",
-                          "type": "DimensionMetadata",
-                          "id": 1
-                        },
-                        "metrics": {
-                          "rule": "repeated",
-                          "type": "MetricMetadata",
-                          "id": 2
                         }
                       }
                     },
@@ -181,6 +157,10 @@
                           "rule": "repeated",
                           "type": "Row",
                           "id": 10
+                        },
+                        "rowCount": {
+                          "type": "int32",
+                          "id": 12
                         },
                         "metadata": {
                           "type": "ResponseMetaData",
@@ -325,15 +305,20 @@
                         }
                       }
                     },
-                    "GetMetadataRequest": {
+                    "GetUniversalMetadataRequest": {
+                      "fields": {}
+                    },
+                    "UniversalMetadata": {
                       "fields": {
-                        "name": {
-                          "type": "string",
-                          "id": 1,
-                          "options": {
-                            "(google.api.field_behavior)": "REQUIRED",
-                            "(google.api.resource_reference).type": "analyticsdata.googleapis.com/Metadata"
-                          }
+                        "dimensions": {
+                          "rule": "repeated",
+                          "type": "DimensionMetadata",
+                          "id": 1
+                        },
+                        "metrics": {
+                          "rule": "repeated",
+                          "type": "MetricMetadata",
+                          "id": 2
                         }
                       }
                     },
@@ -1001,7 +986,7 @@
           "options": {
             "go_package": "google.golang.org/genproto/googleapis/api/annotations;annotations",
             "java_multiple_files": true,
-            "java_outer_classname": "ResourceProto",
+            "java_outer_classname": "FieldBehaviorProto",
             "java_package": "com.google.api",
             "objc_class_prefix": "GAPI",
             "cc_enable_arenas": true
@@ -1124,72 +1109,6 @@
                 "OUTPUT_ONLY": 3,
                 "INPUT_ONLY": 4,
                 "IMMUTABLE": 5
-              }
-            },
-            "resourceReference": {
-              "type": "google.api.ResourceReference",
-              "id": 1055,
-              "extend": "google.protobuf.FieldOptions"
-            },
-            "resourceDefinition": {
-              "rule": "repeated",
-              "type": "google.api.ResourceDescriptor",
-              "id": 1053,
-              "extend": "google.protobuf.FileOptions"
-            },
-            "resource": {
-              "type": "google.api.ResourceDescriptor",
-              "id": 1053,
-              "extend": "google.protobuf.MessageOptions"
-            },
-            "ResourceDescriptor": {
-              "fields": {
-                "type": {
-                  "type": "string",
-                  "id": 1
-                },
-                "pattern": {
-                  "rule": "repeated",
-                  "type": "string",
-                  "id": 2
-                },
-                "nameField": {
-                  "type": "string",
-                  "id": 3
-                },
-                "history": {
-                  "type": "History",
-                  "id": 4
-                },
-                "plural": {
-                  "type": "string",
-                  "id": 5
-                },
-                "singular": {
-                  "type": "string",
-                  "id": 6
-                }
-              },
-              "nested": {
-                "History": {
-                  "values": {
-                    "HISTORY_UNSPECIFIED": 0,
-                    "ORIGINALLY_SINGLE_PATTERN": 1,
-                    "FUTURE_MULTI_PATTERN": 2
-                  }
-                }
-              }
-            },
-            "ResourceReference": {
-              "fields": {
-                "type": {
-                  "type": "string",
-                  "id": 1
-                },
-                "childType": {
-                  "type": "string",
-                  "id": 2
-                }
               }
             }
           }
