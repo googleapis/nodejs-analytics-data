@@ -43,10 +43,14 @@
  https://cloud.google.com/docs/authentication/production#passing_the_path_to_the_service_account_key_in_code
  */
 
-async function main(
-    propertyId = 'YOUR-GA4-PROPERTY-ID'
-) {
+function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analytics_data_quickstart]
+  /**
+   * TODO(developer): Uncomment this variable and replace with your GA4
+   *   property ID before running the sample.
+   */
+  // const propertyId = 'YOUR-GA4-PROPERTY-ID';
+
   // Imports the Google Analytics Data API client library
   const {AlphaAnalyticsDataClient} = require('@google-analytics/data');
 
@@ -57,7 +61,7 @@ async function main(
   async function runReport() {
     const [response] = await client.runReport({
       entity: {
-        propertyId: propertyId, // TODO(developer): replace with your GA4 property ID.
+        propertyId: propertyId,
       },
       dateRanges: [
         {
@@ -79,7 +83,7 @@ async function main(
 
     console.log('Report result:');
     response.rows.forEach(row => {
-      console.log(row.dimensionValues[0], row.metricValues[0])
+      console.log(row.dimensionValues[0], row.metricValues[0]);
     });
   }
 
