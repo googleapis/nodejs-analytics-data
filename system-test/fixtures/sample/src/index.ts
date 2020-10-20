@@ -16,7 +16,7 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-import {AlphaAnalyticsDataClient} from '@google-analytics/data';
+import {AlphaAnalyticsDataClient} from 'data';
 
 function main() {
   new AlphaAnalyticsDataClient();
