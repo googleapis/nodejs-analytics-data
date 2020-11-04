@@ -209,6 +209,7 @@ export class AlphaAnalyticsDataClient {
       'batchRunPivotReports',
       'getUniversalMetadata',
       'getMetadata',
+      'runRealtimeReport',
     ];
     for (const methodName of alphaAnalyticsDataStubMethods) {
       const callPromise = this.alphaAnalyticsDataStub.then(
@@ -906,6 +907,129 @@ export class AlphaAnalyticsDataClient {
     });
     this.initialize();
     return this.innerApiCalls.getMetadata(request, options, callback);
+  }
+  runRealtimeReport(
+    request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
+    options?: gax.CallOptions
+  ): Promise<
+    [
+      protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+      (
+        | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+        | undefined
+      ),
+      {} | undefined
+    ]
+  >;
+  runRealtimeReport(
+    request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
+    options: gax.CallOptions,
+    callback: Callback<
+      protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+      | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  runRealtimeReport(
+    request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
+    callback: Callback<
+      protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+      | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  /**
+   * The Google Analytics Realtime API returns a customized report of realtime
+   * event data for your property. These reports show events and usage from the
+   * last 30 minutes.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.property
+   *   A Google Analytics GA4 property identifier whose events are tracked.
+   *   Specified in the URL path and not the body. To learn more, see [where to
+   *   find your Property
+   *   ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).
+   *
+   *   Example: properties/1234
+   * @param {number[]} request.dimensions
+   *   The dimensions requested and displayed.
+   * @param {number[]} request.metrics
+   *   The metrics requested and displayed.
+   * @param {number} request.limit
+   *   The number of rows to return. If unspecified, 10 rows are returned. If
+   *   -1, all rows are returned.
+   * @param {google.analytics.data.v1alpha.FilterExpression} request.dimensionFilter
+   *   The filter clause of dimensions. Dimensions must be requested to be used in
+   *   this filter. Metrics cannot be used in this filter.
+   * @param {google.analytics.data.v1alpha.FilterExpression} request.metricFilter
+   *   The filter clause of metrics. Applied at post aggregation phase, similar to
+   *   SQL having-clause. Metrics must be requested to be used in this filter.
+   *   Dimensions cannot be used in this filter.
+   * @param {number[]} request.metricAggregations
+   *   Aggregation of metrics. Aggregated metric values will be shown in rows
+   *   where the dimension_values are set to "RESERVED_(MetricAggregation)".
+   * @param {number[]} request.orderBys
+   *   Specifies how rows are ordered in the response.
+   * @param {boolean} request.returnPropertyQuota
+   *   Toggles whether to return the current state of this Analytics Property's
+   *   Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+   * @param {object} [options]
+   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing [RunRealtimeReportResponse]{@link google.analytics.data.v1alpha.RunRealtimeReportResponse}.
+   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   */
+  runRealtimeReport(
+    request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
+    optionsOrCallback?:
+      | gax.CallOptions
+      | Callback<
+          protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+          | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >,
+    callback?: Callback<
+      protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+      | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): Promise<
+    [
+      protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+      (
+        | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+        | undefined
+      ),
+      {} | undefined
+    ]
+  > | void {
+    request = request || {};
+    let options: gax.CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as gax.CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      property: request.property || '',
+    });
+    this.initialize();
+    return this.innerApiCalls.runRealtimeReport(request, options, callback);
   }
 
   // --------------------
