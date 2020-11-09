@@ -4,7 +4,7 @@
   "product_documentation": "https://developers.google.com/analytics/trusted-testing/analytics-data",
   "client_documentation": "https://googleapis.dev/nodejs/analytics-data/latest/index.html",
   "issue_tracker": "https://issuetracker.google.com/issues/new?component=326380x",
-  "release_level": "ga",
+  "release_level": "beta",
   "language": "nodejs",
   "repo": "googleapis/nodejs-analytics-data",
   "distribution_name": "@google-analytics/data",
