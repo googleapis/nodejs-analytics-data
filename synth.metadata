@@ -19,7 +19,7 @@
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "ba9918cd22874245b55734f57470c719b577e591"
+        "sha": "1f1148d3c7a7a52f0c98077f976bd9b3c948ee2b"
       }
     }
   ],
@@ -87,6 +87,7 @@
     "README.md",
     "api-extractor.json",
     "linkinator.config.json",
+    "package-lock.json.4225629170",
     "protos/google/analytics/data/v1alpha/analytics_data_api.proto",
     "protos/google/analytics/data/v1alpha/data.proto",
     "protos/protos.d.ts",
@@ -94,6 +95,7 @@
     "protos/protos.json",
     "renovate.json",
     "samples/README.md",
+    "samples/package-lock.json.4262827248",
     "src/index.ts",
     "src/v1alpha/alpha_analytics_data_client.ts",
     "src/v1alpha/alpha_analytics_data_client_config.json",
