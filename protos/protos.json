@@ -52,13 +52,6 @@
                             "(google.api.http).body": "*"
                           }
                         },
-                        "GetUniversalMetadata": {
-                          "requestType": "GetUniversalMetadataRequest",
-                          "responseType": "UniversalMetadata",
-                          "options": {
-                            "(google.api.http).get": "/v1alpha/universalMetadata"
-                          }
-                        },
                         "GetMetadata": {
                           "requestType": "GetMetadataRequest",
                           "responseType": "Metadata",
@@ -340,23 +333,6 @@
                           "rule": "repeated",
                           "type": "RunPivotReportResponse",
                           "id": 1
-                        }
-                      }
-                    },
-                    "GetUniversalMetadataRequest": {
-                      "fields": {}
-                    },
-                    "UniversalMetadata": {
-                      "fields": {
-                        "dimensions": {
-                          "rule": "repeated",
-                          "type": "DimensionMetadata",
-                          "id": 1
-                        },
-                        "metrics": {
-                          "rule": "repeated",
-                          "type": "MetricMetadata",
-                          "id": 2
                         }
                       }
                     },

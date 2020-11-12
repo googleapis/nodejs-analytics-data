@@ -205,7 +205,6 @@ export class AlphaAnalyticsDataClient {
       'runPivotReport',
       'batchRunReports',
       'batchRunPivotReports',
-      'getUniversalMetadata',
       'getMetadata',
       'runRealtimeReport',
     ];
@@ -345,9 +344,15 @@ export class AlphaAnalyticsDataClient {
    *   must be unspecified.
    * @param {number} request.offset
    *   The row count of the start row. The first row is counted as row 0.
+   *
+   *   To learn more about this pagination parameter, see
+   *   [Pagination](basics#pagination).
    * @param {number} request.limit
    *   The number of rows to return. If unspecified, 10 rows are returned. If
    *   -1, all rows are returned.
+   *
+   *   To learn more about this pagination parameter, see
+   *   [Pagination](basics#pagination).
    * @param {number[]} request.metricAggregations
    *   Aggregation of metrics. Aggregated metric values will be shown in rows
    *   where the dimension_values are set to "RESERVED_(MetricAggregation)".
@@ -734,100 +739,6 @@ export class AlphaAnalyticsDataClient {
     this.initialize();
     return this.innerApiCalls.batchRunPivotReports(request, options, callback);
   }
-  getUniversalMetadata(
-    request: protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest,
-    options?: gax.CallOptions
-  ): Promise<
-    [
-      protos.google.analytics.data.v1alpha.IUniversalMetadata,
-      (
-        | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  >;
-  getUniversalMetadata(
-    request: protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest,
-    options: gax.CallOptions,
-    callback: Callback<
-      protos.google.analytics.data.v1alpha.IUniversalMetadata,
-      | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  getUniversalMetadata(
-    request: protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest,
-    callback: Callback<
-      protos.google.analytics.data.v1alpha.IUniversalMetadata,
-      | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): void;
-  /**
-   * Returns metadata for dimensions and metrics available in reporting methods.
-   * Used to explore the dimensions and metrics. Dimensions and metrics will be
-   * mostly added over time, but renames and deletions may occur.
-   *
-   * This method returns Universal Metadata. Universal Metadata are dimensions
-   * and metrics applicable to any property such as `country` and `totalUsers`.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is an object representing [UniversalMetadata]{@link google.analytics.data.v1alpha.UniversalMetadata}.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
-   *   for more details and examples.
-   * @example
-   * const [response] = await client.getUniversalMetadata(request);
-   */
-  getUniversalMetadata(
-    request: protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest,
-    optionsOrCallback?:
-      | gax.CallOptions
-      | Callback<
-          protos.google.analytics.data.v1alpha.IUniversalMetadata,
-          | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
-          | null
-          | undefined,
-          {} | null | undefined
-        >,
-    callback?: Callback<
-      protos.google.analytics.data.v1alpha.IUniversalMetadata,
-      | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
-      | null
-      | undefined,
-      {} | null | undefined
-    >
-  ): Promise<
-    [
-      protos.google.analytics.data.v1alpha.IUniversalMetadata,
-      (
-        | protos.google.analytics.data.v1alpha.IGetUniversalMetadataRequest
-        | undefined
-      ),
-      {} | undefined
-    ]
-  > | void {
-    request = request || {};
-    let options: gax.CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    } else {
-      options = optionsOrCallback as gax.CallOptions;
-    }
-    options = options || {};
-    this.initialize();
-    return this.innerApiCalls.getUniversalMetadata(request, options, callback);
-  }
   getMetadata(
     request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
     options?: gax.CallOptions
@@ -862,7 +773,7 @@ export class AlphaAnalyticsDataClient {
   /**
    * Returns metadata for dimensions and metrics available in reporting methods.
    * Used to explore the dimensions and metrics. In this method, a Google
-   * Analytics 4 (GA4) Property Identifier is specified in the request, and
+   * Analytics GA4 Property Identifier is specified in the request, and
    * the metadata response includes Custom dimensions and metrics as well as
    * Universal metadata.
    *
@@ -876,9 +787,15 @@ export class AlphaAnalyticsDataClient {
    * @param {string} request.name
    *   Required. The resource name of the metadata to retrieve. This name field is
    *   specified in the URL path and not URL parameters. Property is a numeric
-   *   Google Analytics 4 (GA4) Property identifier.
+   *   Google Analytics GA4 Property identifier. To learn more, see [where to find
+   *   your Property
+   *   ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).
    *
    *   Example: properties/1234/metadata
+   *
+   *   Set the Property ID to 0 for dimensions and metrics common to all
+   *   properties. In this special mode, this method will not return custom
+   *   dimensions and metrics.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
