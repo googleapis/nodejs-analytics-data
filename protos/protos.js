@@ -10278,193 +10278,6 @@
                         return Cohort;
                     })();
     
-                    v1alpha.CohortReportSettings = (function() {
-    
-                        /**
-                         * Properties of a CohortReportSettings.
-                         * @memberof google.analytics.data.v1alpha
-                         * @interface ICohortReportSettings
-                         * @property {boolean|null} [accumulate] CohortReportSettings accumulate
-                         */
-    
-                        /**
-                         * Constructs a new CohortReportSettings.
-                         * @memberof google.analytics.data.v1alpha
-                         * @classdesc Represents a CohortReportSettings.
-                         * @implements ICohortReportSettings
-                         * @constructor
-                         * @param {google.analytics.data.v1alpha.ICohortReportSettings=} [properties] Properties to set
-                         */
-                        function CohortReportSettings(properties) {
-                            if (properties)
-                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
-                                    if (properties[keys[i]] != null)
-                                        this[keys[i]] = properties[keys[i]];
-                        }
-    
-                        /**
-                         * CohortReportSettings accumulate.
-                         * @member {boolean} accumulate
-                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
-                         * @instance
-                         */
-                        CohortReportSettings.prototype.accumulate = false;
-    
-                        /**
-                         * Creates a new CohortReportSettings instance using the specified properties.
-                         * @function create
-                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
-                         * @static
-                         * @param {google.analytics.data.v1alpha.ICohortReportSettings=} [properties] Properties to set
-                         * @returns {google.analytics.data.v1alpha.CohortReportSettings} CohortReportSettings instance
-                         */
-                        CohortReportSettings.create = function create(properties) {
-                            return new CohortReportSettings(properties);
-                        };
-    
-                        /**
-                         * Encodes the specified CohortReportSettings message. Does not implicitly {@link google.analytics.data.v1alpha.CohortReportSettings.verify|verify} messages.
-                         * @function encode
-                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
-                         * @static
-                         * @param {google.analytics.data.v1alpha.ICohortReportSettings} message CohortReportSettings message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        CohortReportSettings.encode = function encode(message, writer) {
-                            if (!writer)
-                                writer = $Writer.create();
-                            if (message.accumulate != null && Object.hasOwnProperty.call(message, "accumulate"))
-                                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.accumulate);
-                            return writer;
-                        };
-    
-                        /**
-                         * Encodes the specified CohortReportSettings message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.CohortReportSettings.verify|verify} messages.
-                         * @function encodeDelimited
-                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
-                         * @static
-                         * @param {google.analytics.data.v1alpha.ICohortReportSettings} message CohortReportSettings message or plain object to encode
-                         * @param {$protobuf.Writer} [writer] Writer to encode to
-                         * @returns {$protobuf.Writer} Writer
-                         */
-                        CohortReportSettings.encodeDelimited = function encodeDelimited(message, writer) {
-                            return this.encode(message, writer).ldelim();
-                        };
-    
-                        /**
-                         * Decodes a CohortReportSettings message from the specified reader or buffer.
-                         * @function decode
-                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @param {number} [length] Message length if known beforehand
-                         * @returns {google.analytics.data.v1alpha.CohortReportSettings} CohortReportSettings
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        CohortReportSettings.decode = function decode(reader, length) {
-                            if (!(reader instanceof $Reader))
-                                reader = $Reader.create(reader);
-                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.analytics.data.v1alpha.CohortReportSettings();
-                            while (reader.pos < end) {
-                                var tag = reader.uint32();
-                                switch (tag >>> 3) {
-                                case 1:
-                                    message.accumulate = reader.bool();
-                                    break;
-                                default:
-                                    reader.skipType(tag & 7);
-                                    break;
-                                }
-                            }
-                            return message;
-                        };
-    
-                        /**
-                         * Decodes a CohortReportSettings message from the specified reader or buffer, length delimited.
-                         * @function decodeDelimited
-                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
-                         * @static
-                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
-                         * @returns {google.analytics.data.v1alpha.CohortReportSettings} CohortReportSettings
-                         * @throws {Error} If the payload is not a reader or valid buffer
-                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                         */
-                        CohortReportSettings.decodeDelimited = function decodeDelimited(reader) {
-                            if (!(reader instanceof $Reader))
-                                reader = new $Reader(reader);
-                            return this.decode(reader, reader.uint32());
-                        };
-    
-                        /**
-                         * Verifies a CohortReportSettings message.
-                         * @function verify
-                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
-                         * @static
-                         * @param {Object.<string,*>} message Plain object to verify
-                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
-                         */
-                        CohortReportSettings.verify = function verify(message) {
-                            if (typeof message !== "object" || message === null)
-                                return "object expected";
-                            if (message.accumulate != null && message.hasOwnProperty("accumulate"))
-                                if (typeof message.accumulate !== "boolean")
-                                    return "accumulate: boolean expected";
-                            return null;
-                        };
-    
-                        /**
-                         * Creates a CohortReportSettings message from a plain object. Also converts values to their respective internal types.
-                         * @function fromObject
-                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
-                         * @static
-                         * @param {Object.<string,*>} object Plain object
-                         * @returns {google.analytics.data.v1alpha.CohortReportSettings} CohortReportSettings
-                         */
-                        CohortReportSettings.fromObject = function fromObject(object) {
-                            if (object instanceof $root.google.analytics.data.v1alpha.CohortReportSettings)
-                                return object;
-                            var message = new $root.google.analytics.data.v1alpha.CohortReportSettings();
-                            if (object.accumulate != null)
-                                message.accumulate = Boolean(object.accumulate);
-                            return message;
-                        };
-    
-                        /**
-                         * Creates a plain object from a CohortReportSettings message. Also converts values to other types if specified.
-                         * @function toObject
-                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
-                         * @static
-                         * @param {google.analytics.data.v1alpha.CohortReportSettings} message CohortReportSettings
-                         * @param {$protobuf.IConversionOptions} [options] Conversion options
-                         * @returns {Object.<string,*>} Plain object
-                         */
-                        CohortReportSettings.toObject = function toObject(message, options) {
-                            if (!options)
-                                options = {};
-                            var object = {};
-                            if (options.defaults)
-                                object.accumulate = false;
-                            if (message.accumulate != null && message.hasOwnProperty("accumulate"))
-                                object.accumulate = message.accumulate;
-                            return object;
-                        };
-    
-                        /**
-                         * Converts this CohortReportSettings to JSON.
-                         * @function toJSON
-                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
-                         * @instance
-                         * @returns {Object.<string,*>} JSON object
-                         */
-                        CohortReportSettings.prototype.toJSON = function toJSON() {
-                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
-                        };
-    
-                        return CohortReportSettings;
-                    })();
-    
                     v1alpha.CohortsRange = (function() {
     
                         /**
@@ -10736,6 +10549,193 @@
                         })();
     
                         return CohortsRange;
+                    })();
+    
+                    v1alpha.CohortReportSettings = (function() {
+    
+                        /**
+                         * Properties of a CohortReportSettings.
+                         * @memberof google.analytics.data.v1alpha
+                         * @interface ICohortReportSettings
+                         * @property {boolean|null} [accumulate] CohortReportSettings accumulate
+                         */
+    
+                        /**
+                         * Constructs a new CohortReportSettings.
+                         * @memberof google.analytics.data.v1alpha
+                         * @classdesc Represents a CohortReportSettings.
+                         * @implements ICohortReportSettings
+                         * @constructor
+                         * @param {google.analytics.data.v1alpha.ICohortReportSettings=} [properties] Properties to set
+                         */
+                        function CohortReportSettings(properties) {
+                            if (properties)
+                                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                                    if (properties[keys[i]] != null)
+                                        this[keys[i]] = properties[keys[i]];
+                        }
+    
+                        /**
+                         * CohortReportSettings accumulate.
+                         * @member {boolean} accumulate
+                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
+                         * @instance
+                         */
+                        CohortReportSettings.prototype.accumulate = false;
+    
+                        /**
+                         * Creates a new CohortReportSettings instance using the specified properties.
+                         * @function create
+                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
+                         * @static
+                         * @param {google.analytics.data.v1alpha.ICohortReportSettings=} [properties] Properties to set
+                         * @returns {google.analytics.data.v1alpha.CohortReportSettings} CohortReportSettings instance
+                         */
+                        CohortReportSettings.create = function create(properties) {
+                            return new CohortReportSettings(properties);
+                        };
+    
+                        /**
+                         * Encodes the specified CohortReportSettings message. Does not implicitly {@link google.analytics.data.v1alpha.CohortReportSettings.verify|verify} messages.
+                         * @function encode
+                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
+                         * @static
+                         * @param {google.analytics.data.v1alpha.ICohortReportSettings} message CohortReportSettings message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CohortReportSettings.encode = function encode(message, writer) {
+                            if (!writer)
+                                writer = $Writer.create();
+                            if (message.accumulate != null && Object.hasOwnProperty.call(message, "accumulate"))
+                                writer.uint32(/* id 1, wireType 0 =*/8).bool(message.accumulate);
+                            return writer;
+                        };
+    
+                        /**
+                         * Encodes the specified CohortReportSettings message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.CohortReportSettings.verify|verify} messages.
+                         * @function encodeDelimited
+                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
+                         * @static
+                         * @param {google.analytics.data.v1alpha.ICohortReportSettings} message CohortReportSettings message or plain object to encode
+                         * @param {$protobuf.Writer} [writer] Writer to encode to
+                         * @returns {$protobuf.Writer} Writer
+                         */
+                        CohortReportSettings.encodeDelimited = function encodeDelimited(message, writer) {
+                            return this.encode(message, writer).ldelim();
+                        };
+    
+                        /**
+                         * Decodes a CohortReportSettings message from the specified reader or buffer.
+                         * @function decode
+                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @param {number} [length] Message length if known beforehand
+                         * @returns {google.analytics.data.v1alpha.CohortReportSettings} CohortReportSettings
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CohortReportSettings.decode = function decode(reader, length) {
+                            if (!(reader instanceof $Reader))
+                                reader = $Reader.create(reader);
+                            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.google.analytics.data.v1alpha.CohortReportSettings();
+                            while (reader.pos < end) {
+                                var tag = reader.uint32();
+                                switch (tag >>> 3) {
+                                case 1:
+                                    message.accumulate = reader.bool();
+                                    break;
+                                default:
+                                    reader.skipType(tag & 7);
+                                    break;
+                                }
+                            }
+                            return message;
+                        };
+    
+                        /**
+                         * Decodes a CohortReportSettings message from the specified reader or buffer, length delimited.
+                         * @function decodeDelimited
+                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
+                         * @static
+                         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+                         * @returns {google.analytics.data.v1alpha.CohortReportSettings} CohortReportSettings
+                         * @throws {Error} If the payload is not a reader or valid buffer
+                         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                         */
+                        CohortReportSettings.decodeDelimited = function decodeDelimited(reader) {
+                            if (!(reader instanceof $Reader))
+                                reader = new $Reader(reader);
+                            return this.decode(reader, reader.uint32());
+                        };
+    
+                        /**
+                         * Verifies a CohortReportSettings message.
+                         * @function verify
+                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
+                         * @static
+                         * @param {Object.<string,*>} message Plain object to verify
+                         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+                         */
+                        CohortReportSettings.verify = function verify(message) {
+                            if (typeof message !== "object" || message === null)
+                                return "object expected";
+                            if (message.accumulate != null && message.hasOwnProperty("accumulate"))
+                                if (typeof message.accumulate !== "boolean")
+                                    return "accumulate: boolean expected";
+                            return null;
+                        };
+    
+                        /**
+                         * Creates a CohortReportSettings message from a plain object. Also converts values to their respective internal types.
+                         * @function fromObject
+                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
+                         * @static
+                         * @param {Object.<string,*>} object Plain object
+                         * @returns {google.analytics.data.v1alpha.CohortReportSettings} CohortReportSettings
+                         */
+                        CohortReportSettings.fromObject = function fromObject(object) {
+                            if (object instanceof $root.google.analytics.data.v1alpha.CohortReportSettings)
+                                return object;
+                            var message = new $root.google.analytics.data.v1alpha.CohortReportSettings();
+                            if (object.accumulate != null)
+                                message.accumulate = Boolean(object.accumulate);
+                            return message;
+                        };
+    
+                        /**
+                         * Creates a plain object from a CohortReportSettings message. Also converts values to other types if specified.
+                         * @function toObject
+                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
+                         * @static
+                         * @param {google.analytics.data.v1alpha.CohortReportSettings} message CohortReportSettings
+                         * @param {$protobuf.IConversionOptions} [options] Conversion options
+                         * @returns {Object.<string,*>} Plain object
+                         */
+                        CohortReportSettings.toObject = function toObject(message, options) {
+                            if (!options)
+                                options = {};
+                            var object = {};
+                            if (options.defaults)
+                                object.accumulate = false;
+                            if (message.accumulate != null && message.hasOwnProperty("accumulate"))
+                                object.accumulate = message.accumulate;
+                            return object;
+                        };
+    
+                        /**
+                         * Converts this CohortReportSettings to JSON.
+                         * @function toJSON
+                         * @memberof google.analytics.data.v1alpha.CohortReportSettings
+                         * @instance
+                         * @returns {Object.<string,*>} JSON object
+                         */
+                        CohortReportSettings.prototype.toJSON = function toJSON() {
+                            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+                        };
+    
+                        return CohortReportSettings;
                     })();
     
                     v1alpha.ResponseMetaData = (function() {
@@ -13228,6 +13228,7 @@
                          * @property {string|null} [uiName] DimensionMetadata uiName
                          * @property {string|null} [description] DimensionMetadata description
                          * @property {Array.<string>|null} [deprecatedApiNames] DimensionMetadata deprecatedApiNames
+                         * @property {boolean|null} [customDefinition] DimensionMetadata customDefinition
                          */
     
                         /**
@@ -13279,6 +13280,14 @@
                         DimensionMetadata.prototype.deprecatedApiNames = $util.emptyArray;
     
                         /**
+                         * DimensionMetadata customDefinition.
+                         * @member {boolean} customDefinition
+                         * @memberof google.analytics.data.v1alpha.DimensionMetadata
+                         * @instance
+                         */
+                        DimensionMetadata.prototype.customDefinition = false;
+    
+                        /**
                          * Creates a new DimensionMetadata instance using the specified properties.
                          * @function create
                          * @memberof google.analytics.data.v1alpha.DimensionMetadata
@@ -13311,6 +13320,8 @@
                             if (message.deprecatedApiNames != null && message.deprecatedApiNames.length)
                                 for (var i = 0; i < message.deprecatedApiNames.length; ++i)
                                     writer.uint32(/* id 4, wireType 2 =*/34).string(message.deprecatedApiNames[i]);
+                            if (message.customDefinition != null && Object.hasOwnProperty.call(message, "customDefinition"))
+                                writer.uint32(/* id 5, wireType 0 =*/40).bool(message.customDefinition);
                             return writer;
                         };
     
@@ -13358,6 +13369,9 @@
                                     if (!(message.deprecatedApiNames && message.deprecatedApiNames.length))
                                         message.deprecatedApiNames = [];
                                     message.deprecatedApiNames.push(reader.string());
+                                    break;
+                                case 5:
+                                    message.customDefinition = reader.bool();
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -13410,6 +13424,9 @@
                                     if (!$util.isString(message.deprecatedApiNames[i]))
                                         return "deprecatedApiNames: string[] expected";
                             }
+                            if (message.customDefinition != null && message.hasOwnProperty("customDefinition"))
+                                if (typeof message.customDefinition !== "boolean")
+                                    return "customDefinition: boolean expected";
                             return null;
                         };
     
@@ -13438,6 +13455,8 @@
                                 for (var i = 0; i < object.deprecatedApiNames.length; ++i)
                                     message.deprecatedApiNames[i] = String(object.deprecatedApiNames[i]);
                             }
+                            if (object.customDefinition != null)
+                                message.customDefinition = Boolean(object.customDefinition);
                             return message;
                         };
     
@@ -13460,6 +13479,7 @@
                                 object.apiName = "";
                                 object.uiName = "";
                                 object.description = "";
+                                object.customDefinition = false;
                             }
                             if (message.apiName != null && message.hasOwnProperty("apiName"))
                                 object.apiName = message.apiName;
@@ -13472,6 +13492,8 @@
                                 for (var j = 0; j < message.deprecatedApiNames.length; ++j)
                                     object.deprecatedApiNames[j] = message.deprecatedApiNames[j];
                             }
+                            if (message.customDefinition != null && message.hasOwnProperty("customDefinition"))
+                                object.customDefinition = message.customDefinition;
                             return object;
                         };
     
@@ -13501,6 +13523,7 @@
                          * @property {Array.<string>|null} [deprecatedApiNames] MetricMetadata deprecatedApiNames
                          * @property {google.analytics.data.v1alpha.MetricType|null} [type] MetricMetadata type
                          * @property {string|null} [expression] MetricMetadata expression
+                         * @property {boolean|null} [customDefinition] MetricMetadata customDefinition
                          */
     
                         /**
@@ -13568,6 +13591,14 @@
                         MetricMetadata.prototype.expression = "";
     
                         /**
+                         * MetricMetadata customDefinition.
+                         * @member {boolean} customDefinition
+                         * @memberof google.analytics.data.v1alpha.MetricMetadata
+                         * @instance
+                         */
+                        MetricMetadata.prototype.customDefinition = false;
+    
+                        /**
                          * Creates a new MetricMetadata instance using the specified properties.
                          * @function create
                          * @memberof google.analytics.data.v1alpha.MetricMetadata
@@ -13604,6 +13635,8 @@
                                 writer.uint32(/* id 5, wireType 0 =*/40).int32(message.type);
                             if (message.expression != null && Object.hasOwnProperty.call(message, "expression"))
                                 writer.uint32(/* id 6, wireType 2 =*/50).string(message.expression);
+                            if (message.customDefinition != null && Object.hasOwnProperty.call(message, "customDefinition"))
+                                writer.uint32(/* id 7, wireType 0 =*/56).bool(message.customDefinition);
                             return writer;
                         };
     
@@ -13657,6 +13690,9 @@
                                     break;
                                 case 6:
                                     message.expression = reader.string();
+                                    break;
+                                case 7:
+                                    message.customDefinition = reader.bool();
                                     break;
                                 default:
                                     reader.skipType(tag & 7);
@@ -13731,6 +13767,9 @@
                             if (message.expression != null && message.hasOwnProperty("expression"))
                                 if (!$util.isString(message.expression))
                                     return "expression: string expected";
+                            if (message.customDefinition != null && message.hasOwnProperty("customDefinition"))
+                                if (typeof message.customDefinition !== "boolean")
+                                    return "customDefinition: boolean expected";
                             return null;
                         };
     
@@ -13815,6 +13854,8 @@
                             }
                             if (object.expression != null)
                                 message.expression = String(object.expression);
+                            if (object.customDefinition != null)
+                                message.customDefinition = Boolean(object.customDefinition);
                             return message;
                         };
     
@@ -13839,6 +13880,7 @@
                                 object.description = "";
                                 object.type = options.enums === String ? "METRIC_TYPE_UNSPECIFIED" : 0;
                                 object.expression = "";
+                                object.customDefinition = false;
                             }
                             if (message.apiName != null && message.hasOwnProperty("apiName"))
                                 object.apiName = message.apiName;
@@ -13855,6 +13897,8 @@
                                 object.type = options.enums === String ? $root.google.analytics.data.v1alpha.MetricType[message.type] : message.type;
                             if (message.expression != null && message.hasOwnProperty("expression"))
                                 object.expression = message.expression;
+                            if (message.customDefinition != null && message.hasOwnProperty("customDefinition"))
+                                object.customDefinition = message.customDefinition;
                             return object;
                         };
     

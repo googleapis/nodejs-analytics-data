@@ -890,14 +890,6 @@
                         }
                       }
                     },
-                    "CohortReportSettings": {
-                      "fields": {
-                        "accumulate": {
-                          "type": "bool",
-                          "id": 1
-                        }
-                      }
-                    },
                     "CohortsRange": {
                       "fields": {
                         "granularity": {
@@ -921,6 +913,14 @@
                             "WEEKLY": 2,
                             "MONTHLY": 3
                           }
+                        }
+                      }
+                    },
+                    "CohortReportSettings": {
+                      "fields": {
+                        "accumulate": {
+                          "type": "bool",
+                          "id": 1
                         }
                       }
                     },
@@ -1088,6 +1088,10 @@
                           "rule": "repeated",
                           "type": "string",
                           "id": 4
+                        },
+                        "customDefinition": {
+                          "type": "bool",
+                          "id": 5
                         }
                       }
                     },
@@ -1117,6 +1121,10 @@
                         "expression": {
                           "type": "string",
                           "id": 6
+                        },
+                        "customDefinition": {
+                          "type": "bool",
+                          "id": 7
                         }
                       }
                     },

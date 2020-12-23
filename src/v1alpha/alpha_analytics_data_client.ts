@@ -354,13 +354,13 @@ export class AlphaAnalyticsDataClient {
    *   The row count of the start row. The first row is counted as row 0.
    *
    *   To learn more about this pagination parameter, see
-   *   [Pagination](basics#pagination).
+   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
    * @param {number} request.limit
    *   The number of rows to return. If unspecified, 10 rows are returned. If
    *   -1, all rows are returned.
    *
    *   To learn more about this pagination parameter, see
-   *   [Pagination](basics#pagination).
+   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
    * @param {number[]} request.metricAggregations
    *   Aggregation of metrics. Aggregated metric values will be shown in rows
    *   where the dimension_values are set to "RESERVED_(MetricAggregation)".
@@ -797,7 +797,7 @@ export class AlphaAnalyticsDataClient {
    *   specified in the URL path and not URL parameters. Property is a numeric
    *   Google Analytics GA4 Property identifier. To learn more, see [where to find
    *   your Property
-   *   ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).
+   *   ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
    *
    *   Example: properties/1234/metadata
    *
@@ -903,7 +903,7 @@ export class AlphaAnalyticsDataClient {
    *   A Google Analytics GA4 property identifier whose events are tracked.
    *   Specified in the URL path and not the body. To learn more, see [where to
    *   find your Property
-   *   ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).
+   *   ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
    *
    *   Example: properties/1234
    * @param {number[]} request.dimensions
