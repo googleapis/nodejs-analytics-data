@@ -21,6 +21,11 @@ import {Callback, CallOptions, Descriptors, ClientOptions} from 'google-gax';
 import * as path from 'path';
 
 import * as protos from '../../protos/protos';
+/**
+ * Client JSON configuration object, loaded from
+ * `src/v1alpha/alpha_analytics_data_client_config.json`.
+ * This file defines retry strategy and timeouts for all API methods in this library.
+ */
 import * as gapicConfig from './alpha_analytics_data_client_config.json';
 
 const version = require('../../../package.json').version;
@@ -74,9 +79,9 @@ export class AlphaAnalyticsDataClient {
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
-   * @param {gax.ClientConfig} [options.clientConfig] - client configuration override.
-   *     Follows the structure of `alpha_analytics_data_client_config.json`.
-   * @param {boolean} fallback - Use HTTP fallback mode.
+   * @param {gax.ClientConfig} [options.clientConfig] - Client configuration override.
+   *     Follows the structure of {@link gapicConfig}.
+   * @param {boolean} [options.fallback] - Use HTTP fallback mode.
    *     In fallback mode, a special browser-compatible transport implementation is used
    *     instead of gRPC transport. In browser context (if the `window` object is defined)
    *     the fallback mode is enabled automatically; set `options.fallback` to `false`
@@ -89,6 +94,7 @@ export class AlphaAnalyticsDataClient {
       opts?.servicePath || opts?.apiEndpoint || staticMembers.servicePath;
     const port = opts?.port || staticMembers.port;
     const clientConfig = opts?.clientConfig ?? {};
+    // eslint-disable-next-line no-undef
     const fallback =
       opts?.fallback ??
       (typeof window !== 'undefined' && typeof window.fetch !== 'undefined');
@@ -295,7 +301,7 @@ export class AlphaAnalyticsDataClient {
   // -------------------
   runReport(
     request: protos.google.analytics.data.v1alpha.IRunReportRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IRunReportResponse,
@@ -305,7 +311,7 @@ export class AlphaAnalyticsDataClient {
   >;
   runReport(
     request: protos.google.analytics.data.v1alpha.IRunReportRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IRunReportResponse,
       protos.google.analytics.data.v1alpha.IRunReportRequest | null | undefined,
@@ -393,7 +399,7 @@ export class AlphaAnalyticsDataClient {
   runReport(
     request: protos.google.analytics.data.v1alpha.IRunReportRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IRunReportResponse,
           | protos.google.analytics.data.v1alpha.IRunReportRequest
@@ -414,12 +420,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     this.initialize();
@@ -427,7 +433,7 @@ export class AlphaAnalyticsDataClient {
   }
   runPivotReport(
     request: protos.google.analytics.data.v1alpha.IRunPivotReportRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IRunPivotReportResponse,
@@ -437,7 +443,7 @@ export class AlphaAnalyticsDataClient {
   >;
   runPivotReport(
     request: protos.google.analytics.data.v1alpha.IRunPivotReportRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IRunPivotReportResponse,
       | protos.google.analytics.data.v1alpha.IRunPivotReportRequest
@@ -519,7 +525,7 @@ export class AlphaAnalyticsDataClient {
   runPivotReport(
     request: protos.google.analytics.data.v1alpha.IRunPivotReportRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IRunPivotReportResponse,
           | protos.google.analytics.data.v1alpha.IRunPivotReportRequest
@@ -542,12 +548,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     this.initialize();
@@ -555,7 +561,7 @@ export class AlphaAnalyticsDataClient {
   }
   batchRunReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunReportsRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IBatchRunReportsResponse,
@@ -565,7 +571,7 @@ export class AlphaAnalyticsDataClient {
   >;
   batchRunReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunReportsRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IBatchRunReportsResponse,
       | protos.google.analytics.data.v1alpha.IBatchRunReportsRequest
@@ -610,7 +616,7 @@ export class AlphaAnalyticsDataClient {
   batchRunReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunReportsRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IBatchRunReportsResponse,
           | protos.google.analytics.data.v1alpha.IBatchRunReportsRequest
@@ -633,12 +639,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     this.initialize();
@@ -646,7 +652,7 @@ export class AlphaAnalyticsDataClient {
   }
   batchRunPivotReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunPivotReportsRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IBatchRunPivotReportsResponse,
@@ -659,7 +665,7 @@ export class AlphaAnalyticsDataClient {
   >;
   batchRunPivotReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunPivotReportsRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IBatchRunPivotReportsResponse,
       | protos.google.analytics.data.v1alpha.IBatchRunPivotReportsRequest
@@ -704,7 +710,7 @@ export class AlphaAnalyticsDataClient {
   batchRunPivotReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunPivotReportsRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IBatchRunPivotReportsResponse,
           | protos.google.analytics.data.v1alpha.IBatchRunPivotReportsRequest
@@ -730,12 +736,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     this.initialize();
@@ -743,7 +749,7 @@ export class AlphaAnalyticsDataClient {
   }
   getMetadata(
     request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IMetadata,
@@ -753,7 +759,7 @@ export class AlphaAnalyticsDataClient {
   >;
   getMetadata(
     request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IMetadata,
       | protos.google.analytics.data.v1alpha.IGetMetadataRequest
@@ -811,7 +817,7 @@ export class AlphaAnalyticsDataClient {
   getMetadata(
     request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IMetadata,
           | protos.google.analytics.data.v1alpha.IGetMetadataRequest
@@ -834,12 +840,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -854,7 +860,7 @@ export class AlphaAnalyticsDataClient {
   }
   runRealtimeReport(
     request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
@@ -867,7 +873,7 @@ export class AlphaAnalyticsDataClient {
   >;
   runRealtimeReport(
     request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
       | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
@@ -935,7 +941,7 @@ export class AlphaAnalyticsDataClient {
   runRealtimeReport(
     request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
           | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
@@ -961,12 +967,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
