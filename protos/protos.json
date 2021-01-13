@@ -26,7 +26,15 @@
                           "options": {
                             "(google.api.http).post": "/v1alpha:runReport",
                             "(google.api.http).body": "*"
-                          }
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha:runReport",
+                                "body": "*"
+                              }
+                            }
+                          ]
                         },
                         "RunPivotReport": {
                           "requestType": "RunPivotReportRequest",
@@ -34,7 +42,15 @@
                           "options": {
                             "(google.api.http).post": "/v1alpha:runPivotReport",
                             "(google.api.http).body": "*"
-                          }
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha:runPivotReport",
+                                "body": "*"
+                              }
+                            }
+                          ]
                         },
                         "BatchRunReports": {
                           "requestType": "BatchRunReportsRequest",
@@ -42,7 +58,15 @@
                           "options": {
                             "(google.api.http).post": "/v1alpha:batchRunReports",
                             "(google.api.http).body": "*"
-                          }
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha:batchRunReports",
+                                "body": "*"
+                              }
+                            }
+                          ]
                         },
                         "BatchRunPivotReports": {
                           "requestType": "BatchRunPivotReportsRequest",
@@ -50,16 +74,49 @@
                           "options": {
                             "(google.api.http).post": "/v1alpha:batchRunPivotReports",
                             "(google.api.http).body": "*"
-                          }
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha:batchRunPivotReports",
+                                "body": "*"
+                              }
+                            }
+                          ]
                         },
                         "GetMetadata": {
                           "requestType": "GetMetadataRequest",
                           "responseType": "Metadata",
                           "options": {
-                            "(google.api.http).get": "/v1alpha/{name=metadata}",
-                            "(google.api.http).additional_bindings.get": "/v1alpha/{name=properties/*/metadata}",
+                            "(google.api.http).get": "/v1alpha/{name=properties/*/metadata}",
                             "(google.api.method_signature)": "name"
-                          }
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "get": "/v1alpha/{name=properties/*/metadata}"
+                              }
+                            },
+                            {
+                              "(google.api.method_signature)": "name"
+                            }
+                          ]
+                        },
+                        "RunRealtimeReport": {
+                          "requestType": "RunRealtimeReportRequest",
+                          "responseType": "RunRealtimeReportResponse",
+                          "options": {
+                            "(google.api.http).post": "/v1alpha/{property=properties/*}:runRealtimeReport",
+                            "(google.api.http).body": "*"
+                          },
+                          "parsedOptions": [
+                            {
+                              "(google.api.http)": {
+                                "post": "/v1alpha/{property=properties/*}:runRealtimeReport",
+                                "body": "*"
+                              }
+                            }
+                          ]
                         }
                       }
                     },
@@ -181,6 +238,10 @@
                           "rule": "repeated",
                           "type": "Row",
                           "id": 10
+                        },
+                        "rowCount": {
+                          "type": "int32",
+                          "id": 12
                         },
                         "metadata": {
                           "type": "ResponseMetaData",
@@ -334,6 +395,92 @@
                             "(google.api.field_behavior)": "REQUIRED",
                             "(google.api.resource_reference).type": "analyticsdata.googleapis.com/Metadata"
                           }
+                        }
+                      }
+                    },
+                    "RunRealtimeReportRequest": {
+                      "fields": {
+                        "property": {
+                          "type": "string",
+                          "id": 1
+                        },
+                        "dimensions": {
+                          "rule": "repeated",
+                          "type": "Dimension",
+                          "id": 2
+                        },
+                        "metrics": {
+                          "rule": "repeated",
+                          "type": "Metric",
+                          "id": 3
+                        },
+                        "limit": {
+                          "type": "int64",
+                          "id": 4
+                        },
+                        "dimensionFilter": {
+                          "type": "FilterExpression",
+                          "id": 5
+                        },
+                        "metricFilter": {
+                          "type": "FilterExpression",
+                          "id": 6
+                        },
+                        "metricAggregations": {
+                          "rule": "repeated",
+                          "type": "MetricAggregation",
+                          "id": 7
+                        },
+                        "orderBys": {
+                          "rule": "repeated",
+                          "type": "OrderBy",
+                          "id": 8
+                        },
+                        "returnPropertyQuota": {
+                          "type": "bool",
+                          "id": 9
+                        }
+                      }
+                    },
+                    "RunRealtimeReportResponse": {
+                      "fields": {
+                        "dimensionHeaders": {
+                          "rule": "repeated",
+                          "type": "DimensionHeader",
+                          "id": 1
+                        },
+                        "metricHeaders": {
+                          "rule": "repeated",
+                          "type": "MetricHeader",
+                          "id": 2
+                        },
+                        "rows": {
+                          "rule": "repeated",
+                          "type": "Row",
+                          "id": 3
+                        },
+                        "totals": {
+                          "rule": "repeated",
+                          "type": "Row",
+                          "id": 4
+                        },
+                        "maximums": {
+                          "rule": "repeated",
+                          "type": "Row",
+                          "id": 5
+                        },
+                        "minimums": {
+                          "rule": "repeated",
+                          "type": "Row",
+                          "id": 6
+                        },
+                        "rowCount": {
+                          "type": "int32",
+                          "id": 7
+                        },
+                        "propertyQuota": {
+                          "type": "PropertyQuota",
+                          "id": 8
                         }
                       }
                     },
@@ -743,14 +890,6 @@
                         }
                       }
                     },
-                    "CohortReportSettings": {
-                      "fields": {
-                        "accumulate": {
-                          "type": "bool",
-                          "id": 1
-                        }
-                      }
-                    },
                     "CohortsRange": {
                       "fields": {
                         "granularity": {
@@ -774,6 +913,14 @@
                             "WEEKLY": 2,
                             "MONTHLY": 3
                           }
+                        }
+                      }
+                    },
+                    "CohortReportSettings": {
+                      "fields": {
+                        "accumulate": {
+                          "type": "bool",
+                          "id": 1
                         }
                       }
                     },
@@ -941,6 +1088,10 @@
                           "rule": "repeated",
                           "type": "string",
                           "id": 4
+                        },
+                        "customDefinition": {
+                          "type": "bool",
+                          "id": 5
                         }
                       }
                     },
@@ -970,6 +1121,10 @@
                         "expression": {
                           "type": "string",
                           "id": 6
+                        },
+                        "customDefinition": {
+                          "type": "bool",
+                          "id": 7
                         }
                       }
                     },
@@ -988,7 +1143,15 @@
                         "TYPE_INTEGER": 1,
                         "TYPE_FLOAT": 2,
                         "TYPE_SECONDS": 4,
-                        "TYPE_CURRENCY": 9
+                        "TYPE_MILLISECONDS": 5,
+                        "TYPE_MINUTES": 6,
+                        "TYPE_HOURS": 7,
+                        "TYPE_STANDARD": 8,
+                        "TYPE_CURRENCY": 9,
+                        "TYPE_FEET": 10,
+                        "TYPE_MILES": 11,
+                        "TYPE_METERS": 12,
+                        "TYPE_KILOMETERS": 13
                       }
                     }
                   }
@@ -1168,6 +1331,11 @@
                 "singular": {
                   "type": "string",
                   "id": 6
+                },
+                "style": {
+                  "rule": "repeated",
+                  "type": "Style",
+                  "id": 10
                 }
               },
               "nested": {
@@ -1176,6 +1344,12 @@
                     "HISTORY_UNSPECIFIED": 0,
                     "ORIGINALLY_SINGLE_PATTERN": 1,
                     "FUTURE_MULTI_PATTERN": 2
+                  }
+                },
+                "Style": {
+                  "values": {
+                    "STYLE_UNSPECIFIED": 0,
+                    "DECLARATIVE_FRIENDLY": 1
                   }
                 }
               }
@@ -1196,7 +1370,7 @@
         },
         "protobuf": {
           "options": {
-            "go_package": "github.com/golang/protobuf/protoc-gen-go/descriptor;descriptor",
+            "go_package": "google.golang.org/protobuf/types/descriptorpb",
             "java_package": "com.google.protobuf",
             "java_outer_classname": "DescriptorProtos",
             "csharp_namespace": "Google.Protobuf.Reflection",

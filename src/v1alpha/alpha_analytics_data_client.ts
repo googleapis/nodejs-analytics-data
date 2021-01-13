@@ -1,4 +1,4 @@
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,11 +16,17 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
+/* global window */
 import * as gax from 'google-gax';
 import {Callback, CallOptions, Descriptors, ClientOptions} from 'google-gax';
 import * as path from 'path';
 
 import * as protos from '../../protos/protos';
+/**
+ * Client JSON configuration object, loaded from
+ * `src/v1alpha/alpha_analytics_data_client_config.json`.
+ * This file defines retry strategy and timeouts for all API methods in this library.
+ */
 import * as gapicConfig from './alpha_analytics_data_client_config.json';
 
 const version = require('../../../package.json').version;
@@ -51,8 +57,10 @@ export class AlphaAnalyticsDataClient {
   /**
    * Construct an instance of AlphaAnalyticsDataClient.
    *
-   * @param {object} [options] - The configuration object. See the subsequent
-   *   parameters for more details.
+   * @param {object} [options] - The configuration object.
+   * The options accepted by the constructor are described in detail
+   * in [this document](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#creating-the-client-instance).
+   * The common options are:
    * @param {object} [options.credentials] - Credentials object.
    * @param {string} [options.credentials.client_email]
    * @param {string} [options.credentials.private_key]
@@ -72,42 +80,35 @@ export class AlphaAnalyticsDataClient {
    *     your project ID will be detected automatically.
    * @param {string} [options.apiEndpoint] - The domain name of the
    *     API remote host.
+   * @param {gax.ClientConfig} [options.clientConfig] - Client configuration override.
+   *     Follows the structure of {@link gapicConfig}.
+   * @param {boolean} [options.fallback] - Use HTTP fallback mode.
+   *     In fallback mode, a special browser-compatible transport implementation is used
+   *     instead of gRPC transport. In browser context (if the `window` object is defined)
+   *     the fallback mode is enabled automatically; set `options.fallback` to `false`
+   *     if you need to override this behavior.
    */
-
   constructor(opts?: ClientOptions) {
-    // Ensure that options include the service address and port.
+    // Ensure that options include all the required fields.
     const staticMembers = this.constructor as typeof AlphaAnalyticsDataClient;
     const servicePath =
-      opts && opts.servicePath
-        ? opts.servicePath
-        : opts && opts.apiEndpoint
-        ? opts.apiEndpoint
-        : staticMembers.servicePath;
-    const port = opts && opts.port ? opts.port : staticMembers.port;
+      opts?.servicePath || opts?.apiEndpoint || staticMembers.servicePath;
+    const port = opts?.port || staticMembers.port;
+    const clientConfig = opts?.clientConfig ?? {};
+    const fallback =
+      opts?.fallback ??
+      (typeof window !== 'undefined' && typeof window?.fetch === 'function');
+    opts = Object.assign({servicePath, port, clientConfig, fallback}, opts);
 
-    if (!opts) {
-      opts = {servicePath, port};
+    // If scopes are unset in options and we're connecting to a non-default endpoint, set scopes just in case.
+    if (servicePath !== staticMembers.servicePath && !('scopes' in opts)) {
+      opts['scopes'] = staticMembers.scopes;
     }
-    opts.servicePath = opts.servicePath || servicePath;
-    opts.port = opts.port || port;
 
-    // users can override the config from client side, like retry codes name.
-    // The detailed structure of the clientConfig can be found here: https://github.com/googleapis/gax-nodejs/blob/master/src/gax.ts#L546
-    // The way to override client config for Showcase API:
-    //
-    // const customConfig = {"interfaces": {"google.showcase.v1beta1.Echo": {"methods": {"Echo": {"retry_codes_name": "idempotent", "retry_params_name": "default"}}}}}
-    // const showcaseClient = new showcaseClient({ projectId, customConfig });
-    opts.clientConfig = opts.clientConfig || {};
-
-    // If we're running in browser, it's OK to omit `fallback` since
-    // google-gax has `browser` field in its `package.json`.
-    // For Electron (which does not respect `browser` field),
-    // pass `{fallback: true}` to the AlphaAnalyticsDataClient constructor.
+    // Choose either gRPC or proto-over-HTTP implementation of google-gax.
     this._gaxModule = opts.fallback ? gax.fallback : gax;
 
-    // Create a `gaxGrpc` object, with any grpc-specific options
-    // sent to the client.
-    opts.scopes = (this.constructor as typeof AlphaAnalyticsDataClient).scopes;
+    // Create a `gaxGrpc` object, with any grpc-specific options sent to the client.
     this._gaxGrpc = new this._gaxModule.GrpcClient(opts);
 
     // Save options to use in initialize() method.
@@ -115,6 +116,11 @@ export class AlphaAnalyticsDataClient {
 
     // Save the auth object to the client, for use by other methods.
     this.auth = this._gaxGrpc.auth as gax.GoogleAuth;
+
+    // Set the default scopes in auth client if needed.
+    if (servicePath === staticMembers.servicePath) {
+      this.auth.defaultScopes = staticMembers.scopes;
+    }
 
     // Determine the client header string.
     const clientHeader = [`gax/${this._gaxModule.version}`, `gapic/${version}`];
@@ -151,7 +157,7 @@ export class AlphaAnalyticsDataClient {
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
     this.pathTemplates = {
-      propertyMetadataPathTemplate: new this._gaxModule.PathTemplate(
+      metadataPathTemplate: new this._gaxModule.PathTemplate(
         'properties/{property}/metadata'
       ),
     };
@@ -208,6 +214,7 @@ export class AlphaAnalyticsDataClient {
       'batchRunReports',
       'batchRunPivotReports',
       'getMetadata',
+      'runRealtimeReport',
     ];
     for (const methodName of alphaAnalyticsDataStubMethods) {
       const callPromise = this.alphaAnalyticsDataStub.then(
@@ -238,6 +245,7 @@ export class AlphaAnalyticsDataClient {
 
   /**
    * The DNS address for this API service.
+   * @returns {string} The DNS address for this service.
    */
   static get servicePath() {
     return 'analyticsdata.googleapis.com';
@@ -246,6 +254,7 @@ export class AlphaAnalyticsDataClient {
   /**
    * The DNS address for this API service - same as servicePath(),
    * exists for compatibility reasons.
+   * @returns {string} The DNS address for this service.
    */
   static get apiEndpoint() {
     return 'analyticsdata.googleapis.com';
@@ -253,6 +262,7 @@ export class AlphaAnalyticsDataClient {
 
   /**
    * The port for this API service.
+   * @returns {number} The default port for this service.
    */
   static get port() {
     return 443;
@@ -261,6 +271,7 @@ export class AlphaAnalyticsDataClient {
   /**
    * The scopes needed to make gRPC calls for every method defined
    * in this service.
+   * @returns {string[]} List of default scopes.
    */
   static get scopes() {
     return [
@@ -273,8 +284,7 @@ export class AlphaAnalyticsDataClient {
   getProjectId(callback: Callback<string, undefined, undefined>): void;
   /**
    * Return the project ID used by this class.
-   * @param {function(Error, string)} callback - the callback to
-   *   be called with the current project Id.
+   * @returns {Promise} A promise that resolves to string containing the project ID.
    */
   getProjectId(
     callback?: Callback<string, undefined, undefined>
@@ -291,7 +301,7 @@ export class AlphaAnalyticsDataClient {
   // -------------------
   runReport(
     request: protos.google.analytics.data.v1alpha.IRunReportRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IRunReportResponse,
@@ -301,7 +311,7 @@ export class AlphaAnalyticsDataClient {
   >;
   runReport(
     request: protos.google.analytics.data.v1alpha.IRunReportRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IRunReportResponse,
       protos.google.analytics.data.v1alpha.IRunReportRequest | null | undefined,
@@ -342,9 +352,15 @@ export class AlphaAnalyticsDataClient {
    *   must be unspecified.
    * @param {number} request.offset
    *   The row count of the start row. The first row is counted as row 0.
+   *
+   *   To learn more about this pagination parameter, see
+   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
    * @param {number} request.limit
    *   The number of rows to return. If unspecified, 10 rows are returned. If
    *   -1, all rows are returned.
+   *
+   *   To learn more about this pagination parameter, see
+   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
    * @param {number[]} request.metricAggregations
    *   Aggregation of metrics. Aggregated metric values will be shown in rows
    *   where the dimension_values are set to "RESERVED_(MetricAggregation)".
@@ -374,12 +390,16 @@ export class AlphaAnalyticsDataClient {
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
    *   The first element of the array is an object representing [RunReportResponse]{@link google.analytics.data.v1alpha.RunReportResponse}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+   *   for more details and examples.
+   * @example
+   * const [response] = await client.runReport(request);
    */
   runReport(
     request: protos.google.analytics.data.v1alpha.IRunReportRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IRunReportResponse,
           | protos.google.analytics.data.v1alpha.IRunReportRequest
@@ -400,12 +420,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     this.initialize();
@@ -413,7 +433,7 @@ export class AlphaAnalyticsDataClient {
   }
   runPivotReport(
     request: protos.google.analytics.data.v1alpha.IRunPivotReportRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IRunPivotReportResponse,
@@ -423,7 +443,7 @@ export class AlphaAnalyticsDataClient {
   >;
   runPivotReport(
     request: protos.google.analytics.data.v1alpha.IRunPivotReportRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IRunPivotReportResponse,
       | protos.google.analytics.data.v1alpha.IRunPivotReportRequest
@@ -496,12 +516,16 @@ export class AlphaAnalyticsDataClient {
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
    *   The first element of the array is an object representing [RunPivotReportResponse]{@link google.analytics.data.v1alpha.RunPivotReportResponse}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+   *   for more details and examples.
+   * @example
+   * const [response] = await client.runPivotReport(request);
    */
   runPivotReport(
     request: protos.google.analytics.data.v1alpha.IRunPivotReportRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IRunPivotReportResponse,
           | protos.google.analytics.data.v1alpha.IRunPivotReportRequest
@@ -524,12 +548,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     this.initialize();
@@ -537,7 +561,7 @@ export class AlphaAnalyticsDataClient {
   }
   batchRunReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunReportsRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IBatchRunReportsResponse,
@@ -547,7 +571,7 @@ export class AlphaAnalyticsDataClient {
   >;
   batchRunReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunReportsRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IBatchRunReportsResponse,
       | protos.google.analytics.data.v1alpha.IBatchRunReportsRequest
@@ -583,12 +607,16 @@ export class AlphaAnalyticsDataClient {
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
    *   The first element of the array is an object representing [BatchRunReportsResponse]{@link google.analytics.data.v1alpha.BatchRunReportsResponse}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+   *   for more details and examples.
+   * @example
+   * const [response] = await client.batchRunReports(request);
    */
   batchRunReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunReportsRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IBatchRunReportsResponse,
           | protos.google.analytics.data.v1alpha.IBatchRunReportsRequest
@@ -611,12 +639,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     this.initialize();
@@ -624,7 +652,7 @@ export class AlphaAnalyticsDataClient {
   }
   batchRunPivotReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunPivotReportsRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IBatchRunPivotReportsResponse,
@@ -637,7 +665,7 @@ export class AlphaAnalyticsDataClient {
   >;
   batchRunPivotReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunPivotReportsRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IBatchRunPivotReportsResponse,
       | protos.google.analytics.data.v1alpha.IBatchRunPivotReportsRequest
@@ -673,12 +701,16 @@ export class AlphaAnalyticsDataClient {
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
    *   The first element of the array is an object representing [BatchRunPivotReportsResponse]{@link google.analytics.data.v1alpha.BatchRunPivotReportsResponse}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+   *   for more details and examples.
+   * @example
+   * const [response] = await client.batchRunPivotReports(request);
    */
   batchRunPivotReports(
     request: protos.google.analytics.data.v1alpha.IBatchRunPivotReportsRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IBatchRunPivotReportsResponse,
           | protos.google.analytics.data.v1alpha.IBatchRunPivotReportsRequest
@@ -704,12 +736,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     this.initialize();
@@ -717,7 +749,7 @@ export class AlphaAnalyticsDataClient {
   }
   getMetadata(
     request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
-    options?: gax.CallOptions
+    options?: CallOptions
   ): Promise<
     [
       protos.google.analytics.data.v1alpha.IMetadata,
@@ -727,7 +759,7 @@ export class AlphaAnalyticsDataClient {
   >;
   getMetadata(
     request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
-    options: gax.CallOptions,
+    options: CallOptions,
     callback: Callback<
       protos.google.analytics.data.v1alpha.IMetadata,
       | protos.google.analytics.data.v1alpha.IGetMetadataRequest
@@ -748,26 +780,44 @@ export class AlphaAnalyticsDataClient {
   ): void;
   /**
    * Returns metadata for dimensions and metrics available in reporting methods.
-   * Used to explore the dimensions and metrics. Dimensions and metrics will be
-   * mostly added over time, but renames and deletions may occur.
+   * Used to explore the dimensions and metrics. In this method, a Google
+   * Analytics GA4 Property Identifier is specified in the request, and
+   * the metadata response includes Custom dimensions and metrics as well as
+   * Universal metadata.
+   *
+   * For example if a custom metric with parameter name `levels_unlocked` is
+   * registered to a property, the Metadata response will contain
+   * `customEvent:levels_unlocked`. Universal metadata are dimensions and
+   * metrics applicable to any property such as `country` and `totalUsers`.
    *
    * @param {Object} request
    *   The request object that will be sent.
    * @param {string} request.name
-   *   Required. The name of the metadata to retrieve. Either has the form
-   *   'metadata' or 'properties/{property}/metadata'. This name field is
+   *   Required. The resource name of the metadata to retrieve. This name field is
    *   specified in the URL path and not URL parameters. Property is a numeric
-   *   Google Analytics App + Web Property Id.
+   *   Google Analytics GA4 Property identifier. To learn more, see [where to find
+   *   your Property
+   *   ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
+   *
+   *   Example: properties/1234/metadata
+   *
+   *   Set the Property ID to 0 for dimensions and metrics common to all
+   *   properties. In this special mode, this method will not return custom
+   *   dimensions and metrics.
    * @param {object} [options]
    *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
    * @returns {Promise} - The promise which resolves to an array.
    *   The first element of the array is an object representing [Metadata]{@link google.analytics.data.v1alpha.Metadata}.
-   *   The promise has a method named "cancel" which cancels the ongoing API call.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+   *   for more details and examples.
+   * @example
+   * const [response] = await client.getMetadata(request);
    */
   getMetadata(
     request: protos.google.analytics.data.v1alpha.IGetMetadataRequest,
     optionsOrCallback?:
-      | gax.CallOptions
+      | CallOptions
       | Callback<
           protos.google.analytics.data.v1alpha.IMetadata,
           | protos.google.analytics.data.v1alpha.IGetMetadataRequest
@@ -790,12 +840,12 @@ export class AlphaAnalyticsDataClient {
     ]
   > | void {
     request = request || {};
-    let options: gax.CallOptions;
+    let options: CallOptions;
     if (typeof optionsOrCallback === 'function' && callback === undefined) {
       callback = optionsOrCallback;
       options = {};
     } else {
-      options = optionsOrCallback as gax.CallOptions;
+      options = optionsOrCallback as CallOptions;
     }
     options = options || {};
     options.otherArgs = options.otherArgs || {};
@@ -808,40 +858,166 @@ export class AlphaAnalyticsDataClient {
     this.initialize();
     return this.innerApiCalls.getMetadata(request, options, callback);
   }
+  runRealtimeReport(
+    request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
+    options?: CallOptions
+  ): Promise<
+    [
+      protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+      (
+        | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+        | undefined
+      ),
+      {} | undefined
+    ]
+  >;
+  runRealtimeReport(
+    request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
+    options: CallOptions,
+    callback: Callback<
+      protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+      | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  runRealtimeReport(
+    request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
+    callback: Callback<
+      protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+      | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  /**
+   * The Google Analytics Realtime API returns a customized report of realtime
+   * event data for your property. These reports show events and usage from the
+   * last 30 minutes.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.property
+   *   A Google Analytics GA4 property identifier whose events are tracked.
+   *   Specified in the URL path and not the body. To learn more, see [where to
+   *   find your Property
+   *   ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
+   *
+   *   Example: properties/1234
+   * @param {number[]} request.dimensions
+   *   The dimensions requested and displayed.
+   * @param {number[]} request.metrics
+   *   The metrics requested and displayed.
+   * @param {number} request.limit
+   *   The number of rows to return. If unspecified, 10 rows are returned. If
+   *   -1, all rows are returned.
+   * @param {google.analytics.data.v1alpha.FilterExpression} request.dimensionFilter
+   *   The filter clause of dimensions. Dimensions must be requested to be used in
+   *   this filter. Metrics cannot be used in this filter.
+   * @param {google.analytics.data.v1alpha.FilterExpression} request.metricFilter
+   *   The filter clause of metrics. Applied at post aggregation phase, similar to
+   *   SQL having-clause. Metrics must be requested to be used in this filter.
+   *   Dimensions cannot be used in this filter.
+   * @param {number[]} request.metricAggregations
+   *   Aggregation of metrics. Aggregated metric values will be shown in rows
+   *   where the dimension_values are set to "RESERVED_(MetricAggregation)".
+   * @param {number[]} request.orderBys
+   *   Specifies how rows are ordered in the response.
+   * @param {boolean} request.returnPropertyQuota
+   *   Toggles whether to return the current state of this Analytics Property's
+   *   Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+   * @param {object} [options]
+   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing [RunRealtimeReportResponse]{@link google.analytics.data.v1alpha.RunRealtimeReportResponse}.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+   *   for more details and examples.
+   * @example
+   * const [response] = await client.runRealtimeReport(request);
+   */
+  runRealtimeReport(
+    request: protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest,
+    optionsOrCallback?:
+      | CallOptions
+      | Callback<
+          protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+          | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >,
+    callback?: Callback<
+      protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+      | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+      | null
+      | undefined,
+      {} | null | undefined
+    >
+  ): Promise<
+    [
+      protos.google.analytics.data.v1alpha.IRunRealtimeReportResponse,
+      (
+        | protos.google.analytics.data.v1alpha.IRunRealtimeReportRequest
+        | undefined
+      ),
+      {} | undefined
+    ]
+  > | void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      property: request.property || '',
+    });
+    this.initialize();
+    return this.innerApiCalls.runRealtimeReport(request, options, callback);
+  }
 
   // --------------------
   // -- Path templates --
   // --------------------
 
   /**
-   * Return a fully-qualified propertyMetadata resource name string.
+   * Return a fully-qualified metadata resource name string.
    *
    * @param {string} property
    * @returns {string} Resource name string.
    */
-  propertyMetadataPath(property: string) {
-    return this.pathTemplates.propertyMetadataPathTemplate.render({
+  metadataPath(property: string) {
+    return this.pathTemplates.metadataPathTemplate.render({
       property: property,
     });
   }
 
   /**
-   * Parse the property from PropertyMetadata resource.
+   * Parse the property from Metadata resource.
    *
-   * @param {string} propertyMetadataName
-   *   A fully-qualified path representing property_metadata resource.
+   * @param {string} metadataName
+   *   A fully-qualified path representing Metadata resource.
    * @returns {string} A string representing the property.
    */
-  matchPropertyFromPropertyMetadataName(propertyMetadataName: string) {
-    return this.pathTemplates.propertyMetadataPathTemplate.match(
-      propertyMetadataName
-    ).property;
+  matchPropertyFromMetadataName(metadataName: string) {
+    return this.pathTemplates.metadataPathTemplate.match(metadataName).property;
   }
 
   /**
-   * Terminate the GRPC channel and close the client.
+   * Terminate the gRPC channel and close the client.
    *
    * The client will no longer be usable and all future behavior is undefined.
+   * @returns {Promise} A promise that resolves when the client is closed.
    */
   close(): Promise<void> {
     this.initialize();

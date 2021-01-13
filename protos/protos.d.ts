@@ -1,4 +1,4 @@
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -115,6 +115,20 @@ export namespace google {
                      * @returns Promise
                      */
                     public getMetadata(request: google.analytics.data.v1alpha.IGetMetadataRequest): Promise<google.analytics.data.v1alpha.Metadata>;
+
+                    /**
+                     * Calls RunRealtimeReport.
+                     * @param request RunRealtimeReportRequest message or plain object
+                     * @param callback Node-style callback called with the error, if any, and RunRealtimeReportResponse
+                     */
+                    public runRealtimeReport(request: google.analytics.data.v1alpha.IRunRealtimeReportRequest, callback: google.analytics.data.v1alpha.AlphaAnalyticsData.RunRealtimeReportCallback): void;
+
+                    /**
+                     * Calls RunRealtimeReport.
+                     * @param request RunRealtimeReportRequest message or plain object
+                     * @returns Promise
+                     */
+                    public runRealtimeReport(request: google.analytics.data.v1alpha.IRunRealtimeReportRequest): Promise<google.analytics.data.v1alpha.RunRealtimeReportResponse>;
                 }
 
                 namespace AlphaAnalyticsData {
@@ -153,6 +167,13 @@ export namespace google {
                      * @param [response] Metadata
                      */
                     type GetMetadataCallback = (error: (Error|null), response?: google.analytics.data.v1alpha.Metadata) => void;
+
+                    /**
+                     * Callback as used by {@link google.analytics.data.v1alpha.AlphaAnalyticsData#runRealtimeReport}.
+                     * @param error Error, if any
+                     * @param [response] RunRealtimeReportResponse
+                     */
+                    type RunRealtimeReportCallback = (error: (Error|null), response?: google.analytics.data.v1alpha.RunRealtimeReportResponse) => void;
                 }
 
                 /** Properties of a Metadata. */
@@ -446,6 +467,9 @@ export namespace google {
                     /** RunReportResponse minimums */
                     minimums?: (google.analytics.data.v1alpha.IRow[]|null);
 
+                    /** RunReportResponse rowCount */
+                    rowCount?: (number|null);
+
                     /** RunReportResponse metadata */
                     metadata?: (google.analytics.data.v1alpha.IResponseMetaData|null);
 
@@ -479,6 +503,9 @@ export namespace google {
 
                     /** RunReportResponse minimums. */
                     public minimums: google.analytics.data.v1alpha.IRow[];
+
+                    /** RunReportResponse rowCount. */
+                    public rowCount: number;
 
                     /** RunReportResponse metadata. */
                     public metadata?: (google.analytics.data.v1alpha.IResponseMetaData|null);
@@ -1290,6 +1317,276 @@ export namespace google {
 
                     /**
                      * Converts this GetMetadataRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a RunRealtimeReportRequest. */
+                interface IRunRealtimeReportRequest {
+
+                    /** RunRealtimeReportRequest property */
+                    property?: (string|null);
+
+                    /** RunRealtimeReportRequest dimensions */
+                    dimensions?: (google.analytics.data.v1alpha.IDimension[]|null);
+
+                    /** RunRealtimeReportRequest metrics */
+                    metrics?: (google.analytics.data.v1alpha.IMetric[]|null);
+
+                    /** RunRealtimeReportRequest limit */
+                    limit?: (number|Long|string|null);
+
+                    /** RunRealtimeReportRequest dimensionFilter */
+                    dimensionFilter?: (google.analytics.data.v1alpha.IFilterExpression|null);
+
+                    /** RunRealtimeReportRequest metricFilter */
+                    metricFilter?: (google.analytics.data.v1alpha.IFilterExpression|null);
+
+                    /** RunRealtimeReportRequest metricAggregations */
+                    metricAggregations?: (google.analytics.data.v1alpha.MetricAggregation[]|null);
+
+                    /** RunRealtimeReportRequest orderBys */
+                    orderBys?: (google.analytics.data.v1alpha.IOrderBy[]|null);
+
+                    /** RunRealtimeReportRequest returnPropertyQuota */
+                    returnPropertyQuota?: (boolean|null);
+                }
+
+                /** Represents a RunRealtimeReportRequest. */
+                class RunRealtimeReportRequest implements IRunRealtimeReportRequest {
+
+                    /**
+                     * Constructs a new RunRealtimeReportRequest.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.analytics.data.v1alpha.IRunRealtimeReportRequest);
+
+                    /** RunRealtimeReportRequest property. */
+                    public property: string;
+
+                    /** RunRealtimeReportRequest dimensions. */
+                    public dimensions: google.analytics.data.v1alpha.IDimension[];
+
+                    /** RunRealtimeReportRequest metrics. */
+                    public metrics: google.analytics.data.v1alpha.IMetric[];
+
+                    /** RunRealtimeReportRequest limit. */
+                    public limit: (number|Long|string);
+
+                    /** RunRealtimeReportRequest dimensionFilter. */
+                    public dimensionFilter?: (google.analytics.data.v1alpha.IFilterExpression|null);
+
+                    /** RunRealtimeReportRequest metricFilter. */
+                    public metricFilter?: (google.analytics.data.v1alpha.IFilterExpression|null);
+
+                    /** RunRealtimeReportRequest metricAggregations. */
+                    public metricAggregations: google.analytics.data.v1alpha.MetricAggregation[];
+
+                    /** RunRealtimeReportRequest orderBys. */
+                    public orderBys: google.analytics.data.v1alpha.IOrderBy[];
+
+                    /** RunRealtimeReportRequest returnPropertyQuota. */
+                    public returnPropertyQuota: boolean;
+
+                    /**
+                     * Creates a new RunRealtimeReportRequest instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RunRealtimeReportRequest instance
+                     */
+                    public static create(properties?: google.analytics.data.v1alpha.IRunRealtimeReportRequest): google.analytics.data.v1alpha.RunRealtimeReportRequest;
+
+                    /**
+                     * Encodes the specified RunRealtimeReportRequest message. Does not implicitly {@link google.analytics.data.v1alpha.RunRealtimeReportRequest.verify|verify} messages.
+                     * @param message RunRealtimeReportRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.analytics.data.v1alpha.IRunRealtimeReportRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RunRealtimeReportRequest message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.RunRealtimeReportRequest.verify|verify} messages.
+                     * @param message RunRealtimeReportRequest message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.analytics.data.v1alpha.IRunRealtimeReportRequest, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RunRealtimeReportRequest message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RunRealtimeReportRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.RunRealtimeReportRequest;
+
+                    /**
+                     * Decodes a RunRealtimeReportRequest message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RunRealtimeReportRequest
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.RunRealtimeReportRequest;
+
+                    /**
+                     * Verifies a RunRealtimeReportRequest message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RunRealtimeReportRequest message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RunRealtimeReportRequest
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.RunRealtimeReportRequest;
+
+                    /**
+                     * Creates a plain object from a RunRealtimeReportRequest message. Also converts values to other types if specified.
+                     * @param message RunRealtimeReportRequest
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.analytics.data.v1alpha.RunRealtimeReportRequest, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RunRealtimeReportRequest to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
+                }
+
+                /** Properties of a RunRealtimeReportResponse. */
+                interface IRunRealtimeReportResponse {
+
+                    /** RunRealtimeReportResponse dimensionHeaders */
+                    dimensionHeaders?: (google.analytics.data.v1alpha.IDimensionHeader[]|null);
+
+                    /** RunRealtimeReportResponse metricHeaders */
+                    metricHeaders?: (google.analytics.data.v1alpha.IMetricHeader[]|null);
+
+                    /** RunRealtimeReportResponse rows */
+                    rows?: (google.analytics.data.v1alpha.IRow[]|null);
+
+                    /** RunRealtimeReportResponse totals */
+                    totals?: (google.analytics.data.v1alpha.IRow[]|null);
+
+                    /** RunRealtimeReportResponse maximums */
+                    maximums?: (google.analytics.data.v1alpha.IRow[]|null);
+
+                    /** RunRealtimeReportResponse minimums */
+                    minimums?: (google.analytics.data.v1alpha.IRow[]|null);
+
+                    /** RunRealtimeReportResponse rowCount */
+                    rowCount?: (number|null);
+
+                    /** RunRealtimeReportResponse propertyQuota */
+                    propertyQuota?: (google.analytics.data.v1alpha.IPropertyQuota|null);
+                }
+
+                /** Represents a RunRealtimeReportResponse. */
+                class RunRealtimeReportResponse implements IRunRealtimeReportResponse {
+
+                    /**
+                     * Constructs a new RunRealtimeReportResponse.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.analytics.data.v1alpha.IRunRealtimeReportResponse);
+
+                    /** RunRealtimeReportResponse dimensionHeaders. */
+                    public dimensionHeaders: google.analytics.data.v1alpha.IDimensionHeader[];
+
+                    /** RunRealtimeReportResponse metricHeaders. */
+                    public metricHeaders: google.analytics.data.v1alpha.IMetricHeader[];
+
+                    /** RunRealtimeReportResponse rows. */
+                    public rows: google.analytics.data.v1alpha.IRow[];
+
+                    /** RunRealtimeReportResponse totals. */
+                    public totals: google.analytics.data.v1alpha.IRow[];
+
+                    /** RunRealtimeReportResponse maximums. */
+                    public maximums: google.analytics.data.v1alpha.IRow[];
+
+                    /** RunRealtimeReportResponse minimums. */
+                    public minimums: google.analytics.data.v1alpha.IRow[];
+
+                    /** RunRealtimeReportResponse rowCount. */
+                    public rowCount: number;
+
+                    /** RunRealtimeReportResponse propertyQuota. */
+                    public propertyQuota?: (google.analytics.data.v1alpha.IPropertyQuota|null);
+
+                    /**
+                     * Creates a new RunRealtimeReportResponse instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns RunRealtimeReportResponse instance
+                     */
+                    public static create(properties?: google.analytics.data.v1alpha.IRunRealtimeReportResponse): google.analytics.data.v1alpha.RunRealtimeReportResponse;
+
+                    /**
+                     * Encodes the specified RunRealtimeReportResponse message. Does not implicitly {@link google.analytics.data.v1alpha.RunRealtimeReportResponse.verify|verify} messages.
+                     * @param message RunRealtimeReportResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.analytics.data.v1alpha.IRunRealtimeReportResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified RunRealtimeReportResponse message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.RunRealtimeReportResponse.verify|verify} messages.
+                     * @param message RunRealtimeReportResponse message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.analytics.data.v1alpha.IRunRealtimeReportResponse, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a RunRealtimeReportResponse message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns RunRealtimeReportResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.RunRealtimeReportResponse;
+
+                    /**
+                     * Decodes a RunRealtimeReportResponse message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns RunRealtimeReportResponse
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.RunRealtimeReportResponse;
+
+                    /**
+                     * Verifies a RunRealtimeReportResponse message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a RunRealtimeReportResponse message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns RunRealtimeReportResponse
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.RunRealtimeReportResponse;
+
+                    /**
+                     * Creates a plain object from a RunRealtimeReportResponse message. Also converts values to other types if specified.
+                     * @param message RunRealtimeReportResponse
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.analytics.data.v1alpha.RunRealtimeReportResponse, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this RunRealtimeReportResponse to JSON.
                      * @returns JSON object
                      */
                     public toJSON(): { [k: string]: any };
@@ -3547,96 +3844,6 @@ export namespace google {
                     public toJSON(): { [k: string]: any };
                 }
 
-                /** Properties of a CohortReportSettings. */
-                interface ICohortReportSettings {
-
-                    /** CohortReportSettings accumulate */
-                    accumulate?: (boolean|null);
-                }
-
-                /** Represents a CohortReportSettings. */
-                class CohortReportSettings implements ICohortReportSettings {
-
-                    /**
-                     * Constructs a new CohortReportSettings.
-                     * @param [properties] Properties to set
-                     */
-                    constructor(properties?: google.analytics.data.v1alpha.ICohortReportSettings);
-
-                    /** CohortReportSettings accumulate. */
-                    public accumulate: boolean;
-
-                    /**
-                     * Creates a new CohortReportSettings instance using the specified properties.
-                     * @param [properties] Properties to set
-                     * @returns CohortReportSettings instance
-                     */
-                    public static create(properties?: google.analytics.data.v1alpha.ICohortReportSettings): google.analytics.data.v1alpha.CohortReportSettings;
-
-                    /**
-                     * Encodes the specified CohortReportSettings message. Does not implicitly {@link google.analytics.data.v1alpha.CohortReportSettings.verify|verify} messages.
-                     * @param message CohortReportSettings message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encode(message: google.analytics.data.v1alpha.ICohortReportSettings, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Encodes the specified CohortReportSettings message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.CohortReportSettings.verify|verify} messages.
-                     * @param message CohortReportSettings message or plain object to encode
-                     * @param [writer] Writer to encode to
-                     * @returns Writer
-                     */
-                    public static encodeDelimited(message: google.analytics.data.v1alpha.ICohortReportSettings, writer?: $protobuf.Writer): $protobuf.Writer;
-
-                    /**
-                     * Decodes a CohortReportSettings message from the specified reader or buffer.
-                     * @param reader Reader or buffer to decode from
-                     * @param [length] Message length if known beforehand
-                     * @returns CohortReportSettings
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.CohortReportSettings;
-
-                    /**
-                     * Decodes a CohortReportSettings message from the specified reader or buffer, length delimited.
-                     * @param reader Reader or buffer to decode from
-                     * @returns CohortReportSettings
-                     * @throws {Error} If the payload is not a reader or valid buffer
-                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
-                     */
-                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.CohortReportSettings;
-
-                    /**
-                     * Verifies a CohortReportSettings message.
-                     * @param message Plain object to verify
-                     * @returns `null` if valid, otherwise the reason why it is not
-                     */
-                    public static verify(message: { [k: string]: any }): (string|null);
-
-                    /**
-                     * Creates a CohortReportSettings message from a plain object. Also converts values to their respective internal types.
-                     * @param object Plain object
-                     * @returns CohortReportSettings
-                     */
-                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.CohortReportSettings;
-
-                    /**
-                     * Creates a plain object from a CohortReportSettings message. Also converts values to other types if specified.
-                     * @param message CohortReportSettings
-                     * @param [options] Conversion options
-                     * @returns Plain object
-                     */
-                    public static toObject(message: google.analytics.data.v1alpha.CohortReportSettings, options?: $protobuf.IConversionOptions): { [k: string]: any };
-
-                    /**
-                     * Converts this CohortReportSettings to JSON.
-                     * @returns JSON object
-                     */
-                    public toJSON(): { [k: string]: any };
-                }
-
                 /** Properties of a CohortsRange. */
                 interface ICohortsRange {
 
@@ -3748,6 +3955,96 @@ export namespace google {
                         WEEKLY = 2,
                         MONTHLY = 3
                     }
+                }
+
+                /** Properties of a CohortReportSettings. */
+                interface ICohortReportSettings {
+
+                    /** CohortReportSettings accumulate */
+                    accumulate?: (boolean|null);
+                }
+
+                /** Represents a CohortReportSettings. */
+                class CohortReportSettings implements ICohortReportSettings {
+
+                    /**
+                     * Constructs a new CohortReportSettings.
+                     * @param [properties] Properties to set
+                     */
+                    constructor(properties?: google.analytics.data.v1alpha.ICohortReportSettings);
+
+                    /** CohortReportSettings accumulate. */
+                    public accumulate: boolean;
+
+                    /**
+                     * Creates a new CohortReportSettings instance using the specified properties.
+                     * @param [properties] Properties to set
+                     * @returns CohortReportSettings instance
+                     */
+                    public static create(properties?: google.analytics.data.v1alpha.ICohortReportSettings): google.analytics.data.v1alpha.CohortReportSettings;
+
+                    /**
+                     * Encodes the specified CohortReportSettings message. Does not implicitly {@link google.analytics.data.v1alpha.CohortReportSettings.verify|verify} messages.
+                     * @param message CohortReportSettings message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encode(message: google.analytics.data.v1alpha.ICohortReportSettings, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Encodes the specified CohortReportSettings message, length delimited. Does not implicitly {@link google.analytics.data.v1alpha.CohortReportSettings.verify|verify} messages.
+                     * @param message CohortReportSettings message or plain object to encode
+                     * @param [writer] Writer to encode to
+                     * @returns Writer
+                     */
+                    public static encodeDelimited(message: google.analytics.data.v1alpha.ICohortReportSettings, writer?: $protobuf.Writer): $protobuf.Writer;
+
+                    /**
+                     * Decodes a CohortReportSettings message from the specified reader or buffer.
+                     * @param reader Reader or buffer to decode from
+                     * @param [length] Message length if known beforehand
+                     * @returns CohortReportSettings
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decode(reader: ($protobuf.Reader|Uint8Array), length?: number): google.analytics.data.v1alpha.CohortReportSettings;
+
+                    /**
+                     * Decodes a CohortReportSettings message from the specified reader or buffer, length delimited.
+                     * @param reader Reader or buffer to decode from
+                     * @returns CohortReportSettings
+                     * @throws {Error} If the payload is not a reader or valid buffer
+                     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+                     */
+                    public static decodeDelimited(reader: ($protobuf.Reader|Uint8Array)): google.analytics.data.v1alpha.CohortReportSettings;
+
+                    /**
+                     * Verifies a CohortReportSettings message.
+                     * @param message Plain object to verify
+                     * @returns `null` if valid, otherwise the reason why it is not
+                     */
+                    public static verify(message: { [k: string]: any }): (string|null);
+
+                    /**
+                     * Creates a CohortReportSettings message from a plain object. Also converts values to their respective internal types.
+                     * @param object Plain object
+                     * @returns CohortReportSettings
+                     */
+                    public static fromObject(object: { [k: string]: any }): google.analytics.data.v1alpha.CohortReportSettings;
+
+                    /**
+                     * Creates a plain object from a CohortReportSettings message. Also converts values to other types if specified.
+                     * @param message CohortReportSettings
+                     * @param [options] Conversion options
+                     * @returns Plain object
+                     */
+                    public static toObject(message: google.analytics.data.v1alpha.CohortReportSettings, options?: $protobuf.IConversionOptions): { [k: string]: any };
+
+                    /**
+                     * Converts this CohortReportSettings to JSON.
+                     * @returns JSON object
+                     */
+                    public toJSON(): { [k: string]: any };
                 }
 
                 /** Properties of a ResponseMetaData. */
@@ -4811,6 +5108,9 @@ export namespace google {
 
                     /** DimensionMetadata deprecatedApiNames */
                     deprecatedApiNames?: (string[]|null);
+
+                    /** DimensionMetadata customDefinition */
+                    customDefinition?: (boolean|null);
                 }
 
                 /** Represents a DimensionMetadata. */
@@ -4833,6 +5133,9 @@ export namespace google {
 
                     /** DimensionMetadata deprecatedApiNames. */
                     public deprecatedApiNames: string[];
+
+                    /** DimensionMetadata customDefinition. */
+                    public customDefinition: boolean;
 
                     /**
                      * Creates a new DimensionMetadata instance using the specified properties.
@@ -4925,6 +5228,9 @@ export namespace google {
 
                     /** MetricMetadata expression */
                     expression?: (string|null);
+
+                    /** MetricMetadata customDefinition */
+                    customDefinition?: (boolean|null);
                 }
 
                 /** Represents a MetricMetadata. */
@@ -4953,6 +5259,9 @@ export namespace google {
 
                     /** MetricMetadata expression. */
                     public expression: string;
+
+                    /** MetricMetadata customDefinition. */
+                    public customDefinition: boolean;
 
                     /**
                      * Creates a new MetricMetadata instance using the specified properties.
@@ -5040,7 +5349,15 @@ export namespace google {
                     TYPE_INTEGER = 1,
                     TYPE_FLOAT = 2,
                     TYPE_SECONDS = 4,
-                    TYPE_CURRENCY = 9
+                    TYPE_MILLISECONDS = 5,
+                    TYPE_MINUTES = 6,
+                    TYPE_HOURS = 7,
+                    TYPE_STANDARD = 8,
+                    TYPE_CURRENCY = 9,
+                    TYPE_FEET = 10,
+                    TYPE_MILES = 11,
+                    TYPE_METERS = 12,
+                    TYPE_KILOMETERS = 13
                 }
             }
         }
@@ -5418,6 +5735,9 @@ export namespace google {
 
             /** ResourceDescriptor singular */
             singular?: (string|null);
+
+            /** ResourceDescriptor style */
+            style?: (google.api.ResourceDescriptor.Style[]|null);
         }
 
         /** Represents a ResourceDescriptor. */
@@ -5446,6 +5766,9 @@ export namespace google {
 
             /** ResourceDescriptor singular. */
             public singular: string;
+
+            /** ResourceDescriptor style. */
+            public style: google.api.ResourceDescriptor.Style[];
 
             /**
              * Creates a new ResourceDescriptor instance using the specified properties.
@@ -5525,6 +5848,12 @@ export namespace google {
                 HISTORY_UNSPECIFIED = 0,
                 ORIGINALLY_SINGLE_PATTERN = 1,
                 FUTURE_MULTI_PATTERN = 2
+            }
+
+            /** Style enum. */
+            enum Style {
+                STYLE_UNSPECIFIED = 0,
+                DECLARATIVE_FRIENDLY = 1
             }
         }
 

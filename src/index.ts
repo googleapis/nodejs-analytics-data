@@ -1,4 +1,4 @@
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@
 
 import * as v1alpha from './v1alpha';
 const AlphaAnalyticsDataClient = v1alpha.AlphaAnalyticsDataClient;
+type AlphaAnalyticsDataClient = v1alpha.AlphaAnalyticsDataClient;
 export {v1alpha, AlphaAnalyticsDataClient};
 export default {v1alpha, AlphaAnalyticsDataClient};
 import * as protos from '../protos/protos';

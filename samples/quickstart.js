@@ -1,4 +1,4 @@
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -43,6 +43,7 @@
  https://cloud.google.com/docs/authentication/production#passing_the_path_to_the_service_account_key_in_code
  */
 
+
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analytics_data_quickstart]
   /**
@@ -51,7 +52,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
    */
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
-      // Imports the Google Analytics Data API client library.
+  // Imports the Google Analytics Data API client library.
   const {AlphaAnalyticsDataClient} = require('@google-analytics/data');
 
   // Creates a client.
