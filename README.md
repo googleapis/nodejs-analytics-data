@@ -57,41 +57,46 @@ npm install @google-analytics/data
 ### Using the client library
 
 ```javascript
-// Imports the Google Cloud client library
+/**
+ * TODO(developer): Uncomment this variable and replace with your GA4
+ *   property ID before running the sample.
+ */
+// const propertyId = 'YOUR-GA4-PROPERTY-ID';
 
-// eslint-disable-next-line node/no-extraneous-require, node/no-missing-require
+// Imports the Google Analytics Data API client library
 const {AlphaAnalyticsDataClient} = require('@google-analytics/data');
-
-// TODO(developer): replace with your prefered project ID.
-// const projectId = 'my-project'
 
 // Creates a client
 const client = new AlphaAnalyticsDataClient();
 
+// Runs a simple report.
 async function runReport() {
-  const res = await client.runReport({
+  const [response] = await client.runReport({
     entity: {
       propertyId: propertyId,
     },
     dateRanges: [
       {
-        startDate: startDate,
-        endDate: endDate,
+        startDate: '2020-03-31',
+        endDate: 'today',
       },
     ],
     dimensions: [
       {
-        name: nameOfDimensions,
+        name: 'city',
       },
     ],
     metrics: [
       {
-        name: nameOfMetrics,
+        name: 'activeUsers',
       },
     ],
   });
-  console.log(res[0].rows);
-  return res[0].rows;
+
+  console.log('Report result:');
+  response.rows.forEach(row => {
+    console.log(row.dimensionValues[0], row.metricValues[0]);
+  });
 }
 
 runReport();
@@ -102,8 +107,7 @@ runReport();
 
 ## Samples
 
-Samples are in the [`samples/`](https://github.com/googleapis/nodejs-analytics-data/tree/master/samples) directory. The samples' `README.md`
-has instructions for running the samples.
+Samples are in the [`samples/`](https://github.com/googleapis/nodejs-analytics-data/tree/master/samples) directory. Each sample's `README.md` has instructions for running its sample.
 
 | Sample                      | Source Code                       | Try it |
 | --------------------------- | --------------------------------- | ------ |
@@ -120,7 +124,7 @@ Our client libraries follow the [Node.js release schedule](https://nodejs.org/en
 Libraries are compatible with all current _active_ and _maintenance_ versions of
 Node.js.
 
-Client libraries targetting some end-of-life versions of Node.js are available, and
+Client libraries targeting some end-of-life versions of Node.js are available, and
 can be installed via npm [dist-tags](https://docs.npmjs.com/cli/dist-tag).
 The dist-tags follow the naming convention `legacy-(version)`.
 

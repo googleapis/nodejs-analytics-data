@@ -1,4 +1,4 @@
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,8 +18,15 @@
 
 import {AlphaAnalyticsDataClient} from '@google-analytics/data';
 
+// check that the client class type name can be used
+function doStuffWithAlphaAnalyticsDataClient(client: AlphaAnalyticsDataClient) {
+  client.close();
+}
+
 function main() {
-  new AlphaAnalyticsDataClient();
+  // check that the client instance can be created
+  const alphaAnalyticsDataClient = new AlphaAnalyticsDataClient();
+  doStuffWithAlphaAnalyticsDataClient(alphaAnalyticsDataClient);
 }
 
 main();
