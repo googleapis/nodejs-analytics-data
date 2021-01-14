@@ -82,8 +82,8 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   function getAnalyticsDataClient(authClient) {
     const sslCreds = grpc.credentials.createSsl();
     const credentials = grpc.credentials.combineChannelCredentials(
-        sslCreds,
-        grpc.credentials.createFromGoogleCredential(authClient)
+      sslCreds,
+      grpc.credentials.createFromGoogleCredential(authClient)
     );
     return new AlphaAnalyticsDataClient({
       sslCreds: credentials,
@@ -98,10 +98,10 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     return new Promise((resolve, reject) => {
       // Create an OAuth client to authorize the API call.
       const oAuth2Client = new OAuth2Client(
-          keys.web.client_id,
-          keys.web.client_secret,
-          // A hardcoded callback URL used in this sample app.
-          'http://localhost:3000/oauth2callback'
+        keys.web.client_id,
+        keys.web.client_secret,
+        // A hardcoded callback URL used in this sample app.
+        'http://localhost:3000/oauth2callback'
       );
 
       // Generate the url that will be used for the consent dialog.
@@ -113,38 +113,39 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
       // Open an http server to accept the oauth callback. In this example, the
       // only request to our webserver is to /oauth2callback?code=<code>
       const server = http
-          .createServer(async (req, res) => {
-            try {
-              if (req.url.indexOf('/oauth2callback') > -1) {
-                // Acquire the code from the querystring, and close the web
-                // server.
-                const qs = new url.URL(req.url, 'http://localhost:3000')
-                    .searchParams;
-                const code = qs.get('code');
-                console.log(`Code is ${code}`);
-                res.end(
-                    'Authentication successful! Please return to the console.');
-                server.destroy();
+        .createServer(async (req, res) => {
+          try {
+            if (req.url.indexOf('/oauth2callback') > -1) {
+              // Acquire the code from the querystring, and close the web
+              // server.
+              const qs = new url.URL(req.url, 'http://localhost:3000')
+                .searchParams;
+              const code = qs.get('code');
+              console.log(`Code is ${code}`);
+              res.end(
+                'Authentication successful! Please return to the console.'
+              );
+              server.destroy();
 
-                // Now that we have the code, use that to acquire tokens.
-                const r = await oAuth2Client.getToken(code);
-                // Make sure to set the credentials on the OAuth2 client.
-                oAuth2Client.setCredentials(r.tokens);
-                console.info('Tokens acquired.');
-                resolve(oAuth2Client);
-              }
-            } catch (e) {
-              reject(e);
+              // Now that we have the code, use that to acquire tokens.
+              const r = await oAuth2Client.getToken(code);
+              // Make sure to set the credentials on the OAuth2 client.
+              oAuth2Client.setCredentials(r.tokens);
+              console.info('Tokens acquired.');
+              resolve(oAuth2Client);
             }
-          })
-          .listen(3000, () => {
-            // Open the browser to the authorize url to start the workflow.
-            // This line will not work if you are running the code in the
-            // environment where a browser is not available. In this case,
-            // copy the URL and open it manually in a browser.
-            console.info(`Opening the browser with URL: ${authorizeUrl}`);
-            open(authorizeUrl, {wait: false}).then(cp => cp.unref());
-          });
+          } catch (e) {
+            reject(e);
+          }
+        })
+        .listen(3000, () => {
+          // Open the browser to the authorize url to start the workflow.
+          // This line will not work if you are running the code in the
+          // environment where a browser is not available. In this case,
+          // copy the URL and open it manually in a browser.
+          console.info(`Opening the browser with URL: ${authorizeUrl}`);
+          open(authorizeUrl, {wait: false}).then(cp => cp.unref());
+        });
       destroyer(server);
     });
   }
@@ -192,4 +193,3 @@ process.on('unhandledRejection', err => {
   process.exitCode = 1;
 });
 main(...process.argv.slice(2));
-

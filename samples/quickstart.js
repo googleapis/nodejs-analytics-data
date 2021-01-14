@@ -43,7 +43,6 @@
  https://cloud.google.com/docs/authentication/production#passing_the_path_to_the_service_account_key_in_code
  */
 
-
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analytics_data_quickstart]
   /**
