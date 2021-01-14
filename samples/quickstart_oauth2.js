@@ -57,7 +57,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
    */
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
-  // Imports the Google Analytics Data API client library.
+  //Imports the Google Analytics Data API client library.
   const {AlphaAnalyticsDataClient} = require('@google-analytics/data');
 
   const {OAuth2Client} = require('google-auth-library');
@@ -151,7 +151,11 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   // Runs a simple report using the supplied Data API client instance.
-  async function runReport(analyticsDataClient) {
+  async function runReport() {
+    // Starts the OAuth2 flow and runs the report.
+    const oAuth2Client = await getOAuth2Client();
+    const analyticsDataClient = getAnalyticsDataClient(oAuth2Client);
+
     const [response] = await analyticsDataClient.runReport({
       entity: {
         propertyId: propertyId,
@@ -180,11 +184,8 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     });
   }
 
-  // Starts the OAuth2 flow and runs the report.
-  getOAuth2Client().then(oAuth2Client => {
-    const analyticsDataClient = getAnalyticsDataClient(oAuth2Client);
-    runReport(analyticsDataClient);
-  });
+  runReport();
+
   // [END analytics_data_quickstart_oauth2]
 }
 
