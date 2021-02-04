@@ -25,10 +25,10 @@ const execSync = cmd => cp.execSync(cmd, {encoding: 'utf-8'});
 
 const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID || '222596558';
 
-describe('Quickstart', () => {
-  it('should run quickstart', async () => {
+describe('Realtime report', () => {
+  it('should run realtime', async () => {
     // eslint-disable-next-line no-unused-vars
-    const stdout = execSync(`node ./quickstart.js ${GA4_PROPERTY_ID}`);
+    const stdout = execSync(`node ./realtime.js ${GA4_PROPERTY_ID}`);
     assert.match(stdout, /Report result/);
   });
 });
