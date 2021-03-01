@@ -61,7 +61,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   async function runReport() {
     const [response] = await analyticsDataClient.runReport({
       entity: {
-        propertyId: propertyId,
+        propertyId: 'properties/' + propertyId,
       },
       dateRanges: [
         {
