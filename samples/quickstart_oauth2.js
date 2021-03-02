@@ -156,7 +156,8 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     const analyticsDataClient = getAnalyticsDataClient(oAuth2Client);
 
     const [response] = await analyticsDataClient.runReport({
-      property: 'properties/' + propertyId,
+
+      property: `properties/${propertyId}`,
       dateRanges: [
         {
           startDate: '2020-03-31',

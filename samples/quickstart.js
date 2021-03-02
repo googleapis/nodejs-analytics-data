@@ -66,7 +66,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID', credentialsJsonPath = '') {
   async function runReport() {
     // [START google_analytics_data_run_report]
     const [response] = await analyticsDataClient.runReport({
-      property: 'properties/' + propertyId,
+      property: `properties/${propertyId}`,
       dateRanges: [
         {
           startDate: '2020-03-31',
@@ -75,7 +75,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID', credentialsJsonPath = '') {
       ],
       dimensions: [
         {
-          name: 'city',
+          name: 'country',
         },
       ],
       metrics: [
@@ -87,9 +87,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID', credentialsJsonPath = '') {
     // [END google_analytics_data_run_report]
 
     console.log('Report result:');
-    response.forEach(row => {
-      console.log(row.dimensionValues[0], row.metricValues[0]);
-    });
+    console.log(response);
   }
 
   runReport();

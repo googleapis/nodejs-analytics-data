@@ -14,11 +14,11 @@
   },
   "dependencies": {
     "@google-analytics/data": "^2.2.0",
-    "google-auth-library": "^6.1.4",
+    "google-auth-library": "^7.0.0",
     "google-gax": "^2.10.0",
     "http": "^0.0.1-security",
     "lint": "^0.7.0",
-    "open": "^7.3.1",
+    "open": "^8.0.0",
     "server-destroy": "^1.0.1",
     "url": "^0.11.0"
   },

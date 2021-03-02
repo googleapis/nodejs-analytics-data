@@ -64,17 +64,15 @@ npm install @google-analytics/data
 // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
 // Imports the Google Analytics Data API client library.
-const {AlphaAnalyticsDataClient} = require('@google-analytics/data');
+const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
 // Creates a client.
-const analyticsDataClient = new AlphaAnalyticsDataClient();
+const analyticsDataClient = new BetaAnalyticsDataClient();
 
 // Runs a simple report.
 async function runReport() {
   const [response] = await analyticsDataClient.runReport({
-    entity: {
-      propertyId: propertyId,
-    },
+    property: `properties/${propertyId}`,
     dateRanges: [
       {
         startDate: '2020-03-31',
@@ -113,6 +111,7 @@ Samples are in the [`samples/`](https://github.com/googleapis/nodejs-analytics-d
 | --------------------------- | --------------------------------- | ------ |
 | Quickstart | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/master/samples/quickstart.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/quickstart.js,samples/README.md) |
 | Quickstart_oauth2 | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/master/samples/quickstart_oauth2.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/quickstart_oauth2.js,samples/README.md) |
+| Realtime | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/master/samples/realtime.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/realtime.js,samples/README.md) |
 
 
 
