@@ -61,12 +61,6 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   async function runReport() {
     const [response] = await analyticsDataClient.runReport({
       property: `properties/${propertyId}`,
-      dateRanges: [
-        {
-          startDate: '2020-03-31',
-          endDate: 'today',
-        },
-      ],
       dimensions: [
         {
           name: 'city',
