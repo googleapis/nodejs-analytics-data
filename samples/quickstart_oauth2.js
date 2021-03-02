@@ -58,7 +58,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   //Imports the Google Analytics Data API client library.
-  const {AlphaAnalyticsDataClient} = require('@google-analytics/data');
+  const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
   const {OAuth2Client} = require('google-auth-library');
   const {grpc} = require('google-gax');
@@ -85,7 +85,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
       sslCreds,
       grpc.credentials.createFromGoogleCredential(authClient)
     );
-    return new AlphaAnalyticsDataClient({
+    return new BetaAnalyticsDataClient({
       sslCreds: credentials,
     });
   }
@@ -157,9 +157,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     const analyticsDataClient = getAnalyticsDataClient(oAuth2Client);
 
     const [response] = await analyticsDataClient.runReport({
-      entity: {
-        propertyId: propertyId,
-      },
+      property: `properties/${propertyId}`,
       dateRanges: [
         {
           startDate: '2020-03-31',
