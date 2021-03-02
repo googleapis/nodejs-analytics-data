@@ -69,7 +69,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
       ],
       dimensions: [
         {
-          name: 'city',
+          name: 'country',
         },
       ],
       metrics: [
