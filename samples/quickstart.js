@@ -80,9 +80,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     });
 
     console.log('Report result:');
-    response.rows.forEach(row => {
-      console.log(row.dimensionValues[0], row.metricValues[0]);
-    });
+    console.log(response);
   }
 
   runReport();
