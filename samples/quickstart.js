@@ -14,55 +14,59 @@
 
 'use strict';
 
-/** This application demonstrates the usage of the Analytics Data API using
- service account credentials. For more information on service accounts, see
+/** Google Analytics Data API sample quickstart application.
+ This application demonstrates the usage of the Analytics Data API using
+ service account credentials.
 
- https://cloud.google.com/iam/docs/understanding-service-accounts
+ Before you start the application, please review the comments starting with
+ "TODO(developer)" and update the code to use correct values.
 
- The following document provides instructions on setting service account
- credentials for your application:
-
- https://cloud.google.com/docs/authentication/production
-
- In a nutshell, you need to:
-
- 1. Create a service account and download the key JSON file.
- https://cloud.google.com/docs/authentication/production#creating_a_service_account
-
- 2. Provide service account credentials using one of the following options:
- - set the GOOGLE_APPLICATION_CREDENTIALS environment variable, the API
- client will use the value of this variable to find the service account key
- JSON file.
-
- https://cloud.google.com/docs/authentication/production#setting_the_environment_variable
-
- OR
- - manually pass the path to the service account key JSON file to the API client
- by specifying the keyFilename parameter in the constructor.
-
- https://cloud.google.com/docs/authentication/production#passing_the_path_to_the_service_account_key_in_code
+ Usage:
+   npm install
+   node quickstart.js
  */
 
-function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analytics_data_quickstart]
+function main(propertyId = 'YOUR-GA4-PROPERTY-ID', credentialsJsonPath = '') {
+  // [START google_analytics_data_quickstart]
   /**
-   * TODO(developer): Uncomment this variable and replace with your GA4
-   *   property ID before running the sample.
+   * TODO(developer): Uncomment this variable and replace with your
+   *   Google Analytics 4 property ID before running the sample.
    */
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
-  // Imports the Google Analytics Data API client library.
-  const {AlphaAnalyticsDataClient} = require('@google-analytics/data');
+  // [START google_analytics_data_initialize]
 
-  // Creates a client.
-  const analyticsDataClient = new AlphaAnalyticsDataClient();
+  /* TODO(developer): Uncomment this variable and replace with a valid path to
+   *  the credentials.json file for your service account downloaded from the
+   *  Cloud Console.
+   *  Otherwise, default service account credentials will be derived from
+   *  the GOOGLE_APPLICATION_CREDENTIALS environment variable.
+  */
+  // credentialsJsonPath = '/path/to/credentials.json';
+
+  // Imports the Google Analytics Data API client library.
+  const {BetaAnalyticsDataClient} = require('@google-analytics/data');
+
+  let  analyticsDataClient;
+  if (credentialsJsonPath) {
+    // Explicitly use service account credentials by specifying
+    // the private key file.
+    analyticsDataClient = new BetaAnalyticsDataClient({
+      keyFilename: credentialsJsonPath,
+    });
+  } else {
+    // Using a default constructor instructs the client to use the credentials
+    // specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.
+    analyticsDataClient = new BetaAnalyticsDataClient();
+  }
+
+  // [END google_analytics_data_initialize]
 
   // Runs a simple report.
   async function runReport() {
+    // [START google_analytics_data_run_report]
     const [response] = await analyticsDataClient.runReport({
-      entity: {
-        propertyId: propertyId,
-      },
+      property: 'properties/' + propertyId,
       dateRanges: [
         {
           startDate: '2020-03-31',
@@ -80,15 +84,16 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
         },
       ],
     });
+    // [END google_analytics_data_run_report]
 
     console.log('Report result:');
-    response.rows.forEach(row => {
+    response.forEach(row => {
       console.log(row.dimensionValues[0], row.metricValues[0]);
     });
   }
 
   runReport();
-  // [END analytics_data_quickstart]
+  // [END google_analytics_data_quickstart]
 }
 
 process.on('unhandledRejection', err => {
