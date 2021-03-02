@@ -19,10 +19,10 @@
 import * as v1alpha from './v1alpha';
 import * as v1beta from './v1beta';
 
-const AlphaAnalyticsDataClient = v1alpha.AlphaAnalyticsDataClient;
-type AlphaAnalyticsDataClient = v1alpha.AlphaAnalyticsDataClient;
+const BetaAnalyticsDataClient = v1beta.BetaAnalyticsDataClient;
+type BetaAnalyticsDataClient = v1beta.BetaAnalyticsDataClient;
 
-export {v1alpha, v1beta, AlphaAnalyticsDataClient};
-export default {v1alpha, v1beta, AlphaAnalyticsDataClient};
+export {v1alpha, v1beta, BetaAnalyticsDataClient};
+export default {v1alpha, v1beta, BetaAnalyticsDataClient};
 import * as protos from '../protos/protos';
 export {protos};
