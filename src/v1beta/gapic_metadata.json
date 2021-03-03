@@ -3,7 +3,7 @@
   "comment": "This file maps proto services/RPCs to the corresponding library clients/methods",
   "language": "typescript",
   "protoPackage": "google.analytics.data.v1beta",
-  "libraryPackage": "@google-cloud/data",
+  "libraryPackage": "@google-analytics/data",
   "services": {
     "BetaAnalyticsData": {
       "clients": {
