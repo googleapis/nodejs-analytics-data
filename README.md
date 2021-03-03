@@ -81,7 +81,7 @@ async function runReport() {
     ],
     dimensions: [
       {
-        name: 'city',
+        name: 'country',
       },
     ],
     metrics: [
@@ -92,9 +92,7 @@ async function runReport() {
   });
 
   console.log('Report result:');
-  response.rows.forEach(row => {
-    console.log(row.dimensionValues[0], row.metricValues[0]);
-  });
+  console.log(response);
 }
 
 runReport();
