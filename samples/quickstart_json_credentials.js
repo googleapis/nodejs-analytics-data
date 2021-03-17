@@ -78,7 +78,9 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID', credentialsJsonPath = '') {
     // [END google_analytics_data_run_report]
 
     console.log('Report result:');
-    console.log(response);
+    response.rows.forEach(row => {
+      console.log(row.dimensionValues[0], row.metricValues[0]);
+    });
   }
 
   runReport();
