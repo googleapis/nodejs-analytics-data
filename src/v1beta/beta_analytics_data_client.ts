@@ -18,18 +18,9 @@
 
 /* global window */
 import * as gax from 'google-gax';
-import {
-  Callback,
-  CallOptions,
-  Descriptors,
-  ClientOptions,
-  PaginationCallback,
-  GaxCall,
-} from 'google-gax';
+import {Callback, CallOptions, Descriptors, ClientOptions} from 'google-gax';
 import * as path from 'path';
 
-import {Transform} from 'stream';
-import {RequestType} from 'google-gax/build/src/apitypes';
 import * as protos from '../../protos/protos';
 /**
  * Client JSON configuration object, loaded from
@@ -171,17 +162,6 @@ export class BetaAnalyticsDataClient {
       ),
     };
 
-    // Some of the methods on this service return "paged" results,
-    // (e.g. 50 results at a time, with tokens to get subsequent
-    // pages). Denote the keys used for pagination and results.
-    this.descriptors.page = {
-      runReport: new this._gaxModule.PageDescriptor(
-        'pageToken',
-        'nextPageToken',
-        'dimensionHeaders'
-      ),
-    };
-
     // Put together the default options sent with requests.
     this._defaults = this._gaxGrpc.constructSettings(
       'google.analytics.data.v1beta.BetaAnalyticsData',
@@ -249,7 +229,7 @@ export class BetaAnalyticsDataClient {
         }
       );
 
-      const descriptor = this.descriptors.page[methodName] || undefined;
+      const descriptor = undefined;
       const apiCall = this._gaxModule.createApiCall(
         callPromise,
         this._defaults[methodName],
@@ -318,6 +298,163 @@ export class BetaAnalyticsDataClient {
   // -------------------
   // -- Service calls --
   // -------------------
+  runReport(
+    request: protos.google.analytics.data.v1beta.IRunReportRequest,
+    options?: CallOptions
+  ): Promise<
+    [
+      protos.google.analytics.data.v1beta.IRunReportResponse,
+      protos.google.analytics.data.v1beta.IRunReportRequest | undefined,
+      {} | undefined
+    ]
+  >;
+  runReport(
+    request: protos.google.analytics.data.v1beta.IRunReportRequest,
+    options: CallOptions,
+    callback: Callback<
+      protos.google.analytics.data.v1beta.IRunReportResponse,
+      protos.google.analytics.data.v1beta.IRunReportRequest | null | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  runReport(
+    request: protos.google.analytics.data.v1beta.IRunReportRequest,
+    callback: Callback<
+      protos.google.analytics.data.v1beta.IRunReportResponse,
+      protos.google.analytics.data.v1beta.IRunReportRequest | null | undefined,
+      {} | null | undefined
+    >
+  ): void;
+  /**
+   * Returns a customized report of your Google Analytics event data. Reports
+   * contain statistics derived from data collected by the Google Analytics
+   * tracking code. The data returned from the API is as a table with columns
+   * for the requested dimensions and metrics. Metrics are individual
+   * measurements of user activity on your property, such as active users or
+   * event count. Dimensions break down metrics across some common criteria,
+   * such as country or event name.
+   *
+   * @param {Object} request
+   *   The request object that will be sent.
+   * @param {string} request.property
+   *   A Google Analytics GA4 property identifier whose events are tracked.
+   *   Specified in the URL path and not the body. To learn more, see [where to
+   *   find your Property
+   *   ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
+   *   Within a batch request, this property should either be unspecified or
+   *   consistent with the batch-level property.
+   *
+   *   Example: properties/1234
+   * @param {number[]} request.dimensions
+   *   The dimensions requested and displayed.
+   * @param {number[]} request.metrics
+   *   The metrics requested and displayed.
+   * @param {number[]} request.dateRanges
+   *   Date ranges of data to read. If multiple date ranges are requested, each
+   *   response row will contain a zero based date range index. If two date
+   *   ranges overlap, the event data for the overlapping days is included in the
+   *   response rows for both date ranges. In a cohort request, this `dateRanges`
+   *   must be unspecified.
+   * @param {google.analytics.data.v1beta.FilterExpression} request.dimensionFilter
+   *   The filter clause of dimensions. Dimensions must be requested to be used in
+   *   this filter. Metrics cannot be used in this filter.
+   * @param {google.analytics.data.v1beta.FilterExpression} request.metricFilter
+   *   The filter clause of metrics. Applied at post aggregation phase, similar to
+   *   SQL having-clause. Metrics must be requested to be used in this filter.
+   *   Dimensions cannot be used in this filter.
+   * @param {number} request.offset
+   *   The row count of the start row. The first row is counted as row 0.
+   *
+   *   When paging, the first request does not specify offset; or equivalently,
+   *   sets offset to 0; the first request returns the first `limit` of rows. The
+   *   second request sets offset to the `limit` of the first request; the second
+   *   request returns the second `limit` of rows.
+   *
+   *   To learn more about this pagination parameter, see
+   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+   * @param {number} request.limit
+   *   The number of rows to return. If unspecified, 10,000 rows are returned. The
+   *   API returns a maximum of 100,000 rows per request, no matter how many you
+   *   ask for. `limit` must be positive.
+   *
+   *   The API can also return fewer rows than the requested `limit`, if there
+   *   aren't as many dimension values as the `limit`. For instance, there are
+   *   fewer than 300 possible values for the dimension `country`, so when
+   *   reporting on only `country`, you can't get more than 300 rows, even if you
+   *   set `limit` to a higher value.
+   *
+   *   To learn more about this pagination parameter, see
+   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+   * @param {number[]} request.metricAggregations
+   *   Aggregation of metrics. Aggregated metric values will be shown in rows
+   *   where the dimension_values are set to "RESERVED_(MetricAggregation)".
+   * @param {number[]} request.orderBys
+   *   Specifies how rows are ordered in the response.
+   * @param {string} request.currencyCode
+   *   A currency code in ISO4217 format, such as "AED", "USD", "JPY".
+   *   If the field is empty, the report uses the property's default currency.
+   * @param {google.analytics.data.v1beta.CohortSpec} request.cohortSpec
+   *   Cohort group associated with this request. If there is a cohort group
+   *   in the request the 'cohort' dimension must be present.
+   * @param {boolean} request.keepEmptyRows
+   *   If false or unspecified, each row with all metrics equal to 0 will not be
+   *   returned. If true, these rows will be returned if they are not separately
+   *   removed by a filter.
+   * @param {boolean} request.returnPropertyQuota
+   *   Toggles whether to return the current state of this Analytics Property's
+   *   quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+   * @param {object} [options]
+   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
+   * @returns {Promise} - The promise which resolves to an array.
+   *   The first element of the array is an object representing [RunReportResponse]{@link google.analytics.data.v1beta.RunReportResponse}.
+   *   Please see the
+   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#regular-methods)
+   *   for more details and examples.
+   * @example
+   * const [response] = await client.runReport(request);
+   */
+  runReport(
+    request: protos.google.analytics.data.v1beta.IRunReportRequest,
+    optionsOrCallback?:
+      | CallOptions
+      | Callback<
+          protos.google.analytics.data.v1beta.IRunReportResponse,
+          | protos.google.analytics.data.v1beta.IRunReportRequest
+          | null
+          | undefined,
+          {} | null | undefined
+        >,
+    callback?: Callback<
+      protos.google.analytics.data.v1beta.IRunReportResponse,
+      protos.google.analytics.data.v1beta.IRunReportRequest | null | undefined,
+      {} | null | undefined
+    >
+  ): Promise<
+    [
+      protos.google.analytics.data.v1beta.IRunReportResponse,
+      protos.google.analytics.data.v1beta.IRunReportRequest | undefined,
+      {} | undefined
+    ]
+  > | void {
+    request = request || {};
+    let options: CallOptions;
+    if (typeof optionsOrCallback === 'function' && callback === undefined) {
+      callback = optionsOrCallback;
+      options = {};
+    } else {
+      options = optionsOrCallback as CallOptions;
+    }
+    options = options || {};
+    options.otherArgs = options.otherArgs || {};
+    options.otherArgs.headers = options.otherArgs.headers || {};
+    options.otherArgs.headers[
+      'x-goog-request-params'
+    ] = gax.routingHeader.fromParams({
+      property: request.property || '',
+    });
+    this.initialize();
+    return this.innerApiCalls.runReport(request, options, callback);
+  }
   runPivotReport(
     request: protos.google.analytics.data.v1beta.IRunPivotReportRequest,
     options?: CallOptions
@@ -840,19 +977,16 @@ export class BetaAnalyticsDataClient {
    *   The filter clause of metrics. Applied at post aggregation phase, similar to
    *   SQL having-clause. Metrics must be requested to be used in this filter.
    *   Dimensions cannot be used in this filter.
-   * @param {number} request.pageSize
-   *   Page size specifies maximum number of rows to return. If unspecified, up to
-   *   10,000 rows are returned. The API returns a maximum of 100,000 rows per
-   *   request, no matter how many you ask for. Page size must be positive.
+   * @param {number} request.limit
+   *   The number of rows to return. If unspecified, 10,000 rows are returned. The
+   *   API returns a maximum of 100,000 rows per request, no matter how many you
+   *   ask for. `limit` must be positive.
    *
-   *   The API can also return fewer rows than the requested `pageSize`, if there
-   *   aren't as many dimension values as the `pageSize`. For instance, there are
+   *   The API can also return fewer rows than the requested `limit`, if there
+   *   aren't as many dimension values as the `limit`. For instance, there are
    *   fewer than 300 possible values for the dimension `country`, so when
    *   reporting on only `country`, you can't get more than 300 rows, even if you
-   *   set `pageSize` to a higher value.
-   *
-   *   To learn more about this pagination parameter, see
-   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics#pagination).
+   *   set `limit` to a higher value.
    * @param {number[]} request.metricAggregations
    *   Aggregation of metrics. Aggregated metric values will be shown in rows
    *   where the dimension_values are set to "RESERVED_(MetricAggregation)".
@@ -916,386 +1050,6 @@ export class BetaAnalyticsDataClient {
     return this.innerApiCalls.runRealtimeReport(request, options, callback);
   }
 
-  runReport(
-    request: protos.google.analytics.data.v1beta.IRunReportRequest,
-    options?: CallOptions
-  ): Promise<
-    [
-      protos.google.analytics.data.v1beta.IDimensionHeader[],
-      protos.google.analytics.data.v1beta.IRunReportRequest | null,
-      protos.google.analytics.data.v1beta.IRunReportResponse
-    ]
-  >;
-  runReport(
-    request: protos.google.analytics.data.v1beta.IRunReportRequest,
-    options: CallOptions,
-    callback: PaginationCallback<
-      protos.google.analytics.data.v1beta.IRunReportRequest,
-      protos.google.analytics.data.v1beta.IRunReportResponse | null | undefined,
-      protos.google.analytics.data.v1beta.IDimensionHeader
-    >
-  ): void;
-  runReport(
-    request: protos.google.analytics.data.v1beta.IRunReportRequest,
-    callback: PaginationCallback<
-      protos.google.analytics.data.v1beta.IRunReportRequest,
-      protos.google.analytics.data.v1beta.IRunReportResponse | null | undefined,
-      protos.google.analytics.data.v1beta.IDimensionHeader
-    >
-  ): void;
-  /**
-   * Returns a customized report of your Google Analytics event data. Reports
-   * contain statistics derived from data collected by the Google Analytics
-   * tracking code. The data returned from the API is as a table with columns
-   * for the requested dimensions and metrics. Metrics are individual
-   * measurements of user activity on your property, such as active users or
-   * event count. Dimensions break down metrics across some common criteria,
-   * such as country or event name.
-   *
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.property
-   *   A Google Analytics GA4 property identifier whose events are tracked.
-   *   Specified in the URL path and not the body. To learn more, see [where to
-   *   find your Property
-   *   ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
-   *   Within a batch request, this property should either be unspecified or
-   *   consistent with the batch-level property.
-   *
-   *   Example: properties/1234
-   * @param {number[]} request.dimensions
-   *   The dimensions requested and displayed.
-   * @param {number[]} request.metrics
-   *   The metrics requested and displayed.
-   * @param {number[]} request.dateRanges
-   *   Date ranges of data to read. If multiple date ranges are requested, each
-   *   response row will contain a zero based date range index. If two date
-   *   ranges overlap, the event data for the overlapping days is included in the
-   *   response rows for both date ranges. In a cohort request, this `dateRanges`
-   *   must be unspecified.
-   * @param {google.analytics.data.v1beta.FilterExpression} request.dimensionFilter
-   *   The filter clause of dimensions. Dimensions must be requested to be used in
-   *   this filter. Metrics cannot be used in this filter.
-   * @param {google.analytics.data.v1beta.FilterExpression} request.metricFilter
-   *   The filter clause of metrics. Applied at post aggregation phase, similar to
-   *   SQL having-clause. Metrics must be requested to be used in this filter.
-   *   Dimensions cannot be used in this filter.
-   * @param {number} request.pageSize
-   *   Page size is for paging and specifies maximum number of rows to return. The
-   *   API returns a maximum of 200,000 rows per request, no matter how many you
-   *   ask for. Page size must be positive.
-   *
-   *   The API can also return fewer rows than the requested `pageSize`, if there
-   *   aren't as many dimension values as the `pageSize`. For instance, there are
-   *   fewer than 300 possible values for the dimension `country`, so when
-   *   reporting on only `country`, you can't get more than 300 rows, even if you
-   *   set `pageSize` to a higher value.
-   *
-   *   To learn more about this pagination parameter, see
-   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-   * @param {string} request.pageToken
-   *   A continuation token to get the next page of the results. Adding this to
-   *   the request will return the next page of rows after the `pageToken`. The
-   *   `pageToken` should be the value returned in the `nextPageToken` parameter
-   *   in the response.
-   *
-   *   When paginating, all other parameters specified in `RunReportRequest` must
-   *   match the call that provided the page token.
-   *
-   *   To learn more about this pagination parameter, see
-   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-   * @param {number[]} request.metricAggregations
-   *   Aggregation of metrics. Aggregated metric values will be shown in rows
-   *   where the dimension_values are set to "RESERVED_(MetricAggregation)".
-   * @param {number[]} request.orderBys
-   *   Specifies how rows are ordered in the response.
-   * @param {string} request.currencyCode
-   *   A currency code in ISO4217 format, such as "AED", "USD", "JPY".
-   *   If the field is empty, the report uses the property's default currency.
-   * @param {google.analytics.data.v1beta.CohortSpec} request.cohortSpec
-   *   Cohort group associated with this request. If there is a cohort group
-   *   in the request the 'cohort' dimension must be present.
-   * @param {boolean} request.keepEmptyRows
-   *   If false or unspecified, each row with all metrics equal to 0 will not be
-   *   returned. If true, these rows will be returned if they are not separately
-   *   removed by a filter.
-   * @param {boolean} request.returnPropertyQuota
-   *   Toggles whether to return the current state of this Analytics Property's
-   *   quota. Quota is returned in [PropertyQuota](#PropertyQuota).
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Promise} - The promise which resolves to an array.
-   *   The first element of the array is Array of [DimensionHeader]{@link google.analytics.data.v1beta.DimensionHeader}.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed and will merge results from all the pages into this array.
-   *   Note that it can affect your quota.
-   *   We recommend using `runReportAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
-   *   for more details and examples.
-   */
-  runReport(
-    request: protos.google.analytics.data.v1beta.IRunReportRequest,
-    optionsOrCallback?:
-      | CallOptions
-      | PaginationCallback<
-          protos.google.analytics.data.v1beta.IRunReportRequest,
-          | protos.google.analytics.data.v1beta.IRunReportResponse
-          | null
-          | undefined,
-          protos.google.analytics.data.v1beta.IDimensionHeader
-        >,
-    callback?: PaginationCallback<
-      protos.google.analytics.data.v1beta.IRunReportRequest,
-      protos.google.analytics.data.v1beta.IRunReportResponse | null | undefined,
-      protos.google.analytics.data.v1beta.IDimensionHeader
-    >
-  ): Promise<
-    [
-      protos.google.analytics.data.v1beta.IDimensionHeader[],
-      protos.google.analytics.data.v1beta.IRunReportRequest | null,
-      protos.google.analytics.data.v1beta.IRunReportResponse
-    ]
-  > | void {
-    request = request || {};
-    let options: CallOptions;
-    if (typeof optionsOrCallback === 'function' && callback === undefined) {
-      callback = optionsOrCallback;
-      options = {};
-    } else {
-      options = optionsOrCallback as CallOptions;
-    }
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      property: request.property || '',
-    });
-    this.initialize();
-    return this.innerApiCalls.runReport(request, options, callback);
-  }
-
-  /**
-   * Equivalent to `method.name.toCamelCase()`, but returns a NodeJS Stream object.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.property
-   *   A Google Analytics GA4 property identifier whose events are tracked.
-   *   Specified in the URL path and not the body. To learn more, see [where to
-   *   find your Property
-   *   ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
-   *   Within a batch request, this property should either be unspecified or
-   *   consistent with the batch-level property.
-   *
-   *   Example: properties/1234
-   * @param {number[]} request.dimensions
-   *   The dimensions requested and displayed.
-   * @param {number[]} request.metrics
-   *   The metrics requested and displayed.
-   * @param {number[]} request.dateRanges
-   *   Date ranges of data to read. If multiple date ranges are requested, each
-   *   response row will contain a zero based date range index. If two date
-   *   ranges overlap, the event data for the overlapping days is included in the
-   *   response rows for both date ranges. In a cohort request, this `dateRanges`
-   *   must be unspecified.
-   * @param {google.analytics.data.v1beta.FilterExpression} request.dimensionFilter
-   *   The filter clause of dimensions. Dimensions must be requested to be used in
-   *   this filter. Metrics cannot be used in this filter.
-   * @param {google.analytics.data.v1beta.FilterExpression} request.metricFilter
-   *   The filter clause of metrics. Applied at post aggregation phase, similar to
-   *   SQL having-clause. Metrics must be requested to be used in this filter.
-   *   Dimensions cannot be used in this filter.
-   * @param {number} request.pageSize
-   *   Page size is for paging and specifies maximum number of rows to return. The
-   *   API returns a maximum of 200,000 rows per request, no matter how many you
-   *   ask for. Page size must be positive.
-   *
-   *   The API can also return fewer rows than the requested `pageSize`, if there
-   *   aren't as many dimension values as the `pageSize`. For instance, there are
-   *   fewer than 300 possible values for the dimension `country`, so when
-   *   reporting on only `country`, you can't get more than 300 rows, even if you
-   *   set `pageSize` to a higher value.
-   *
-   *   To learn more about this pagination parameter, see
-   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-   * @param {string} request.pageToken
-   *   A continuation token to get the next page of the results. Adding this to
-   *   the request will return the next page of rows after the `pageToken`. The
-   *   `pageToken` should be the value returned in the `nextPageToken` parameter
-   *   in the response.
-   *
-   *   When paginating, all other parameters specified in `RunReportRequest` must
-   *   match the call that provided the page token.
-   *
-   *   To learn more about this pagination parameter, see
-   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-   * @param {number[]} request.metricAggregations
-   *   Aggregation of metrics. Aggregated metric values will be shown in rows
-   *   where the dimension_values are set to "RESERVED_(MetricAggregation)".
-   * @param {number[]} request.orderBys
-   *   Specifies how rows are ordered in the response.
-   * @param {string} request.currencyCode
-   *   A currency code in ISO4217 format, such as "AED", "USD", "JPY".
-   *   If the field is empty, the report uses the property's default currency.
-   * @param {google.analytics.data.v1beta.CohortSpec} request.cohortSpec
-   *   Cohort group associated with this request. If there is a cohort group
-   *   in the request the 'cohort' dimension must be present.
-   * @param {boolean} request.keepEmptyRows
-   *   If false or unspecified, each row with all metrics equal to 0 will not be
-   *   returned. If true, these rows will be returned if they are not separately
-   *   removed by a filter.
-   * @param {boolean} request.returnPropertyQuota
-   *   Toggles whether to return the current state of this Analytics Property's
-   *   quota. Quota is returned in [PropertyQuota](#PropertyQuota).
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Stream}
-   *   An object stream which emits an object representing [DimensionHeader]{@link google.analytics.data.v1beta.DimensionHeader} on 'data' event.
-   *   The client library will perform auto-pagination by default: it will call the API as many
-   *   times as needed. Note that it can affect your quota.
-   *   We recommend using `runReportAsync()`
-   *   method described below for async iteration which you can stop as needed.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
-   *   for more details and examples.
-   */
-  runReportStream(
-    request?: protos.google.analytics.data.v1beta.IRunReportRequest,
-    options?: CallOptions
-  ): Transform {
-    request = request || {};
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      property: request.property || '',
-    });
-    const callSettings = new gax.CallSettings(options);
-    this.initialize();
-    return this.descriptors.page.runReport.createStream(
-      this.innerApiCalls.runReport as gax.GaxCall,
-      request,
-      callSettings
-    );
-  }
-
-  /**
-   * Equivalent to `runReport`, but returns an iterable object.
-   *
-   * `for`-`await`-`of` syntax is used with the iterable to get response elements on-demand.
-   * @param {Object} request
-   *   The request object that will be sent.
-   * @param {string} request.property
-   *   A Google Analytics GA4 property identifier whose events are tracked.
-   *   Specified in the URL path and not the body. To learn more, see [where to
-   *   find your Property
-   *   ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
-   *   Within a batch request, this property should either be unspecified or
-   *   consistent with the batch-level property.
-   *
-   *   Example: properties/1234
-   * @param {number[]} request.dimensions
-   *   The dimensions requested and displayed.
-   * @param {number[]} request.metrics
-   *   The metrics requested and displayed.
-   * @param {number[]} request.dateRanges
-   *   Date ranges of data to read. If multiple date ranges are requested, each
-   *   response row will contain a zero based date range index. If two date
-   *   ranges overlap, the event data for the overlapping days is included in the
-   *   response rows for both date ranges. In a cohort request, this `dateRanges`
-   *   must be unspecified.
-   * @param {google.analytics.data.v1beta.FilterExpression} request.dimensionFilter
-   *   The filter clause of dimensions. Dimensions must be requested to be used in
-   *   this filter. Metrics cannot be used in this filter.
-   * @param {google.analytics.data.v1beta.FilterExpression} request.metricFilter
-   *   The filter clause of metrics. Applied at post aggregation phase, similar to
-   *   SQL having-clause. Metrics must be requested to be used in this filter.
-   *   Dimensions cannot be used in this filter.
-   * @param {number} request.pageSize
-   *   Page size is for paging and specifies maximum number of rows to return. The
-   *   API returns a maximum of 200,000 rows per request, no matter how many you
-   *   ask for. Page size must be positive.
-   *
-   *   The API can also return fewer rows than the requested `pageSize`, if there
-   *   aren't as many dimension values as the `pageSize`. For instance, there are
-   *   fewer than 300 possible values for the dimension `country`, so when
-   *   reporting on only `country`, you can't get more than 300 rows, even if you
-   *   set `pageSize` to a higher value.
-   *
-   *   To learn more about this pagination parameter, see
-   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-   * @param {string} request.pageToken
-   *   A continuation token to get the next page of the results. Adding this to
-   *   the request will return the next page of rows after the `pageToken`. The
-   *   `pageToken` should be the value returned in the `nextPageToken` parameter
-   *   in the response.
-   *
-   *   When paginating, all other parameters specified in `RunReportRequest` must
-   *   match the call that provided the page token.
-   *
-   *   To learn more about this pagination parameter, see
-   *   [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
-   * @param {number[]} request.metricAggregations
-   *   Aggregation of metrics. Aggregated metric values will be shown in rows
-   *   where the dimension_values are set to "RESERVED_(MetricAggregation)".
-   * @param {number[]} request.orderBys
-   *   Specifies how rows are ordered in the response.
-   * @param {string} request.currencyCode
-   *   A currency code in ISO4217 format, such as "AED", "USD", "JPY".
-   *   If the field is empty, the report uses the property's default currency.
-   * @param {google.analytics.data.v1beta.CohortSpec} request.cohortSpec
-   *   Cohort group associated with this request. If there is a cohort group
-   *   in the request the 'cohort' dimension must be present.
-   * @param {boolean} request.keepEmptyRows
-   *   If false or unspecified, each row with all metrics equal to 0 will not be
-   *   returned. If true, these rows will be returned if they are not separately
-   *   removed by a filter.
-   * @param {boolean} request.returnPropertyQuota
-   *   Toggles whether to return the current state of this Analytics Property's
-   *   quota. Quota is returned in [PropertyQuota](#PropertyQuota).
-   * @param {object} [options]
-   *   Call options. See {@link https://googleapis.dev/nodejs/google-gax/latest/interfaces/CallOptions.html|CallOptions} for more details.
-   * @returns {Object}
-   *   An iterable Object that allows [async iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols).
-   *   When you iterate the returned iterable, each element will be an object representing
-   *   [DimensionHeader]{@link google.analytics.data.v1beta.DimensionHeader}. The API will be called under the hood as needed, once per the page,
-   *   so you can stop the iteration when you don't need more results.
-   *   Please see the
-   *   [documentation](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#auto-pagination)
-   *   for more details and examples.
-   * @example
-   * const iterable = client.runReportAsync(request);
-   * for await (const response of iterable) {
-   *   // process response
-   * }
-   */
-  runReportAsync(
-    request?: protos.google.analytics.data.v1beta.IRunReportRequest,
-    options?: CallOptions
-  ): AsyncIterable<protos.google.analytics.data.v1beta.IDimensionHeader> {
-    request = request || {};
-    options = options || {};
-    options.otherArgs = options.otherArgs || {};
-    options.otherArgs.headers = options.otherArgs.headers || {};
-    options.otherArgs.headers[
-      'x-goog-request-params'
-    ] = gax.routingHeader.fromParams({
-      property: request.property || '',
-    });
-    options = options || {};
-    const callSettings = new gax.CallSettings(options);
-    this.initialize();
-    return this.descriptors.page.runReport.asyncIterate(
-      this.innerApiCalls['runReport'] as GaxCall,
-      (request as unknown) as RequestType,
-      callSettings
-    ) as AsyncIterable<protos.google.analytics.data.v1beta.IDimensionHeader>;
-  }
   // --------------------
   // -- Path templates --
   // --------------------

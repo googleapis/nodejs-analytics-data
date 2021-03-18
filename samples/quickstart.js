@@ -56,7 +56,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
       ],
       dimensions: [
         {
-          name: 'country',
+          name: 'city',
         },
       ],
       metrics: [
@@ -67,12 +67,12 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     });
     // [END google_analytics_data_run_report]
 
-    # [START google_analytics_data_run_report_response]
+    // [START google_analytics_data_run_report_response]
     console.log('Report result:');
     response.rows.forEach(row => {
       console.log(row.dimensionValues[0], row.metricValues[0]);
     });
-    # [END google_analytics_data_run_report_response]
+    // [END google_analytics_data_run_report_response]
   }
 
   runReport();

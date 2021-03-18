@@ -69,7 +69,6 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // Imports the Google Analytics Data API client library.
-
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
   // Creates a client.
@@ -80,7 +79,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     const [response] = await analyticsDataClient.runRealtimeReport({
       // The property parameter value must be in the form `properties/1234`
       // where `1234` is a GA4 property Id.
-      property: 'properties/' + propertyId,
+      property: `properties/${propertyId}`,
       dimensions: [
         {
           name: 'country',
