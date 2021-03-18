@@ -10,6 +10,11 @@
         "grpc": {
           "libraryClient": "BetaAnalyticsDataClient",
           "rpcs": {
+            "RunReport": {
+              "methods": [
+                "runReport"
+              ]
+            },
             "RunPivotReport": {
               "methods": [
                 "runPivotReport"
@@ -33,13 +38,6 @@
             "RunRealtimeReport": {
               "methods": [
                 "runRealtimeReport"
-              ]
-            },
-            "RunReport": {
-              "methods": [
-                "runReport",
-                "runReportStream",
-                "runReportAsync"
               ]
             }
           }
@@ -47,6 +45,11 @@
         "grpc-fallback": {
           "libraryClient": "BetaAnalyticsDataClient",
           "rpcs": {
+            "RunReport": {
+              "methods": [
+                "runReport"
+              ]
+            },
             "RunPivotReport": {
               "methods": [
                 "runPivotReport"
@@ -70,13 +73,6 @@
             "RunRealtimeReport": {
               "methods": [
                 "runRealtimeReport"
-              ]
-            },
-            "RunReport": {
-              "methods": [
-                "runReport",
-                "runReportStream",
-                "runReportAsync"
               ]
             }
           }

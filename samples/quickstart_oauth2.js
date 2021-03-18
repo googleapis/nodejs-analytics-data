@@ -155,7 +155,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     const oAuth2Client = await getOAuth2Client();
     const analyticsDataClient = getAnalyticsDataClient(oAuth2Client);
 
-    const [headers, request, response] = await analyticsDataClient.runReport({
+    const [response] = await analyticsDataClient.runReport({
       property: `properties/${propertyId}`,
       dateRanges: [
         {
@@ -176,13 +176,12 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     });
 
     console.log('Report result:');
-    console.log(headers);
-    console.log(request);
-    console.log(response);
+    response.rows.forEach(row => {
+      console.log(row.dimensionValues[0], row.metricValues[0]);
+    });
   }
 
   runReport();
-
   // [END analytics_data_quickstart_oauth2]
 }
 
