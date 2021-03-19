@@ -15,18 +15,20 @@
 'use strict';
 
 /** Google Analytics Data API sample quickstart application.
+
  This application demonstrates the usage of the Analytics Data API using
- service account credentials.
+ service account credentials from a JSON file downloaded from
+ the Google Cloud Console.
 
  Before you start the application, please review the comments starting with
  "TODO(developer)" and update the code to use correct values.
 
  Usage:
  npm install
- node quickstart.js
+ node quickstart_json_credentials.js
  */
 
-function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
+function main(propertyId = 'YOUR-GA4-PROPERTY-ID', credentialsJsonPath = '') {
   // [START google_analytics_data_quickstart]
   /**
    * TODO(developer): Uncomment this variable and replace with your
@@ -35,12 +37,20 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // [START google_analytics_data_initialize]
+  /** TODO(developer): Uncomment this variable and replace with a valid path to
+   *  the credentials.json file for your service account downloaded from the
+   *  Cloud Console.
+   */
+  // credentialsJsonPath = '/path/to/credentials.json';
+
   // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
-  // Using a default constructor instructs the client to use the credentials
-  // specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.
-  const analyticsDataClient = new BetaAnalyticsDataClient();
+  // Explicitly use service account credentials by specifying
+  // the private key file.
+  const analyticsDataClient = new BetaAnalyticsDataClient({
+    keyFilename: credentialsJsonPath,
+  });
   // [END google_analytics_data_initialize]
 
   // Runs a simple report.
@@ -56,7 +66,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
       ],
       dimensions: [
         {
-          name: 'city',
+          name: 'country',
         },
       ],
       metrics: [
@@ -67,12 +77,10 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     });
     // [END google_analytics_data_run_report]
 
-    // [START google_analytics_data_run_report_response]
     console.log('Report result:');
     response.rows.forEach(row => {
       console.log(row.dimensionValues[0], row.metricValues[0]);
     });
-    // [END google_analytics_data_run_report_response]
   }
 
   runReport();

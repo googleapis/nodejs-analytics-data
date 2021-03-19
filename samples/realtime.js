@@ -79,7 +79,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     const [response] = await analyticsDataClient.runRealtimeReport({
       // The property parameter value must be in the form `properties/1234`
       // where `1234` is a GA4 property Id.
-      property: 'properties/' + propertyId,
+      property: `properties/${propertyId}`,
       dimensions: [
         {
           name: 'country',
