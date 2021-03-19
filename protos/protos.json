@@ -1321,12 +1321,12 @@
                           "type": "FilterExpression",
                           "id": 6
                         },
-                        "offset": {
-                          "type": "int64",
+                        "pageSize": {
+                          "type": "int32",
                           "id": 7
                         },
-                        "limit": {
-                          "type": "int64",
+                        "pageToken": {
+                          "type": "string",
                           "id": 8
                         },
                         "metricAggregations": {
@@ -1389,17 +1389,21 @@
                           "type": "Row",
                           "id": 6
                         },
-                        "rowCount": {
-                          "type": "int32",
+                        "nextPageToken": {
+                          "type": "string",
                           "id": 7
+                        },
+                        "totalSize": {
+                          "type": "int32",
+                          "id": 8
                         },
                         "metadata": {
                           "type": "ResponseMetaData",
-                          "id": 8
+                          "id": 9
                         },
                         "propertyQuota": {
                           "type": "PropertyQuota",
-                          "id": 9
+                          "id": 10
                         }
                       }
                     },
@@ -1572,8 +1576,8 @@
                           "type": "FilterExpression",
                           "id": 5
                         },
-                        "limit": {
-                          "type": "int64",
+                        "pageSize": {
+                          "type": "int32",
                           "id": 6
                         },
                         "metricAggregations": {
@@ -1624,7 +1628,7 @@
                           "type": "Row",
                           "id": 6
                         },
-                        "rowCount": {
+                        "totalSize": {
                           "type": "int32",
                           "id": 7
                         },

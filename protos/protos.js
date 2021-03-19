@@ -14504,8 +14504,8 @@
                          * @property {Array.<google.analytics.data.v1beta.IDateRange>|null} [dateRanges] RunReportRequest dateRanges
                          * @property {google.analytics.data.v1beta.IFilterExpression|null} [dimensionFilter] RunReportRequest dimensionFilter
                          * @property {google.analytics.data.v1beta.IFilterExpression|null} [metricFilter] RunReportRequest metricFilter
-                         * @property {number|Long|null} [offset] RunReportRequest offset
-                         * @property {number|Long|null} [limit] RunReportRequest limit
+                         * @property {number|null} [pageSize] RunReportRequest pageSize
+                         * @property {string|null} [pageToken] RunReportRequest pageToken
                          * @property {Array.<google.analytics.data.v1beta.MetricAggregation>|null} [metricAggregations] RunReportRequest metricAggregations
                          * @property {Array.<google.analytics.data.v1beta.IOrderBy>|null} [orderBys] RunReportRequest orderBys
                          * @property {string|null} [currencyCode] RunReportRequest currencyCode
@@ -14583,20 +14583,20 @@
                         RunReportRequest.prototype.metricFilter = null;
     
                         /**
-                         * RunReportRequest offset.
-                         * @member {number|Long} offset
+                         * RunReportRequest pageSize.
+                         * @member {number} pageSize
                          * @memberof google.analytics.data.v1beta.RunReportRequest
                          * @instance
                          */
-                        RunReportRequest.prototype.offset = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+                        RunReportRequest.prototype.pageSize = 0;
     
                         /**
-                         * RunReportRequest limit.
-                         * @member {number|Long} limit
+                         * RunReportRequest pageToken.
+                         * @member {string} pageToken
                          * @memberof google.analytics.data.v1beta.RunReportRequest
                          * @instance
                          */
-                        RunReportRequest.prototype.limit = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+                        RunReportRequest.prototype.pageToken = "";
     
                         /**
                          * RunReportRequest metricAggregations.
@@ -14685,10 +14685,10 @@
                                 $root.google.analytics.data.v1beta.FilterExpression.encode(message.dimensionFilter, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
                             if (message.metricFilter != null && Object.hasOwnProperty.call(message, "metricFilter"))
                                 $root.google.analytics.data.v1beta.FilterExpression.encode(message.metricFilter, writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
-                            if (message.offset != null && Object.hasOwnProperty.call(message, "offset"))
-                                writer.uint32(/* id 7, wireType 0 =*/56).int64(message.offset);
-                            if (message.limit != null && Object.hasOwnProperty.call(message, "limit"))
-                                writer.uint32(/* id 8, wireType 0 =*/64).int64(message.limit);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.pageSize);
+                            if (message.pageToken != null && Object.hasOwnProperty.call(message, "pageToken"))
+                                writer.uint32(/* id 8, wireType 2 =*/66).string(message.pageToken);
                             if (message.metricAggregations != null && message.metricAggregations.length) {
                                 writer.uint32(/* id 9, wireType 2 =*/74).fork();
                                 for (var i = 0; i < message.metricAggregations.length; ++i)
@@ -14765,10 +14765,10 @@
                                     message.metricFilter = $root.google.analytics.data.v1beta.FilterExpression.decode(reader, reader.uint32());
                                     break;
                                 case 7:
-                                    message.offset = reader.int64();
+                                    message.pageSize = reader.int32();
                                     break;
                                 case 8:
-                                    message.limit = reader.int64();
+                                    message.pageToken = reader.string();
                                     break;
                                 case 9:
                                     if (!(message.metricAggregations && message.metricAggregations.length))
@@ -14872,12 +14872,12 @@
                                 if (error)
                                     return "metricFilter." + error;
                             }
-                            if (message.offset != null && message.hasOwnProperty("offset"))
-                                if (!$util.isInteger(message.offset) && !(message.offset && $util.isInteger(message.offset.low) && $util.isInteger(message.offset.high)))
-                                    return "offset: integer|Long expected";
-                            if (message.limit != null && message.hasOwnProperty("limit"))
-                                if (!$util.isInteger(message.limit) && !(message.limit && $util.isInteger(message.limit.low) && $util.isInteger(message.limit.high)))
-                                    return "limit: integer|Long expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                if (!$util.isString(message.pageToken))
+                                    return "pageToken: string expected";
                             if (message.metricAggregations != null && message.hasOwnProperty("metricAggregations")) {
                                 if (!Array.isArray(message.metricAggregations))
                                     return "metricAggregations: array expected";
@@ -14973,24 +14973,10 @@
                                     throw TypeError(".google.analytics.data.v1beta.RunReportRequest.metricFilter: object expected");
                                 message.metricFilter = $root.google.analytics.data.v1beta.FilterExpression.fromObject(object.metricFilter);
                             }
-                            if (object.offset != null)
-                                if ($util.Long)
-                                    (message.offset = $util.Long.fromValue(object.offset)).unsigned = false;
-                                else if (typeof object.offset === "string")
-                                    message.offset = parseInt(object.offset, 10);
-                                else if (typeof object.offset === "number")
-                                    message.offset = object.offset;
-                                else if (typeof object.offset === "object")
-                                    message.offset = new $util.LongBits(object.offset.low >>> 0, object.offset.high >>> 0).toNumber();
-                            if (object.limit != null)
-                                if ($util.Long)
-                                    (message.limit = $util.Long.fromValue(object.limit)).unsigned = false;
-                                else if (typeof object.limit === "string")
-                                    message.limit = parseInt(object.limit, 10);
-                                else if (typeof object.limit === "number")
-                                    message.limit = object.limit;
-                                else if (typeof object.limit === "object")
-                                    message.limit = new $util.LongBits(object.limit.low >>> 0, object.limit.high >>> 0).toNumber();
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
+                            if (object.pageToken != null)
+                                message.pageToken = String(object.pageToken);
                             if (object.metricAggregations) {
                                 if (!Array.isArray(object.metricAggregations))
                                     throw TypeError(".google.analytics.data.v1beta.RunReportRequest.metricAggregations: array expected");
@@ -15068,16 +15054,8 @@
                                 object.property = "";
                                 object.dimensionFilter = null;
                                 object.metricFilter = null;
-                                if ($util.Long) {
-                                    var long = new $util.Long(0, 0, false);
-                                    object.offset = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                                } else
-                                    object.offset = options.longs === String ? "0" : 0;
-                                if ($util.Long) {
-                                    var long = new $util.Long(0, 0, false);
-                                    object.limit = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                                } else
-                                    object.limit = options.longs === String ? "0" : 0;
+                                object.pageSize = 0;
+                                object.pageToken = "";
                                 object.currencyCode = "";
                                 object.cohortSpec = null;
                                 object.keepEmptyRows = false;
@@ -15104,16 +15082,10 @@
                                 object.dimensionFilter = $root.google.analytics.data.v1beta.FilterExpression.toObject(message.dimensionFilter, options);
                             if (message.metricFilter != null && message.hasOwnProperty("metricFilter"))
                                 object.metricFilter = $root.google.analytics.data.v1beta.FilterExpression.toObject(message.metricFilter, options);
-                            if (message.offset != null && message.hasOwnProperty("offset"))
-                                if (typeof message.offset === "number")
-                                    object.offset = options.longs === String ? String(message.offset) : message.offset;
-                                else
-                                    object.offset = options.longs === String ? $util.Long.prototype.toString.call(message.offset) : options.longs === Number ? new $util.LongBits(message.offset.low >>> 0, message.offset.high >>> 0).toNumber() : message.offset;
-                            if (message.limit != null && message.hasOwnProperty("limit"))
-                                if (typeof message.limit === "number")
-                                    object.limit = options.longs === String ? String(message.limit) : message.limit;
-                                else
-                                    object.limit = options.longs === String ? $util.Long.prototype.toString.call(message.limit) : options.longs === Number ? new $util.LongBits(message.limit.low >>> 0, message.limit.high >>> 0).toNumber() : message.limit;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
+                            if (message.pageToken != null && message.hasOwnProperty("pageToken"))
+                                object.pageToken = message.pageToken;
                             if (message.metricAggregations && message.metricAggregations.length) {
                                 object.metricAggregations = [];
                                 for (var j = 0; j < message.metricAggregations.length; ++j)
@@ -15161,7 +15133,8 @@
                          * @property {Array.<google.analytics.data.v1beta.IRow>|null} [totals] RunReportResponse totals
                          * @property {Array.<google.analytics.data.v1beta.IRow>|null} [maximums] RunReportResponse maximums
                          * @property {Array.<google.analytics.data.v1beta.IRow>|null} [minimums] RunReportResponse minimums
-                         * @property {number|null} [rowCount] RunReportResponse rowCount
+                         * @property {string|null} [nextPageToken] RunReportResponse nextPageToken
+                         * @property {number|null} [totalSize] RunReportResponse totalSize
                          * @property {google.analytics.data.v1beta.IResponseMetaData|null} [metadata] RunReportResponse metadata
                          * @property {google.analytics.data.v1beta.IPropertyQuota|null} [propertyQuota] RunReportResponse propertyQuota
                          */
@@ -15236,12 +15209,20 @@
                         RunReportResponse.prototype.minimums = $util.emptyArray;
     
                         /**
-                         * RunReportResponse rowCount.
-                         * @member {number} rowCount
+                         * RunReportResponse nextPageToken.
+                         * @member {string} nextPageToken
                          * @memberof google.analytics.data.v1beta.RunReportResponse
                          * @instance
                          */
-                        RunReportResponse.prototype.rowCount = 0;
+                        RunReportResponse.prototype.nextPageToken = "";
+    
+                        /**
+                         * RunReportResponse totalSize.
+                         * @member {number} totalSize
+                         * @memberof google.analytics.data.v1beta.RunReportResponse
+                         * @instance
+                         */
+                        RunReportResponse.prototype.totalSize = 0;
     
                         /**
                          * RunReportResponse metadata.
@@ -15301,12 +15282,14 @@
                             if (message.minimums != null && message.minimums.length)
                                 for (var i = 0; i < message.minimums.length; ++i)
                                     $root.google.analytics.data.v1beta.Row.encode(message.minimums[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
-                            if (message.rowCount != null && Object.hasOwnProperty.call(message, "rowCount"))
-                                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.rowCount);
+                            if (message.nextPageToken != null && Object.hasOwnProperty.call(message, "nextPageToken"))
+                                writer.uint32(/* id 7, wireType 2 =*/58).string(message.nextPageToken);
+                            if (message.totalSize != null && Object.hasOwnProperty.call(message, "totalSize"))
+                                writer.uint32(/* id 8, wireType 0 =*/64).int32(message.totalSize);
                             if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
-                                $root.google.analytics.data.v1beta.ResponseMetaData.encode(message.metadata, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
+                                $root.google.analytics.data.v1beta.ResponseMetaData.encode(message.metadata, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
                             if (message.propertyQuota != null && Object.hasOwnProperty.call(message, "propertyQuota"))
-                                $root.google.analytics.data.v1beta.PropertyQuota.encode(message.propertyQuota, writer.uint32(/* id 9, wireType 2 =*/74).fork()).ldelim();
+                                $root.google.analytics.data.v1beta.PropertyQuota.encode(message.propertyQuota, writer.uint32(/* id 10, wireType 2 =*/82).fork()).ldelim();
                             return writer;
                         };
     
@@ -15372,12 +15355,15 @@
                                     message.minimums.push($root.google.analytics.data.v1beta.Row.decode(reader, reader.uint32()));
                                     break;
                                 case 7:
-                                    message.rowCount = reader.int32();
+                                    message.nextPageToken = reader.string();
                                     break;
                                 case 8:
-                                    message.metadata = $root.google.analytics.data.v1beta.ResponseMetaData.decode(reader, reader.uint32());
+                                    message.totalSize = reader.int32();
                                     break;
                                 case 9:
+                                    message.metadata = $root.google.analytics.data.v1beta.ResponseMetaData.decode(reader, reader.uint32());
+                                    break;
+                                case 10:
                                     message.propertyQuota = $root.google.analytics.data.v1beta.PropertyQuota.decode(reader, reader.uint32());
                                     break;
                                 default:
@@ -15469,9 +15455,12 @@
                                         return "minimums." + error;
                                 }
                             }
-                            if (message.rowCount != null && message.hasOwnProperty("rowCount"))
-                                if (!$util.isInteger(message.rowCount))
-                                    return "rowCount: integer expected";
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                if (!$util.isString(message.nextPageToken))
+                                    return "nextPageToken: string expected";
+                            if (message.totalSize != null && message.hasOwnProperty("totalSize"))
+                                if (!$util.isInteger(message.totalSize))
+                                    return "totalSize: integer expected";
                             if (message.metadata != null && message.hasOwnProperty("metadata")) {
                                 var error = $root.google.analytics.data.v1beta.ResponseMetaData.verify(message.metadata);
                                 if (error)
@@ -15557,8 +15546,10 @@
                                     message.minimums[i] = $root.google.analytics.data.v1beta.Row.fromObject(object.minimums[i]);
                                 }
                             }
-                            if (object.rowCount != null)
-                                message.rowCount = object.rowCount | 0;
+                            if (object.nextPageToken != null)
+                                message.nextPageToken = String(object.nextPageToken);
+                            if (object.totalSize != null)
+                                message.totalSize = object.totalSize | 0;
                             if (object.metadata != null) {
                                 if (typeof object.metadata !== "object")
                                     throw TypeError(".google.analytics.data.v1beta.RunReportResponse.metadata: object expected");
@@ -15594,7 +15585,8 @@
                                 object.minimums = [];
                             }
                             if (options.defaults) {
-                                object.rowCount = 0;
+                                object.nextPageToken = "";
+                                object.totalSize = 0;
                                 object.metadata = null;
                                 object.propertyQuota = null;
                             }
@@ -15628,8 +15620,10 @@
                                 for (var j = 0; j < message.minimums.length; ++j)
                                     object.minimums[j] = $root.google.analytics.data.v1beta.Row.toObject(message.minimums[j], options);
                             }
-                            if (message.rowCount != null && message.hasOwnProperty("rowCount"))
-                                object.rowCount = message.rowCount;
+                            if (message.nextPageToken != null && message.hasOwnProperty("nextPageToken"))
+                                object.nextPageToken = message.nextPageToken;
+                            if (message.totalSize != null && message.hasOwnProperty("totalSize"))
+                                object.totalSize = message.totalSize;
                             if (message.metadata != null && message.hasOwnProperty("metadata"))
                                 object.metadata = $root.google.analytics.data.v1beta.ResponseMetaData.toObject(message.metadata, options);
                             if (message.propertyQuota != null && message.hasOwnProperty("propertyQuota"))
@@ -17673,7 +17667,7 @@
                          * @property {Array.<google.analytics.data.v1beta.IMetric>|null} [metrics] RunRealtimeReportRequest metrics
                          * @property {google.analytics.data.v1beta.IFilterExpression|null} [dimensionFilter] RunRealtimeReportRequest dimensionFilter
                          * @property {google.analytics.data.v1beta.IFilterExpression|null} [metricFilter] RunRealtimeReportRequest metricFilter
-                         * @property {number|Long|null} [limit] RunRealtimeReportRequest limit
+                         * @property {number|null} [pageSize] RunRealtimeReportRequest pageSize
                          * @property {Array.<google.analytics.data.v1beta.MetricAggregation>|null} [metricAggregations] RunRealtimeReportRequest metricAggregations
                          * @property {Array.<google.analytics.data.v1beta.IOrderBy>|null} [orderBys] RunRealtimeReportRequest orderBys
                          * @property {boolean|null} [returnPropertyQuota] RunRealtimeReportRequest returnPropertyQuota
@@ -17739,12 +17733,12 @@
                         RunRealtimeReportRequest.prototype.metricFilter = null;
     
                         /**
-                         * RunRealtimeReportRequest limit.
-                         * @member {number|Long} limit
+                         * RunRealtimeReportRequest pageSize.
+                         * @member {number} pageSize
                          * @memberof google.analytics.data.v1beta.RunRealtimeReportRequest
                          * @instance
                          */
-                        RunRealtimeReportRequest.prototype.limit = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+                        RunRealtimeReportRequest.prototype.pageSize = 0;
     
                         /**
                          * RunRealtimeReportRequest metricAggregations.
@@ -17806,8 +17800,8 @@
                                 $root.google.analytics.data.v1beta.FilterExpression.encode(message.dimensionFilter, writer.uint32(/* id 4, wireType 2 =*/34).fork()).ldelim();
                             if (message.metricFilter != null && Object.hasOwnProperty.call(message, "metricFilter"))
                                 $root.google.analytics.data.v1beta.FilterExpression.encode(message.metricFilter, writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
-                            if (message.limit != null && Object.hasOwnProperty.call(message, "limit"))
-                                writer.uint32(/* id 6, wireType 0 =*/48).int64(message.limit);
+                            if (message.pageSize != null && Object.hasOwnProperty.call(message, "pageSize"))
+                                writer.uint32(/* id 6, wireType 0 =*/48).int32(message.pageSize);
                             if (message.metricAggregations != null && message.metricAggregations.length) {
                                 writer.uint32(/* id 7, wireType 2 =*/58).fork();
                                 for (var i = 0; i < message.metricAggregations.length; ++i)
@@ -17873,7 +17867,7 @@
                                     message.metricFilter = $root.google.analytics.data.v1beta.FilterExpression.decode(reader, reader.uint32());
                                     break;
                                 case 6:
-                                    message.limit = reader.int64();
+                                    message.pageSize = reader.int32();
                                     break;
                                 case 7:
                                     if (!(message.metricAggregations && message.metricAggregations.length))
@@ -17959,9 +17953,9 @@
                                 if (error)
                                     return "metricFilter." + error;
                             }
-                            if (message.limit != null && message.hasOwnProperty("limit"))
-                                if (!$util.isInteger(message.limit) && !(message.limit && $util.isInteger(message.limit.low) && $util.isInteger(message.limit.high)))
-                                    return "limit: integer|Long expected";
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                if (!$util.isInteger(message.pageSize))
+                                    return "pageSize: integer expected";
                             if (message.metricAggregations != null && message.hasOwnProperty("metricAggregations")) {
                                 if (!Array.isArray(message.metricAggregations))
                                     return "metricAggregations: array expected";
@@ -18036,15 +18030,8 @@
                                     throw TypeError(".google.analytics.data.v1beta.RunRealtimeReportRequest.metricFilter: object expected");
                                 message.metricFilter = $root.google.analytics.data.v1beta.FilterExpression.fromObject(object.metricFilter);
                             }
-                            if (object.limit != null)
-                                if ($util.Long)
-                                    (message.limit = $util.Long.fromValue(object.limit)).unsigned = false;
-                                else if (typeof object.limit === "string")
-                                    message.limit = parseInt(object.limit, 10);
-                                else if (typeof object.limit === "number")
-                                    message.limit = object.limit;
-                                else if (typeof object.limit === "object")
-                                    message.limit = new $util.LongBits(object.limit.low >>> 0, object.limit.high >>> 0).toNumber();
+                            if (object.pageSize != null)
+                                message.pageSize = object.pageSize | 0;
                             if (object.metricAggregations) {
                                 if (!Array.isArray(object.metricAggregations))
                                     throw TypeError(".google.analytics.data.v1beta.RunRealtimeReportRequest.metricAggregations: array expected");
@@ -18112,11 +18099,7 @@
                                 object.property = "";
                                 object.dimensionFilter = null;
                                 object.metricFilter = null;
-                                if ($util.Long) {
-                                    var long = new $util.Long(0, 0, false);
-                                    object.limit = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
-                                } else
-                                    object.limit = options.longs === String ? "0" : 0;
+                                object.pageSize = 0;
                                 object.returnPropertyQuota = false;
                             }
                             if (message.property != null && message.hasOwnProperty("property"))
@@ -18135,11 +18118,8 @@
                                 object.dimensionFilter = $root.google.analytics.data.v1beta.FilterExpression.toObject(message.dimensionFilter, options);
                             if (message.metricFilter != null && message.hasOwnProperty("metricFilter"))
                                 object.metricFilter = $root.google.analytics.data.v1beta.FilterExpression.toObject(message.metricFilter, options);
-                            if (message.limit != null && message.hasOwnProperty("limit"))
-                                if (typeof message.limit === "number")
-                                    object.limit = options.longs === String ? String(message.limit) : message.limit;
-                                else
-                                    object.limit = options.longs === String ? $util.Long.prototype.toString.call(message.limit) : options.longs === Number ? new $util.LongBits(message.limit.low >>> 0, message.limit.high >>> 0).toNumber() : message.limit;
+                            if (message.pageSize != null && message.hasOwnProperty("pageSize"))
+                                object.pageSize = message.pageSize;
                             if (message.metricAggregations && message.metricAggregations.length) {
                                 object.metricAggregations = [];
                                 for (var j = 0; j < message.metricAggregations.length; ++j)
@@ -18181,7 +18161,7 @@
                          * @property {Array.<google.analytics.data.v1beta.IRow>|null} [totals] RunRealtimeReportResponse totals
                          * @property {Array.<google.analytics.data.v1beta.IRow>|null} [maximums] RunRealtimeReportResponse maximums
                          * @property {Array.<google.analytics.data.v1beta.IRow>|null} [minimums] RunRealtimeReportResponse minimums
-                         * @property {number|null} [rowCount] RunRealtimeReportResponse rowCount
+                         * @property {number|null} [totalSize] RunRealtimeReportResponse totalSize
                          * @property {google.analytics.data.v1beta.IPropertyQuota|null} [propertyQuota] RunRealtimeReportResponse propertyQuota
                          */
     
@@ -18255,12 +18235,12 @@
                         RunRealtimeReportResponse.prototype.minimums = $util.emptyArray;
     
                         /**
-                         * RunRealtimeReportResponse rowCount.
-                         * @member {number} rowCount
+                         * RunRealtimeReportResponse totalSize.
+                         * @member {number} totalSize
                          * @memberof google.analytics.data.v1beta.RunRealtimeReportResponse
                          * @instance
                          */
-                        RunRealtimeReportResponse.prototype.rowCount = 0;
+                        RunRealtimeReportResponse.prototype.totalSize = 0;
     
                         /**
                          * RunRealtimeReportResponse propertyQuota.
@@ -18312,8 +18292,8 @@
                             if (message.minimums != null && message.minimums.length)
                                 for (var i = 0; i < message.minimums.length; ++i)
                                     $root.google.analytics.data.v1beta.Row.encode(message.minimums[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
-                            if (message.rowCount != null && Object.hasOwnProperty.call(message, "rowCount"))
-                                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.rowCount);
+                            if (message.totalSize != null && Object.hasOwnProperty.call(message, "totalSize"))
+                                writer.uint32(/* id 7, wireType 0 =*/56).int32(message.totalSize);
                             if (message.propertyQuota != null && Object.hasOwnProperty.call(message, "propertyQuota"))
                                 $root.google.analytics.data.v1beta.PropertyQuota.encode(message.propertyQuota, writer.uint32(/* id 8, wireType 2 =*/66).fork()).ldelim();
                             return writer;
@@ -18381,7 +18361,7 @@
                                     message.minimums.push($root.google.analytics.data.v1beta.Row.decode(reader, reader.uint32()));
                                     break;
                                 case 7:
-                                    message.rowCount = reader.int32();
+                                    message.totalSize = reader.int32();
                                     break;
                                 case 8:
                                     message.propertyQuota = $root.google.analytics.data.v1beta.PropertyQuota.decode(reader, reader.uint32());
@@ -18475,9 +18455,9 @@
                                         return "minimums." + error;
                                 }
                             }
-                            if (message.rowCount != null && message.hasOwnProperty("rowCount"))
-                                if (!$util.isInteger(message.rowCount))
-                                    return "rowCount: integer expected";
+                            if (message.totalSize != null && message.hasOwnProperty("totalSize"))
+                                if (!$util.isInteger(message.totalSize))
+                                    return "totalSize: integer expected";
                             if (message.propertyQuota != null && message.hasOwnProperty("propertyQuota")) {
                                 var error = $root.google.analytics.data.v1beta.PropertyQuota.verify(message.propertyQuota);
                                 if (error)
@@ -18558,8 +18538,8 @@
                                     message.minimums[i] = $root.google.analytics.data.v1beta.Row.fromObject(object.minimums[i]);
                                 }
                             }
-                            if (object.rowCount != null)
-                                message.rowCount = object.rowCount | 0;
+                            if (object.totalSize != null)
+                                message.totalSize = object.totalSize | 0;
                             if (object.propertyQuota != null) {
                                 if (typeof object.propertyQuota !== "object")
                                     throw TypeError(".google.analytics.data.v1beta.RunRealtimeReportResponse.propertyQuota: object expected");
@@ -18590,7 +18570,7 @@
                                 object.minimums = [];
                             }
                             if (options.defaults) {
-                                object.rowCount = 0;
+                                object.totalSize = 0;
                                 object.propertyQuota = null;
                             }
                             if (message.dimensionHeaders && message.dimensionHeaders.length) {
@@ -18623,8 +18603,8 @@
                                 for (var j = 0; j < message.minimums.length; ++j)
                                     object.minimums[j] = $root.google.analytics.data.v1beta.Row.toObject(message.minimums[j], options);
                             }
-                            if (message.rowCount != null && message.hasOwnProperty("rowCount"))
-                                object.rowCount = message.rowCount;
+                            if (message.totalSize != null && message.hasOwnProperty("totalSize"))
+                                object.totalSize = message.totalSize;
                             if (message.propertyQuota != null && message.hasOwnProperty("propertyQuota"))
                                 object.propertyQuota = $root.google.analytics.data.v1beta.PropertyQuota.toObject(message.propertyQuota, options);
                             return object;

@@ -5637,11 +5637,11 @@ export namespace google {
                     /** RunReportRequest metricFilter */
                     metricFilter?: (google.analytics.data.v1beta.IFilterExpression|null);
 
-                    /** RunReportRequest offset */
-                    offset?: (number|Long|string|null);
+                    /** RunReportRequest pageSize */
+                    pageSize?: (number|null);
 
-                    /** RunReportRequest limit */
-                    limit?: (number|Long|string|null);
+                    /** RunReportRequest pageToken */
+                    pageToken?: (string|null);
 
                     /** RunReportRequest metricAggregations */
                     metricAggregations?: (google.analytics.data.v1beta.MetricAggregation[]|null);
@@ -5689,11 +5689,11 @@ export namespace google {
                     /** RunReportRequest metricFilter. */
                     public metricFilter?: (google.analytics.data.v1beta.IFilterExpression|null);
 
-                    /** RunReportRequest offset. */
-                    public offset: (number|Long|string);
+                    /** RunReportRequest pageSize. */
+                    public pageSize: number;
 
-                    /** RunReportRequest limit. */
-                    public limit: (number|Long|string);
+                    /** RunReportRequest pageToken. */
+                    public pageToken: string;
 
                     /** RunReportRequest metricAggregations. */
                     public metricAggregations: google.analytics.data.v1beta.MetricAggregation[];
@@ -5805,8 +5805,11 @@ export namespace google {
                     /** RunReportResponse minimums */
                     minimums?: (google.analytics.data.v1beta.IRow[]|null);
 
-                    /** RunReportResponse rowCount */
-                    rowCount?: (number|null);
+                    /** RunReportResponse nextPageToken */
+                    nextPageToken?: (string|null);
+
+                    /** RunReportResponse totalSize */
+                    totalSize?: (number|null);
 
                     /** RunReportResponse metadata */
                     metadata?: (google.analytics.data.v1beta.IResponseMetaData|null);
@@ -5842,8 +5845,11 @@ export namespace google {
                     /** RunReportResponse minimums. */
                     public minimums: google.analytics.data.v1beta.IRow[];
 
-                    /** RunReportResponse rowCount. */
-                    public rowCount: number;
+                    /** RunReportResponse nextPageToken. */
+                    public nextPageToken: string;
+
+                    /** RunReportResponse totalSize. */
+                    public totalSize: number;
 
                     /** RunReportResponse metadata. */
                     public metadata?: (google.analytics.data.v1beta.IResponseMetaData|null);
@@ -6678,8 +6684,8 @@ export namespace google {
                     /** RunRealtimeReportRequest metricFilter */
                     metricFilter?: (google.analytics.data.v1beta.IFilterExpression|null);
 
-                    /** RunRealtimeReportRequest limit */
-                    limit?: (number|Long|string|null);
+                    /** RunRealtimeReportRequest pageSize */
+                    pageSize?: (number|null);
 
                     /** RunRealtimeReportRequest metricAggregations */
                     metricAggregations?: (google.analytics.data.v1beta.MetricAggregation[]|null);
@@ -6715,8 +6721,8 @@ export namespace google {
                     /** RunRealtimeReportRequest metricFilter. */
                     public metricFilter?: (google.analytics.data.v1beta.IFilterExpression|null);
 
-                    /** RunRealtimeReportRequest limit. */
-                    public limit: (number|Long|string);
+                    /** RunRealtimeReportRequest pageSize. */
+                    public pageSize: number;
 
                     /** RunRealtimeReportRequest metricAggregations. */
                     public metricAggregations: google.analytics.data.v1beta.MetricAggregation[];
@@ -6819,8 +6825,8 @@ export namespace google {
                     /** RunRealtimeReportResponse minimums */
                     minimums?: (google.analytics.data.v1beta.IRow[]|null);
 
-                    /** RunRealtimeReportResponse rowCount */
-                    rowCount?: (number|null);
+                    /** RunRealtimeReportResponse totalSize */
+                    totalSize?: (number|null);
 
                     /** RunRealtimeReportResponse propertyQuota */
                     propertyQuota?: (google.analytics.data.v1beta.IPropertyQuota|null);
@@ -6853,8 +6859,8 @@ export namespace google {
                     /** RunRealtimeReportResponse minimums. */
                     public minimums: google.analytics.data.v1beta.IRow[];
 
-                    /** RunRealtimeReportResponse rowCount. */
-                    public rowCount: number;
+                    /** RunRealtimeReportResponse totalSize. */
+                    public totalSize: number;
 
                     /** RunRealtimeReportResponse propertyQuota. */
                     public propertyQuota?: (google.analytics.data.v1beta.IPropertyQuota|null);
