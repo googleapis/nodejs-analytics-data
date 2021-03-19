@@ -45,8 +45,7 @@
  dependencies and run the sample app:
 
  npm install
- cd ..
- node samples/quickstart_oauth2.js
+ node quickstart_oauth2.js
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
@@ -157,7 +156,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     const analyticsDataClient = getAnalyticsDataClient(oAuth2Client);
 
     const [response] = await analyticsDataClient.runReport({
-      property: 'properties/' + propertyId,
+      property: `properties/${propertyId}`,
       dateRanges: [
         {
           startDate: '2020-03-31',
@@ -183,7 +182,6 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   runReport();
-
   // [END analytics_data_quickstart_oauth2]
 }
 
