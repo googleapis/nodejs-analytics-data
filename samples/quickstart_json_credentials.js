@@ -29,14 +29,14 @@
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID', credentialsJsonPath = '') {
-  // [START google_analytics_data_quickstart]
+  // [START analyticsdata_json_credentials_quickstart]
   /**
    * TODO(developer): Uncomment this variable and replace with your
    *   Google Analytics 4 property ID before running the sample.
    */
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
-  // [START google_analytics_data_initialize]
+  // [START analyticsdata_json_credentials_initialize]
   /** TODO(developer): Uncomment this variable and replace with a valid path to
    *  the credentials.json file for your service account downloaded from the
    *  Cloud Console.
@@ -51,11 +51,11 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID', credentialsJsonPath = '') {
   const analyticsDataClient = new BetaAnalyticsDataClient({
     keyFilename: credentialsJsonPath,
   });
-  // [END google_analytics_data_initialize]
+  // [END analyticsdata_json_credentials_initialize]
 
   // Runs a simple report.
   async function runReport() {
-    // [START google_analytics_data_run_report]
+    // [START analyticsdata_json_credentials_run_report]
     const [response] = await analyticsDataClient.runReport({
       property: `properties/${propertyId}`,
       dateRanges: [
@@ -75,7 +75,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID', credentialsJsonPath = '') {
         },
       ],
     });
-    // [END google_analytics_data_run_report]
+    // [END analyticsdata_json_credentials_run_report]
 
     console.log('Report result:');
     response.rows.forEach(row => {
@@ -84,7 +84,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID', credentialsJsonPath = '') {
   }
 
   runReport();
-  // [END google_analytics_data_quickstart]
+  // [END analyticsdata_json_credentials_quickstart]
 }
 
 process.on('unhandledRejection', err => {
