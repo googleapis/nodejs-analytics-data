@@ -49,14 +49,14 @@
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analytics_data_quickstart_oauth2]
+  // [START analyticsdata_quickstart_oauth2]
   /**
    * TODO(developer): Uncomment this variable and replace with your GA4
    *   property ID before running the sample.
    */
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
-  //Imports the Google Analytics Data API client library.
+  // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
   const {OAuth2Client} = require('google-auth-library');
@@ -182,7 +182,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   runReport();
-  // [END analytics_data_quickstart_oauth2]
+  // [END analyticsdata_quickstart_oauth2]
 }
 
 process.on('unhandledRejection', err => {
