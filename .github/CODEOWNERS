@@ -7,6 +7,3 @@
 
 # The yoshi-nodejs team is the default owner for nodejs repositories.
 *     @googleapis/yoshi-nodejs
-
-# @ikuleshov will handle samples
-samples/  @ikuleshov
