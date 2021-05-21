@@ -1,0 +1,16 @@
+rules:
+- author: "release-please[bot]"
+
+# Title for PRs from yoshi-code-bot MUST start with `chore: release`.
+  title: "^chore: release"
+
+# (Optional) The only changed file paths in an incoming PR MUST end with `package.json` or 
+# `CHANGELOG.md`. These are listed in regex. If this property 
+# is omitted, auto-approve bot will allow PRs that match the author and title to merge, without
+# checking the file paths. 
+  changedFiles:
+  - "package\\.json$"
+  - "CHANGELOG\\.md$"
+
+# (Optional) The max amount of files changed in a PR. 
+  maxFiles: 3
