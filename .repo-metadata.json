@@ -1,5 +1,5 @@
 {
-  "client_documentation": "https://googleapis.dev/nodejs/analytics-data/latest/index.html",
+  "client_documentation": "https://cloud.google.com/nodejs/docs/reference/data/latest",
   "api_id": "analyticsdata.googleapis.com",
   "distribution_name": "@google-analytics/data",
   "release_level": "beta",
