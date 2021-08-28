@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.6.0](https://www.github.com/googleapis/nodejs-analytics-data/compare/v2.5.3...v2.6.0) (2021-08-23)
+
+
+### Features
+
+* turns on self-signed JWT feature flag ([#138](https://www.github.com/googleapis/nodejs-analytics-data/issues/138)) ([c7df6d6](https://www.github.com/googleapis/nodejs-analytics-data/commit/c7df6d6468b5ecd433486b5f2b20883ea22a7ab1))
+
+### [2.5.3](https://www.github.com/googleapis/nodejs-analytics-data/compare/v2.5.2...v2.5.3) (2021-08-17)
+
+
+### Bug Fixes
+
+* **deps:** google-gax v2.24.1 ([#136](https://www.github.com/googleapis/nodejs-analytics-data/issues/136)) ([ed23bc2](https://www.github.com/googleapis/nodejs-analytics-data/commit/ed23bc2d71db3bbcd60a1771f70fd10a10a3da1b))
+
+### [2.5.2](https://www.github.com/googleapis/nodejs-analytics-data/compare/v2.5.1...v2.5.2) (2021-08-09)
+
+
+### Bug Fixes
+
+* **build:** migrate to using main branch ([#134](https://www.github.com/googleapis/nodejs-analytics-data/issues/134)) ([1a24d21](https://www.github.com/googleapis/nodejs-analytics-data/commit/1a24d2101ea3c15236f7f6ee2cc6fd8327950c43))
+
 ### [2.5.1](https://www.github.com/googleapis/nodejs-analytics-data/compare/v2.5.0...v2.5.1) (2021-07-16)
 
 

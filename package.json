@@ -1,6 +1,6 @@
 {
   "name": "@google-analytics/data",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "description": "Data client for Node.js",
   "repository": "googleapis/nodejs-analytics-data",
   "license": "Apache-2.0",
@@ -39,7 +39,7 @@
     "test": "c8 mocha build/test"
   },
   "dependencies": {
-    "google-gax": "^2.17.1"
+    "google-gax": "^2.24.1"
   },
   "devDependencies": {
     "@types/mocha": "^8.0.0",
