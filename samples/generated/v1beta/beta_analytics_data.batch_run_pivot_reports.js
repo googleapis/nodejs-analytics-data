@@ -12,11 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
 function main() {
-  // [START data_v1beta_generated_BetaAnalyticsData_BatchRunReports_async]
+  // [START data_v1beta_generated_BetaAnalyticsData_BatchRunPivotReports_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
@@ -26,14 +25,14 @@ function main() {
    *  find your Property
    *  ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
    *  This property must be specified for the batch. The property within
-   *  RunReportRequest may either be unspecified or consistent with this
+   *  RunPivotReportRequest may either be unspecified or consistent with this
    *  property.
    *  Example: properties/1234
    */
   // const property = 'abc123'
   /**
-   *  Individual requests. Each request has a separate report response. Each
-   *  batch request is allowed up to 5 requests.
+   *  Individual requests. Each request has a separate pivot report response.
+   *  Each batch request is allowed up to 5 requests.
    */
   // const requests = 1234
 
@@ -43,18 +42,17 @@ function main() {
   // Instantiates a client
   const dataClient = new BetaAnalyticsDataClient();
 
-  async function batchRunReports() {
+  async function batchRunPivotReports() {
     // Construct request
-    const request = {
-    };
+    const request = {};
 
     // Run request
-    const response = await dataClient.batchRunReports(request);
+    const response = await dataClient.batchRunPivotReports(request);
     console.log(response);
   }
 
-  batchRunReports();
-  // [END data_v1beta_generated_BetaAnalyticsData_BatchRunReports_async]
+  batchRunPivotReports();
+  // [END data_v1beta_generated_BetaAnalyticsData_BatchRunPivotReports_async]
 }
 
 process.on('unhandledRejection', err => {
