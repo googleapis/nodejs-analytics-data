@@ -12,26 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 'use strict';
 
-function main(name) {
-  // [START analyticsdata_v1beta_generated_BetaAnalyticsData_GetMetadata_async]
+function main() {
+  // [START analyticsdata_v1beta_generated_BetaAnalyticsData_BatchRunReports_async]
   /**
    * TODO(developer): Uncomment these variables before running the sample.
    */
   /**
-   *  Required. The resource name of the metadata to retrieve. This name field is
-   *  specified in the URL path and not URL parameters. Property is a numeric
-   *  Google Analytics GA4 Property identifier. To learn more, see [where to find
-   *  your Property
+   *  A Google Analytics GA4 property identifier whose events are tracked.
+   *  Specified in the URL path and not the body. To learn more, see [where to
+   *  find your Property
    *  ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).
-   *  Example: properties/1234/metadata
-   *  Set the Property ID to 0 for dimensions and metrics common to all
-   *  properties. In this special mode, this method will not return custom
-   *  dimensions and metrics.
+   *  This property must be specified for the batch. The property within
+   *  RunReportRequest may either be unspecified or consistent with this
+   *  property.
+   *  Example: properties/1234
    */
-  // const name = 'abc123'
+  // const property = 'abc123'
+  /**
+   *  Individual requests. Each request has a separate report response. Each
+   *  batch request is allowed up to 5 requests.
+   */
+  // const requests = 1234
 
   // Imports the Data library
   const {BetaAnalyticsDataClient} = require('@google-analytics/data').v1beta;
@@ -39,19 +42,17 @@ function main(name) {
   // Instantiates a client
   const dataClient = new BetaAnalyticsDataClient();
 
-  async function getMetadata() {
+  async function batchRunReports() {
     // Construct request
-    const request = {
-      name,
-    };
+    const request = {};
 
     // Run request
-    const response = await dataClient.getMetadata(request);
+    const response = await dataClient.batchRunReports(request);
     console.log(response);
   }
 
-  getMetadata();
-  // [END analyticsdata_v1beta_generated_BetaAnalyticsData_GetMetadata_async]
+  batchRunReports();
+  // [END analyticsdata_v1beta_generated_BetaAnalyticsData_BatchRunReports_async]
 }
 
 process.on('unhandledRejection', err => {
