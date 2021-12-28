@@ -12,5 +12,5 @@
   "name": "analytics-data",
   "issue_tracker": "https://issuetracker.google.com/issues/new?component=326380x",
   "api_shortname": "analytics-data",
-  "library_type": ""
+  "library_type": "GAPIC_AUTO"
 }
