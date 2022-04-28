@@ -25,61 +25,59 @@ for more information.
 
  Usage:
  npm install
- node runReport.js
+ node runReportWithMultipleDimensions.js
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analyticsdata_run_report]
+  // [START analyticsdata_run_report_with_multiple_dimensions]
 
-  // TODO(developer): Uncomment this variable and replace with your 
+  // TODO(developer): Uncomment this variable and replace with your
   // Google Analytics 4 property ID before running the sample.
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
-  // Initialize client that will be used to send requests. This client only 
+  // Initialize client that will be used to send requests. This client only
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
   // Runs a report of active users grouped by three dimensions.
   async function runReportWithMultipleDimensions() {
     const [response] = await analyticsDataClient.runReport({
-      property: "properties/${propertyId}",
+      property: `properties/${propertyId}`,
       dimensions: [
         {
-          name: "country"
+          name: 'country',
         },
         {
-          name: "region"
+          name: 'region',
         },
         {
-          name: "city"
-        }
+          name: 'city',
+        },
       ],
       metrics: [
         {
-          name: "activeUsers"
-        }
+          name: 'activeUsers',
+        },
       ],
       dateRanges: [
         {
-          startDate: "7daysAgo",
-          endDate: "today"
-        }
-      ]
+          startDate: '7daysAgo',
+          endDate: 'today',
+        },
+      ],
     });
+
+    // Imports the runReport sample used for printing results
+    const runReport = require('./runReport.js');
+    runReport.printRunReportResponse(response);
   }
 
-  function printRunReportResponse(response) {
-// Print function here
-    return response;
-  }
-
-  runReport();
-  // [END analyticsdata_run_report]
+  runReportWithMultipleDimensions();
+  // [END analyticsdata_run_report_with_multiple_dimensions]
 }
-
 
 process.on('unhandledRejection', err => {
   console.error(err.message);
