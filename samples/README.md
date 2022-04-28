@@ -95,6 +95,17 @@ __Usage:__
 `node samples/realtime.js`
 
 
+### RunReport
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReport.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReport.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReport.js`
+
 
 
 
