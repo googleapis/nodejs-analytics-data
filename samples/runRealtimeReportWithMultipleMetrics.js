@@ -1,4 +1,4 @@
-// Copyright 2021 Google LLC
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -74,31 +74,33 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // Creates a client.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
-  // Runs a realtime report.
-  async function runRealtimeReport() {
+  // Runs a realtime report on a Google Analytics 4 property.
+  async function runRealtimeReportWithMultipleMetrics() {
     const [response] = await analyticsDataClient.runRealtimeReport({
       // The property parameter value must be in the form `properties/1234`
       // where `1234` is a GA4 property Id.
       property: `properties/${propertyId}`,
       dimensions: [
         {
-          name: 'country',
+          name: 'unifiedScreenName',
         },
       ],
       metrics: [
         {
-          name: 'activeUsers',
+          name: 'screenPageViews',
+        },
+        {
+          name: 'conversions',
         },
       ],
     });
 
-    console.log('Report result:');
-    response.rows.forEach(row => {
-      console.log(row.dimensionValues[0], row.metricValues[0]);
-    });
+    // Imports the runReport sample used for printing results
+    const runReport = require('./runReport.js');
+    runReport.printRunReportResponse(response);
   }
 
-  runRealtimeReport();
+  runRealtimeReportWithMultipleMetrics();
   // [END analytics_data_realtime]
 }
 

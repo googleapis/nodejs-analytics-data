@@ -83,16 +83,42 @@ __Usage:__
 
 
 
-### Realtime
+### Realtime Report
 
-View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/realtime.js).
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runRealtimeReport.js).
 
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/realtime.js,samples/README.md)
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runRealtimeReport.js,samples/README.md)
 
 __Usage:__
 
 
-`node samples/realtime.js`
+`node samples/runRealtimeReport.js`
+
+-----
+
+### Realtime Report with Multiple Dimensions
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runRealtimeReportWithMultipleDimensions.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runRealtimeReportWithMultipleDimensions.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runRealtimeReportWithMultipleDimensions.js`
+
+-----
+
+### Realtime Report with Multiple Metrics
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runRealtimeReportWithMultipleMetrics.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runRealtimeReportWithMultipleMetrics.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runRealtimeReportWithMultipleMetrics.js`
 
 
 

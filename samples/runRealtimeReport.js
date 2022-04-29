@@ -1,4 +1,4 @@
-// Copyright 2021 Google LLC
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -56,12 +56,12 @@
 
  npm install
  cd ..
- node samples/realtime.js
+ node samples/runRealtimeReport.js
 
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analytics_data_realtime]
+  // [START analyticsdata_run_realtime_report]
   /**
    * TODO(developer): Uncomment this variable and replace with your GA4
    *   property ID before running the sample.
@@ -74,11 +74,9 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // Creates a client.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
-  // Runs a realtime report.
+  // Runs a realtime report on a Google Analytics 4 property.
   async function runRealtimeReport() {
     const [response] = await analyticsDataClient.runRealtimeReport({
-      // The property parameter value must be in the form `properties/1234`
-      // where `1234` is a GA4 property Id.
       property: `properties/${propertyId}`,
       dimensions: [
         {
@@ -91,15 +89,13 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
         },
       ],
     });
-
-    console.log('Report result:');
-    response.rows.forEach(row => {
-      console.log(row.dimensionValues[0], row.metricValues[0]);
-    });
+    // Imports the runReport sample used for printing results
+    const runReport = require('./runReport.js');
+    runReport.printRunReportResponse(response);
   }
 
   runRealtimeReport();
-  // [END analytics_data_realtime]
+  // [END analyticsdata_run_realtime_repor]
 }
 
 process.on('unhandledRejection', err => {
