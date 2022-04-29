@@ -15,21 +15,21 @@
 'use strict';
 
 /** Google Analytics Data API sample application demonstrating the usage of
-dimension and metric filters in a report.
+date ranges in a report.
 
-See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport#body.request_body.FIELDS.dimension_filter
+See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/DateRange#FIELDS.name
 for more information.
 
- Before you start the application, please review the comments starting with
+Before you start the application, please review the comments starting with
  "TODO(developer)" and update the code to use correct values.
 
  Usage:
  npm install
- node runReportWithDimensionFilter.js
+ node runReportWithNamedDateRanges.js
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analyticsdata_run_report_with_dimension_filter]
+  // [START analyticsdata_run_report_with_named_date_ranges]
 
   // TODO(developer): Uncomment this variable and replace with your 
   // Google Analytics 4 property ID before running the sample.
@@ -42,15 +42,22 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
-  // Runs a report using a dimension filter. The call returns a time series
-  // report of `eventCount` when `eventName` is `first_open` for each date.
-  
-  // This sample uses relative date range values. See 
-  // https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/DateRange
-  // for more information.
-  async function runReportWithDimensionFilter() {
+  // Runs a report using named date ranges.
+  async function runReportWithNamedDateRanges() {
     const [response] = await analyticsDataClient.runReport({
       property: "properties/${propertyId}",
+      dateRanges: [
+        {
+          startDate: "2020-01-01",
+          endDate: "2020-01-31",
+          name: "year_ago"
+        },
+        {
+          startDate: "2021-01-01",
+          endDate: "2021-01-31",
+          name: "current_year"
+        }
+      ],
       dimensions: [
         {
           name: "country"
@@ -58,13 +65,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
       ],
       metrics: [
         {
-          name: "activeUsers"
-        }
-      ],
-      dateRanges: [
-        {
-          startDate: "2020-09-01",
-          endDate: "2020-09-15"
+          name: "sessions"
         }
       ]
     });
@@ -76,7 +77,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   runReport();
-  // [END analyticsdata_run_report_with_dimension_filter]
+  // [END analyticsdata_run_report_with_named_date_ranges]
 }
 
 

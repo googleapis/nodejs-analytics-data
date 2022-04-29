@@ -14,10 +14,10 @@
 
 'use strict';
 
-/** Google Analytics Data API sample application demonstrating the creation
-of a basic report.
+/** Google Analytics Data API sample application demonstrating the usage of
+dimension and metric filters in a report.
 
-See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport
+See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport#body.request_body.FIELDS.dimension_filter
 for more information.
 
  Before you start the application, please review the comments starting with
@@ -25,11 +25,11 @@ for more information.
 
  Usage:
  npm install
- node runReport.js
+ node runReportWithDimensionAndMetricFilters.js
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analyticsdata_run_report]
+  // [START analyticsdata_run_report_with_dimension_and_metric_filters]
 
   // TODO(developer): Uncomment this variable and replace with your 
   // Google Analytics 4 property ID before running the sample.
@@ -74,7 +74,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   runReport();
-  // [END analyticsdata_run_report]
+  // [END analyticsdata_run_report_with_dimension_and_metric_filters]
 }
 
 
