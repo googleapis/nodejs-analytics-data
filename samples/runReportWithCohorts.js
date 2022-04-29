@@ -15,9 +15,9 @@
 'use strict';
 
 /** Google Analytics Data API sample application demonstrating the usage of
-date ranges in a report.
+cohort specification in a report.
 
-See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport#body.request_body.FIELDS.date_ranges
+See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport#body.request_body.FIELDS.cohort_spec
 for more information.
 
  Before you start the application, please review the comments starting with
@@ -25,11 +25,11 @@ for more information.
 
  Usage:
  npm install
- node runReportWithDateRanges.js
+ node runReportWithCohorts.js
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analyticsdata_run_report_with_date_ranges]
+  // [START analyticsdata_run_report_with_cohorts]
 
   // TODO(developer): Uncomment this variable and replace with your 
   // Google Analytics 4 property ID before running the sample.
@@ -42,28 +42,46 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
-  // Runs a report using two date ranges.
-  async function runReportWithDateRanges() {
+  // Runs a report on a cohort of users whose first session happened on the
+  // same week. The number of active users and user retention rate is calculated
+  //  for the cohort using WEEKLY granularity.
+  async function runReport() {
     const [response] = await analyticsDataClient.runReport({
       property: "properties/${propertyId}",
-      dateRanges: [
-        {
-          startDate: "2019-08-01",
-          endDate: "2019-08-14"
-        },
-        {
-          startDate: "2020-08-01",
-          endDate: "2020-08-14"
-        }
-      ],
       dimensions: [
         {
-          name: "platform"
+          name: "cohort"
+        },
+        {
+          name: "cohortNthWeek"
         }
       ],
       metrics: [
         {
-          name: "activeUsers"
+          name: "cohortActiveUsers"
+        },
+        {
+          name: "cohortRetentionRate",
+          expression: "cohortActiveUsers/cohortTotalUsers"
+        }
+      ],
+      cohortSpec: [
+        {
+          cohort: [
+            {
+              dimension: "firstSessionDate",
+              name: "cohort",
+              dateRanges: {
+                startDate: "2021-01-03",
+                endDate: "2021-01-09"
+              }
+            }
+          ],
+          cohortsRange: {
+            startOffset: 0,
+            endOffset: 4,
+            granuarity: cohortsRange.granuarity.WEEKLY
+          }
         }
       ]
     });
@@ -75,7 +93,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   runReport();
-  // [END analyticsdata_run_report_with_date_ranges]
+  // [END analyticsdata_run_report_with_cohorts]
 }
 
 
