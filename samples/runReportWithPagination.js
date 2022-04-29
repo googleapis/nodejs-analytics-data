@@ -14,22 +14,22 @@
 
 'use strict';
 
-/** Google Analytics Data API sample application demonstrating the creation
-of a basic report.
+/** Google Analytics Data API sample application demonstrating the use of
+pagination to retrieve large result sets.
 
-See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport
+See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport#body.request_body.FIELDS.offset
 for more information.
 
- Before you start the application, please review the comments starting with
+Before you start the application, please review the comments starting with
  "TODO(developer)" and update the code to use correct values.
 
  Usage:
  npm install
- node runReport.js
+ node runReportWithPagination.js
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analyticsdata_run_report]
+  // [START analyticsdata_run_report_with_pagination]
 
   // TODO(developer): Uncomment this variable and replace with your 
   // Google Analytics 4 property ID before running the sample.
@@ -72,7 +72,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   runReport();
-  // [END analyticsdata_run_report]
+  // [END analyticsdata_run_report_with_pagination]
 }
 
 
