@@ -14,10 +14,10 @@
 
 'use strict';
 
-/** Google Analytics Data API sample application demonstrating the creation
-of a basic report.
+/** Google Analytics Data API sample application demonstrating the usage of
+cohort specification in a report.
 
-See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport
+See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport#body.request_body.FIELDS.cohort_spec
 for more information.
 
  Before you start the application, please review the comments starting with
@@ -25,11 +25,11 @@ for more information.
 
  Usage:
  npm install
- node runReport.js
+ node runReportWithCohorts.js
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analyticsdata_run_report]
+  // [START analyticsdata_run_report_with_cohorts]
 
   // TODO(developer): Uncomment this variable and replace with your 
   // Google Analytics 4 property ID before running the sample.
@@ -42,7 +42,9 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
-  // Runs a report of active users grouped by country.
+  // Runs a report on a cohort of users whose first session happened on the
+  // same week. The number of active users and user retention rate is calculated
+  //  for the cohort using WEEKLY granularity.
   async function runReport() {
     const [response] = await analyticsDataClient.runReport({
       property: "properties/${propertyId}",
@@ -91,7 +93,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   runReport();
-  // [END analyticsdata_run_report]
+  // [END analyticsdata_run_report_with_cohorts]
 }
 
 

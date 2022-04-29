@@ -14,22 +14,23 @@
 
 'use strict';
 
-/** Google Analytics Data API sample application demonstrating the creation
-of a basic report.
+/** Google Analytics Data API sample application demonstrating the usage of
+metric aggregations in a report.
 
-See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport
+See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport#body.request_body.FIELDS.metric_aggregations
 for more information.
+
 
  Before you start the application, please review the comments starting with
  "TODO(developer)" and update the code to use correct values.
 
  Usage:
  npm install
- node runReport.js
+ node runReportWithAggregations.js
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analyticsdata_run_report]
+  // [START run_report_with_aggregations]
 
   // TODO(developer): Uncomment this variable and replace with your 
   // Google Analytics 4 property ID before running the sample.
@@ -42,7 +43,8 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
-  // Runs a report of active users grouped by country.
+  // Runs a report which includes total, maximum and minimum values
+  // for each metric.
   async function runReport() {
     const [response] = await analyticsDataClient.runReport({
       property: "properties/${propertyId}",
@@ -76,7 +78,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   runReport();
-  // [END analyticsdata_run_report]
+  // [END run_report_with_aggregations]
 }
 
 
