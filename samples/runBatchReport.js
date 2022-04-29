@@ -14,10 +14,10 @@
 
 'use strict';
 
-/** Google Analytics Data API sample application demonstrating the creation
-of a basic report.
+/** Google Analytics Data API sample application demonstrating the batch creation
+of multiple reports.
 
-See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport
+See https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/batchRunReports
 for more information.
 
  Before you start the application, please review the comments starting with
@@ -25,11 +25,11 @@ for more information.
 
  Usage:
  npm install
- node runReport.js
+ node runBatchReport.js
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analyticsdata_run_report]
+  // [START analyticsdata_run_batch_report]
 
   // TODO(developer): Uncomment this variable and replace with your 
   // Google Analytics 4 property ID before running the sample.
@@ -42,7 +42,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
-  // Runs a report of active users grouped by country.
+  // Runs a batch report on a Google Analytics 4 property
   async function runBatchReport() {
     const [response] = await analyticsDataClient.runReport({
       property: "properties/${propertyId}",
@@ -71,7 +71,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   runReport();
-  // [END analyticsdata_run_report]
+  // [END analyticsdata_run_batch_report]
 }
 
 
