@@ -95,6 +95,42 @@ __Usage:__
 `node samples/realtime.js`
 
 
+-----
+
+
+
+
+### Run Report with Aggregations
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithAggregations.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithAggregations.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithAggregations.js`
+
+
+-----
+
+
+
+
+### Run Report with Cohorts
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportwithCohorts.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportwithCohorts.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportwithCohorts.js`
+
+
+-----
+
 
 
 
