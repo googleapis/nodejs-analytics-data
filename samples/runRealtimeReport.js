@@ -17,6 +17,10 @@
 /** This application demonstrates the usage of the Analytics Data API realtime
  reporting functionality using service account credentials.
 
+See
+https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runRealtimeReport
+for more information.
+
  Realtime report documentation:
 
  https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics

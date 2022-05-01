@@ -17,6 +17,10 @@
 /** This application demonstrates the usage of the Analytics Data API realtime
  reporting functionality using service account credentials.
 
+See
+https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runRealtimeReport
+for more information.
+
  Realtime report documentation:
 
  https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics
@@ -56,12 +60,12 @@
 
  npm install
  cd ..
- node samples/realtime.js
+ node samples/runRealtimeReportWithMultipleDimensions.js
 
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analytics_data_realtime]
+  // [START analyticsdata_run_realtime_report_with_multiple_dimensions]
   /**
    * TODO(developer): Uncomment this variable and replace with your GA4
    *   property ID before running the sample.
@@ -100,7 +104,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   }
 
   runRealtimeReportWithMultipleDimensions();
-  // [END analytics_data_realtime]
+  // [END analyticsdata_run_realtime_report_with_multiple_dimensions]
 }
 
 process.on('unhandledRejection', err => {
