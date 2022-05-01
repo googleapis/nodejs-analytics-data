@@ -45,6 +45,9 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // Runs a report using a dimension filter. The call returns a time series
   // report of `eventCount` when `eventName` is `first_open` for each date.
 
+  // This sample uses relative date range values. See 
+  // https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/DateRange
+  // for more information.
   async function runReportWithDimensionFilter() {
     const [response] = await analyticsDataClient.runReport({
       property: "properties/${propertyId}",
