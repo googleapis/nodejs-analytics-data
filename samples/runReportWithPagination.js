@@ -31,50 +31,126 @@ Before you start the application, please review the comments starting with
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analyticsdata_run_report_with_pagination]
 
-  // TODO(developer): Uncomment this variable and replace with your 
+  // TODO(developer): Uncomment this variable and replace with your
   // Google Analytics 4 property ID before running the sample.
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
-  // Initialize client that will be used to send requests. This client only 
+  // Initialize client that will be used to send requests. This client only
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
   // Runs a report several times, each time retrieving a portion of result
   //  using pagination.
   async function runReportWithPagination() {
+    // [START analyticsdata_run_report_with_pagination_page1]
     const [response] = await analyticsDataClient.runReport({
-      property: "properties/${propertyId}",
+      property: `properties/${propertyId}`,
+      dateRanges: [
+        {
+          startDate: '350daysAgo',
+          endDate: 'yesterday',
+        },
+      ],
       dimensions: [
         {
-          name: "country"
-        }
+          name: 'firstUserSource',
+        },
+        {
+          name: 'firstUserMedium',
+        },
+        {
+          name: 'firstUserCampaignName',
+        },
       ],
       metrics: [
         {
-          name: "activeUsers"
-        }
+          name: 'sessions',
+        },
+        {
+          name: 'conversions',
+        },
+        {
+          name: 'totalRevenue',
+        },
       ],
+      limit: 100000,
+      offset: 0,
+    });
+    // [END analyticsdata_run_report_with_pagination_page1]
+    printRunReportResponse(response);
+
+    // Run the same report with a different offset value to retrieve the second
+    // page of a response.
+    // [START analyticsdata_run_report_with_pagination_page2]
+    const [secondResponse] = await analyticsDataClient.runReport({
+      property: `properties/${propertyId}`,
       dateRanges: [
         {
-          startDate: "2020-09-01",
-          endDate: "2020-09-15"
-        }
-      ]
+          startDate: '350daysAgo',
+          endDate: 'yesterday',
+        },
+      ],
+      dimensions: [
+        {
+          name: 'firstUserSource',
+        },
+        {
+          name: 'firstUserMedium',
+        },
+        {
+          name: 'firstUserCampaignName',
+        },
+      ],
+      metrics: [
+        {
+          name: 'sessions',
+        },
+        {
+          name: 'conversions',
+        },
+        {
+          name: 'totalRevenue',
+        },
+      ],
+      limit: 100000,
+      offset: 100000,
     });
+    // [END analyticsdata_run_report_with_pagination_page2]
+    printRunReportResponse(secondResponse);
   }
 
+  runReportWithPagination();
+
+  // Prints results of a runReport call.
   function printRunReportResponse(response) {
-// Print function here
-    return response;
-  }
+    //[START analyticsdata_print_run_report_response_header]
+    console.log(response.rowCount + ' rows received');
+    response.dimensionHeaders.forEach(dimensionHeader => {
+      console.log('Dimension header name: ' + dimensionHeader.name);
+    });
+    response.metricHeaders.forEach(metricHeader => {
+      console.log(
+        'Metric header name: ' +
+          metricHeader.name +
+          ' (' +
+          metricHeader.type +
+          ')'
+      );
+    });
+    //[END analyticsdata_print_run_report_response_header]
 
-  runReport();
+    // [START analyticsdata_print_run_report_response_rows]
+    console.log('Report result:');
+    response.rows.forEach(row => {
+      console.log(row.dimensionValues[0].value, ',', row.metricValues[0].value);
+    });
+    // [END analyticsdata_print_run_report_response_rows]
+  }
   // [END analyticsdata_run_report_with_pagination]
 }
-
 
 process.on('unhandledRejection', err => {
   console.error(err.message);

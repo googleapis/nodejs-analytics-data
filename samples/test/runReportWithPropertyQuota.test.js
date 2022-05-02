@@ -31,6 +31,6 @@ describe('Report with property quota', () => {
     const stdout = execSync(
       `node ./runReportWithPropertyQuota.js ${GA4_PROPERTY_ID}`
     );
-    assert.match(stdout, /Report result/);
+    assert.match(stdout, /Tokens per day quota consumed/);
   });
 });

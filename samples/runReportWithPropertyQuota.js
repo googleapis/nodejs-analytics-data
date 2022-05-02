@@ -31,49 +31,80 @@ for more information.
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analyticsdata_run_report_with_property_quota]
 
-  // TODO(developer): Uncomment this variable and replace with your 
+  // TODO(developer): Uncomment this variable and replace with your
   // Google Analytics 4 property ID before running the sample.
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
-  // Initialize client that will be used to send requests. This client only 
+  // Initialize client that will be used to send requests. This client only
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
   // Runs a report and prints property quota information.
   async function runReportWithPropertyQuota() {
     const [response] = await analyticsDataClient.runReport({
-      property: "properties/${propertyId}",
+      property: `properties/${propertyId}`,
+      returnPropertyQuota: true,
       dimensions: [
         {
-          name: "country"
-        }
+          name: 'country',
+        },
       ],
       metrics: [
         {
-          name: "activeUsers"
-        }
+          name: 'activeUsers',
+        },
       ],
       dateRanges: [
         {
-          startDate: "2020-09-01",
-          endDate: "2020-09-15"
-        }
-      ]
+          startDate: '7daysAgo',
+          endDate: 'today',
+        },
+      ],
     });
+    printPropertyQuotaResponse(response);
   }
 
-  function printRunReportResponse(response) {
-// Print function here
-    return response;
-  }
+  runReportWithPropertyQuota();
 
-  runReport();
+  // Prints results of a runReport call with property quota
+  function printPropertyQuotaResponse(response) {
+    // [START analyticsdata_run_report_with_property_quota_print_response]
+    if (response.propertyQuota) {
+      console.log(
+        'Tokens per day quota consumed: ' +
+          response.propertyQuota.tokensPerDay.consumed +
+          ', remaining: ' +
+          response.propertyQuota.tokensPerDay.remaining
+      );
+
+      console.log(
+        'Tokens per hour quota consumed: ' +
+          response.propertyQuota.tokensPerHour.consumed +
+          ', remaining: ' +
+          response.propertyQuota.tokensPerHour.remaining
+      );
+
+      console.log(
+        'Concurrent requests quota consumed: ' +
+          response.propertyQuota.concurrentRequests.consumed +
+          ', remaining: ' +
+          response.propertyQuota.concurrentRequests.remaining
+      );
+
+      console.log(
+        'Server errors per project per hour quota consumed: ' +
+          response.propertyQuota.serverErrorsPerProjectPerHour.consumed +
+          ', remaining: ' +
+          response.propertyQuota.serverErrorsPerProjectPerHour.remaining
+      );
+    }
+    // [END analyticsdata_run_report_with_property_quota_print_response]
+  }
   // [END analyticsdata_run_report_with_property_quota]
 }
-
 
 process.on('unhandledRejection', err => {
   console.error(err.message);
