@@ -31,50 +31,68 @@ for more information.
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analyticsdata_get_metadata_by_property_id]
 
-  // TODO(developer): Uncomment this variable and replace with your 
+  // TODO(developer): Uncomment this variable and replace with your
   // Google Analytics 4 property ID before running the sample.
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
-  // Initialize client that will be used to send requests. This client only 
+  // Initialize client that will be used to send requests. This client only
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
   // Retrieves dimensions and metrics available for a Google Analytics 4
-  //  property, including custom fields.
+  // property, including custom fields.
   async function getMetadataByPropertyId() {
-    const [response] = await analyticsDataClient.runReport({
-      property: "properties/${propertyId}",
-      dimensions: [
-        {
-          name: "country"
-        }
-      ],
-      metrics: [
-        {
-          name: "activeUsers"
-        }
-      ],
-      dateRanges: [
-        {
-          startDate: "2020-09-01",
-          endDate: "2020-09-15"
-        }
-      ]
+    const [response] = await analyticsDataClient.getMetadata({
+      name: `properties/${propertyId}/metadata`,
     });
+    console.log(
+      `Dimensions and metrics available for a Google Analytics 4 property ${propertyId} (including custom fields):`
+    );
+    printGetMetadataResponse(response);
   }
 
-  function printRunReportResponse(response) {
-// Print function here
-    return response;
-  }
+  getMetadataByPropertyId();
 
-  runReport();
+  // Prints results of the getMetadata call.
+  function printGetMetadataResponse(response) {
+    //[START analyticsdata_print_get_metadata_response]
+    response.dimensions.forEach(dimension => {
+      console.log('DIMENSION');
+      console.log(
+        `${dimension.apiName} (${dimension.uiName}): ${dimension.description}`
+      );
+      console.log(`custom definition: ${dimension.customDefinition}`);
+      if (
+        dimension.deprecatedApiNames &&
+        dimension.deprecatedApiNames.length > 0
+      ) {
+        console.log(`Deprecated API names: ${dimension.deprecatedApiNames}`);
+      }
+      console.log();
+    });
+
+    response.metrics.forEach(metric => {
+      console.log('METRIC');
+      console.log(
+        `${metric.apiName} (${metric.uiName}): ${metric.description}`
+      );
+      console.log(`custom definition: ${metric.customDefinition}`);
+      if (metric.expression) {
+        console.log(`Expression: ${metric.expression}`);
+      }
+      console.log(`Type: ${metric.type}`);
+      if (metric.deprecatedApiNames && metric.deprecatedApiNames.length > 0) {
+        console.log(`Deprecated API names: ${metric.deprecatedApiNames}`);
+      }
+      console.log();
+    });
+    // [END analyticsdata_print_get_metadata_response]
+  }
   // [END analyticsdata_get_metadata_by_property_id]
 }
-
 
 process.on('unhandledRejection', err => {
   console.error(err.message);

@@ -28,9 +28,7 @@ const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID || '222596558';
 describe('Get common metadata', () => {
   it('should retrieve all metrics and dimensions for Google Analytics 4 properties', async () => {
     // eslint-disable-next-line no-unused-vars
-    const stdout = execSync(
-      `node ./getCommonMetadata.js ${GA4_PROPERTY_ID}`
-    );
-    assert.match(stdout, /Report result/);
+    const stdout = execSync(`node ./getCommonMetadata.js ${GA4_PROPERTY_ID}`);
+    assert.match(stdout, /Dimensions and metrics/);
   });
 });

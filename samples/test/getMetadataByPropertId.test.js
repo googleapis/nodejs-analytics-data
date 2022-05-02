@@ -31,6 +31,6 @@ describe('Get metadata by property id', () => {
     const stdout = execSync(
       `node ./getMetadataByPropertyId.js ${GA4_PROPERTY_ID}`
     );
-    assert.match(stdout, /Report result/);
+    assert.match(stdout, /Dimensions and metrics/);
   });
 });
