@@ -42,9 +42,9 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
-  // Runs a pivot query to build a report of session counts by country, pivoted by the browser dimension. .
+  // Runs a pivot query to build a report of session counts by country, pivoted by the browser dimension.
   async function runPivotReport() {
-    const [response] = await analyticsDataClient.runReport({
+    const [response] = await analyticsDataClient.runPivotReport({
       property: "properties/${propertyId}",
       dimensions: [
         {

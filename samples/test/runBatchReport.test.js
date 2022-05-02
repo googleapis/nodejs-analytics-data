@@ -31,6 +31,6 @@ describe('Batch report', () => {
     const stdout = execSync(
       `node ./runBatchReport.js ${GA4_PROPERTY_ID}`
     );
-    assert.match(stdout, /Report result/);
+    assert.match(stdout, /Batch report result/);
   });
 });
