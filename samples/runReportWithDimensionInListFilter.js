@@ -31,55 +31,86 @@ for more information.
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analyticsdata_run_report_with_dimension_in_list_filter]
 
-  // TODO(developer): Uncomment this variable and replace with your 
+  // TODO(developer): Uncomment this variable and replace with your
   // Google Analytics 4 property ID before running the sample.
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
-  // Initialize client that will be used to send requests. This client only 
+  // Initialize client that will be used to send requests. This client only
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
   // Runs a report using a dimension filter with `in_list_filter` expression.
   // The filter selects for when `eventName` is set to one of three event names
   // specified in the query.
-
   // This sample uses relative date range values. See
   // https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/DateRange
   // for more information.
   async function runReportWithDimensionInListFilter() {
     const [response] = await analyticsDataClient.runReport({
-      property: "properties/${propertyId}",
+      property: `properties/${propertyId}`,
       dimensions: [
         {
-          name: "country"
-        }
+          name: 'eventName',
+        },
       ],
       metrics: [
         {
-          name: "activeUsers"
-        }
+          name: 'sessions',
+        },
       ],
       dateRanges: [
         {
-          startDate: "2020-09-01",
-          endDate: "2020-09-15"
-        }
-      ]
+          startDate: '7daysAgo',
+          endDate: 'yesterday',
+        },
+      ],
+      dimensionFilter: {
+        filter: {
+          fieldName: 'eventName',
+          inListFilter: {
+            values: [
+              'purchase',
+              'in_app_purchase',
+              'app_store_subscription_renew',
+            ],
+          },
+        },
+      },
     });
+    printRunReportResponse(response);
   }
 
+  runReportWithDimensionInListFilter();
+  // Prints results of a runReport call.
   function printRunReportResponse(response) {
-// Print function here
-    return response;
-  }
+    //[START analyticsdata_print_run_report_response_header]
+    console.log(response.rowCount + ' rows received');
+    response.dimensionHeaders.forEach(dimensionHeader => {
+      console.log('Dimension header name: ' + dimensionHeader.name);
+    });
+    response.metricHeaders.forEach(metricHeader => {
+      console.log(
+        'Metric header name: ' +
+          metricHeader.name +
+          ' (' +
+          metricHeader.type +
+          ')'
+      );
+    });
+    //[END analyticsdata_print_run_report_response_header]
 
-  runReport();
+    // [START analyticsdata_print_run_report_response_rows]
+    console.log('Report result:');
+    response.rows.forEach(row => {
+      console.log(row.dimensionValues[0].value, ',', row.metricValues[0].value);
+    });
+    // [END analyticsdata_print_run_report_response_rows]
+  }
   // [END analyticsdata_run_report_with_dimension_in_list_filter]
 }
-
 
 process.on('unhandledRejection', err => {
   console.error(err.message);

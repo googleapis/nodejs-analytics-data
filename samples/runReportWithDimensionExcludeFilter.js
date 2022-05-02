@@ -31,54 +31,83 @@ for more information.
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analyticsdata_run_report_with_dimension_exclude_filter]
 
-  // TODO(developer): Uncomment this variable and replace with your 
+  // TODO(developer): Uncomment this variable and replace with your
   // Google Analytics 4 property ID before running the sample.
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
-  // Initialize client that will be used to send requests. This client only 
+  // Initialize client that will be used to send requests. This client only
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
   // Runs a report using a filter with `not_expression`. The dimension filter
   // selects for when `pageTitle` is not `My Homepage`.
-
   // This sample uses relative date range values. See
   // https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/DateRange
   // for more information.
   async function runReportWithDimensionExcludeFilter() {
     const [response] = await analyticsDataClient.runReport({
-      property: "properties/${propertyId}",
+      property: `properties/${propertyId}`,
       dimensions: [
         {
-          name: "country"
-        }
+          name: 'pageTitle',
+        },
       ],
       metrics: [
         {
-          name: "activeUsers"
-        }
+          name: 'sessions',
+        },
       ],
       dateRanges: [
         {
-          startDate: "2020-09-01",
-          endDate: "2020-09-15"
-        }
-      ]
+          startDate: '7daysAgo',
+          endDate: 'yesterday',
+        },
+      ],
+      dimensionFilter: {
+        notExpression: {
+          filter: {
+            fieldName: 'pageTitle',
+            stringFilter: {
+              value: 'My Homepage',
+            },
+          },
+        },
+      },
     });
+    printRunReportResponse(response);
   }
 
+  runReportWithDimensionExcludeFilter();
+  // Prints results of a runReport call.
   function printRunReportResponse(response) {
-// Print function here
-    return response;
-  }
+    //[START analyticsdata_print_run_report_response_header]
+    console.log(response.rowCount + ' rows received');
+    response.dimensionHeaders.forEach(dimensionHeader => {
+      console.log('Dimension header name: ' + dimensionHeader.name);
+    });
+    response.metricHeaders.forEach(metricHeader => {
+      console.log(
+        'Metric header name: ' +
+          metricHeader.name +
+          ' (' +
+          metricHeader.type +
+          ')'
+      );
+    });
+    //[END analyticsdata_print_run_report_response_header]
 
-  runReport();
+    // [START analyticsdata_print_run_report_response_rows]
+    console.log('Report result:');
+    response.rows.forEach(row => {
+      console.log(row.dimensionValues[0].value, ',', row.metricValues[0].value);
+    });
+    // [END analyticsdata_print_run_report_response_rows]
+  }
   // [END analyticsdata_run_report_with_dimension_exclude_filter]
 }
-
 
 process.on('unhandledRejection', err => {
   console.error(err.message);
