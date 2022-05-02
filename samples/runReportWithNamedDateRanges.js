@@ -31,55 +31,76 @@ Before you start the application, please review the comments starting with
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analyticsdata_run_report_with_named_date_ranges]
 
-  // TODO(developer): Uncomment this variable and replace with your 
+  // TODO(developer): Uncomment this variable and replace with your
   // Google Analytics 4 property ID before running the sample.
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
-  // Initialize client that will be used to send requests. This client only 
+  // Initialize client that will be used to send requests. This client only
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
   // Runs a report using named date ranges.
   async function runReportWithNamedDateRanges() {
     const [response] = await analyticsDataClient.runReport({
-      property: "properties/${propertyId}",
+      property: `properties/${propertyId}`,
       dateRanges: [
         {
-          startDate: "2020-01-01",
-          endDate: "2020-01-31",
-          name: "year_ago"
+          startDate: '2020-01-01',
+          endDate: '2020-01-31',
+          name: 'year_ago',
         },
         {
-          startDate: "2021-01-01",
-          endDate: "2021-01-31",
-          name: "current_year"
-        }
+          startDate: '2021-01-01',
+          endDate: '2021-01-31',
+          name: 'current_year',
+        },
       ],
       dimensions: [
         {
-          name: "country"
-        }
+          name: 'country',
+        },
       ],
       metrics: [
         {
-          name: "sessions"
-        }
-      ]
+          name: 'sessions',
+        },
+      ],
     });
+    printRunReportResponse(response);
   }
 
+  runReportWithNamedDateRanges();
+
+  // Prints results of a runReport call.
   function printRunReportResponse(response) {
-// Print function here
-    return response;
-  }
+    //[START analyticsdata_print_run_report_response_header]
+    console.log(response.rowCount + ' rows received');
+    response.dimensionHeaders.forEach(dimensionHeader => {
+      console.log('Dimension header name: ' + dimensionHeader.name);
+    });
+    response.metricHeaders.forEach(metricHeader => {
+      console.log(
+        'Metric header name: ' +
+          metricHeader.name +
+          ' (' +
+          metricHeader.type +
+          ')'
+      );
+    });
+    //[END analyticsdata_print_run_report_response_header]
 
-  runReport();
+    // [START analyticsdata_print_run_report_response_rows]
+    console.log('Report result:');
+    response.rows.forEach(row => {
+      console.log(row.dimensionValues[0].value, ',', row.metricValues[0].value);
+    });
+    // [END analyticsdata_print_run_report_response_rows]
+  }
   // [END analyticsdata_run_report_with_named_date_ranges]
 }
-
 
 process.on('unhandledRejection', err => {
   console.error(err.message);
