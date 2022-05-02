@@ -74,24 +74,18 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     // [START analyticsdata_run_report_with_property_quota_print_response]
     if (response.propertyQuota) {
       console.log(
-        'Tokens per day quota consumed: ' +
-          response.propertyQuota.tokensPerDay.consumed +
-          ', remaining: ' +
-          response.propertyQuota.tokensPerDay.remaining
+        `Tokens per day quota consumed: ${response.propertyQuota.tokensPerDay.consumed},` +
+          ` remaining: ${response.propertyQuota.tokensPerDay.remaining}`
       );
 
       console.log(
-        'Tokens per hour quota consumed: ' +
-          response.propertyQuota.tokensPerHour.consumed +
-          ', remaining: ' +
-          response.propertyQuota.tokensPerHour.remaining
+        `Tokens per hour quota consumed: ${response.propertyQuota.tokensPerHour.consumed}` +
+          `, remaining: ${response.propertyQuota.tokensPerHour.remaining}`
       );
 
       console.log(
-        'Concurrent requests quota consumed: ' +
-          response.propertyQuota.concurrentRequests.consumed +
-          ', remaining: ' +
-          response.propertyQuota.concurrentRequests.remaining
+        `Concurrent requests quota consumed: ${response.propertyQuota.concurrentRequests.consumed}` +
+          `, remaining: ${response.propertyQuota.concurrentRequests.remaining}`
       );
 
       console.log(
@@ -99,6 +93,12 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
           response.propertyQuota.serverErrorsPerProjectPerHour.consumed +
           ', remaining: ' +
           response.propertyQuota.serverErrorsPerProjectPerHour.remaining
+      );
+
+      console.log(
+        'Potentially thresholded requests per hour quota consumed: ' +
+          `${response.propertyQuota.potentiallyThresholdedRequestsPerHour.consumed}` +
+          `, remaining: ${response.propertyQuota.potentiallyThresholdedRequestsPerHour.remaining}`
       );
     }
     // [END analyticsdata_run_report_with_property_quota_print_response]
