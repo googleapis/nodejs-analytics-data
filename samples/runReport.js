@@ -85,7 +85,6 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     });
     // [END analyticsdata_print_run_report_response_rows]
   }
-  module.exports = {printRunReportResponse};
 
   runReport();
   // [END analyticsdata_run_report]
