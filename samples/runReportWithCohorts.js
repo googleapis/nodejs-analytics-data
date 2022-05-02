@@ -31,71 +31,90 @@ for more information.
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analyticsdata_run_report_with_cohorts]
 
-  // TODO(developer): Uncomment this variable and replace with your 
+  // TODO(developer): Uncomment this variable and replace with your
   // Google Analytics 4 property ID before running the sample.
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
-  // Initialize client that will be used to send requests. This client only 
+  // Initialize client that will be used to send requests. This client only
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
   // Runs a report on a cohort of users whose first session happened on the
   // same week. The number of active users and user retention rate is calculated
   //  for the cohort using WEEKLY granularity.
-  async function runReport() {
+  async function runReportWithCohorts() {
     const [response] = await analyticsDataClient.runReport({
-      property: "properties/${propertyId}",
+      property: `properties/${propertyId}`,
       dimensions: [
         {
-          name: "cohort"
+          name: 'cohort',
         },
         {
-          name: "cohortNthWeek"
-        }
+          name: 'cohortNthWeek',
+        },
       ],
       metrics: [
         {
-          name: "cohortActiveUsers"
+          name: 'cohortActiveUsers',
         },
         {
-          name: "cohortRetentionRate",
-          expression: "cohortActiveUsers/cohortTotalUsers"
-        }
+          name: 'cohortRetentionRate',
+          expression: 'cohortActiveUsers/cohortTotalUsers',
+        },
       ],
-      cohortSpec: [
-        {
-          cohort: [
-            {
-              dimension: "firstSessionDate",
-              name: "cohort",
-              dateRanges: {
-                startDate: "2021-01-03",
-                endDate: "2021-01-09"
-              }
-            }
-          ],
-          cohortsRange: {
-            startOffset: 0,
-            endOffset: 4,
-            granuarity: cohortsRange.granuarity.WEEKLY
-          }
-        }
-      ]
+      cohortSpec: {
+        cohorts: [
+          {
+            dimension: 'firstSessionDate',
+            name: 'cohort',
+            dateRange: {
+              startDate: '2021-01-03',
+              endDate: '2021-01-09',
+            },
+          },
+        ],
+        cohortsRange: {
+          startOffset: 0,
+          endOffset: 4,
+          granularity: 'WEEKLY',
+        },
+      },
     });
+    printRunReportResponse(response);
   }
 
+  runReportWithCohorts();
+
+  // Prints results of a runReport call.
   function printRunReportResponse(response) {
-// Print function here
-    return response;
-  }
+    //[START analyticsdata_print_run_report_response_header]
+    console.log(response.rowCount + ' rows received');
+    response.dimensionHeaders.forEach(dimensionHeader => {
+      console.log('Dimension header name: ' + dimensionHeader.name);
+    });
+    response.metricHeaders.forEach(metricHeader => {
+      console.log(
+        'Metric header name: ' +
+          metricHeader.name +
+          ' (' +
+          metricHeader.type +
+          ')'
+      );
+    });
+    //[END analyticsdata_print_run_report_response_header]
 
-  runReport();
+    // [START analyticsdata_print_run_report_response_rows]
+    console.log('Report result:');
+    response.rows.forEach(row => {
+      console.log(row.dimensionValues[0].value, ',', row.metricValues[0].value);
+    });
+    // [END analyticsdata_print_run_report_response_rows]
+  }
   // [END analyticsdata_run_report_with_cohorts]
 }
-
 
 process.on('unhandledRejection', err => {
   console.error(err.message);

@@ -126,7 +126,7 @@ View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/
 __Usage:__
 
 
-`node samples/runReportwithCohorts.js`
+`node samples/runReportWithCohorts.js`
 
 
 -----
