@@ -28,9 +28,7 @@ const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID || '222596558';
 describe('Pivot report', () => {
   it('should run a pivot query to build a report of session counts by country, pivoted by the browser dimension', async () => {
     // eslint-disable-next-line no-unused-vars
-    const stdout = execSync(
-      `node ./runPivotReport.js ${GA4_PROPERTY_ID}`
-    );
+    const stdout = execSync(`node ./runPivotReport.js ${GA4_PROPERTY_ID}`);
     assert.match(stdout, /Report result/);
   });
 });

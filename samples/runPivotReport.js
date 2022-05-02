@@ -31,49 +31,89 @@ for more information.
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // [START analyticsdata_run_pivot_report]
 
-  // TODO(developer): Uncomment this variable and replace with your 
+  // TODO(developer): Uncomment this variable and replace with your
   // Google Analytics 4 property ID before running the sample.
   // propertyId = 'YOUR-GA4-PROPERTY-ID';
 
   // Imports the Google Analytics Data API client library.
   const {BetaAnalyticsDataClient} = require('@google-analytics/data');
 
-  // Initialize client that will be used to send requests. This client only 
+  // Initialize client that will be used to send requests. This client only
   // needs to be created once, and can be reused for multiple requests.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
   // Runs a pivot query to build a report of session counts by country, pivoted by the browser dimension.
   async function runPivotReport() {
     const [response] = await analyticsDataClient.runPivotReport({
-      property: "properties/${propertyId}",
-      dimensions: [
+      property: `properties/${propertyId}`,
+      dateRanges: [
         {
-          name: "country"
-        }
+          startDate: '2021-01-01',
+          endDate: '2021-01-30',
+        },
+      ],
+      pivots: [
+        {
+          fieldNames: ['country'],
+          limit: 250,
+          orderBys: [
+            {
+              dimension: {
+                dimensionName: 'country',
+              },
+            },
+          ],
+        },
+        {
+          fieldNames: ['browser'],
+          offset: 3,
+          limit: 3,
+          orderBys: [
+            {
+              metric: {
+                metricName: 'sessions',
+              },
+              desc: true,
+            },
+          ],
+        },
       ],
       metrics: [
         {
-          name: "activeUsers"
-        }
+          name: 'sessions',
+        },
       ],
-      dateRanges: [
+      dimensions: [
         {
-          startDate: "2020-09-01",
-          endDate: "2020-09-15"
-        }
-      ]
+          name: 'country',
+        },
+        {
+          name: 'browser',
+        },
+      ],
     });
+    printPivotReportResponse(response);
   }
 
-  function printRunReportResponse(response) {
-// Print function here
-    return response;
-  }
+  runPivotReport();
 
-  runReport();
+  // Prints results of a runReport call.
+  function printPivotReportResponse(response) {
+    //[START analyticsdata_print_run_pivot_report_response]
+    console.log('Report result:');
+    response.rows.forEach(row => {
+      row.dimensionValues.forEach(dimensionValue => {
+        console.log(dimensionValue.value);
+      });
+
+      row.metricValues.forEach(metricValue => {
+        console.log(metricValue.value);
+      });
+    });
+    // [END analyticsdata_print_run_pivot_report_response]
+  }
   // [END analyticsdata_run_pivot_report]
 }
-
 
 process.on('unhandledRejection', err => {
   console.error(err.message);
