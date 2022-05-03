@@ -30,7 +30,7 @@ for more information.
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START run_report_with_aggregations]
+  // [START analyticsdata_run_report_with_aggregations]
 
   // TODO(developer): Uncomment this variable and replace with your
   // Google Analytics 4 property ID before running the sample.
@@ -94,6 +94,8 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     });
     // [END analyticsdata_print_run_report_response_rows]
   }
+  // [START analyticsdata_run_report_with_aggregations]
+}
 
 process.on('unhandledRejection', err => {
   console.error(err.message);
