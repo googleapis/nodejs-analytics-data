@@ -29,7 +29,7 @@ for more information.
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analyticsdata_get_common_metadeta]
+  // [START analyticsdata_get_common_metadata]
 
   // Set the Property ID to 0 for dimensions and metrics common
   // to all properties. In this special mode, this method will
