@@ -94,7 +94,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
     });
     // [END analyticsdata_print_run_report_response_rows]
   }
-  // [START analyticsdata_run_report_with_aggregations]
+  // [END analyticsdata_run_report_with_aggregations]
 }
 
 process.on('unhandledRejection', err => {
