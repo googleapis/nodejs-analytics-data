@@ -16,6 +16,7 @@
   * [Quickstart_json_credentials](#quickstart_json_credentials)
   * [Quickstart_oauth2](#quickstart_oauth2)
   * [Realtime](#realtime)
+  * [Run Report](#run-report)
 
 ## Before you begin
 
@@ -95,7 +96,12 @@ __Usage:__
 `node samples/realtime.js`
 
 
-### RunReport
+-----
+
+
+
+
+### Run Report
 
 View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReport.js).
 
@@ -105,6 +111,7 @@ __Usage:__
 
 
 `node samples/runReport.js`
+
 
 
 
