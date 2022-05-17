@@ -16,6 +16,8 @@
   * [Quickstart_json_credentials](#quickstart_json_credentials)
   * [Quickstart_oauth2](#quickstart_oauth2)
   * [Realtime](#realtime)
+  * [Run Report With Date Ranges](#run-report-with-date-ranges)
+  * [Run Report With Named Date Ranges](#run-report-with-named-date-ranges)
 
 ## Before you begin
 
@@ -93,6 +95,40 @@ __Usage:__
 
 
 `node samples/realtime.js`
+
+
+-----
+
+
+
+
+### Run Report With Date Ranges
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithDateRanges.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithDateRanges.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithDateRanges.js`
+
+
+-----
+
+
+
+
+### Run Report With Named Date Ranges
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithNamedDateRanges.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithNamedDateRanges.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithNamedDateRanges.js`
 
 
 
