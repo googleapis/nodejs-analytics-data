@@ -1967,6 +1967,9 @@ export namespace google {
             /** FieldOptions lazy */
             lazy?: (boolean|null);
 
+            /** FieldOptions unverifiedLazy */
+            unverifiedLazy?: (boolean|null);
+
             /** FieldOptions deprecated */
             deprecated?: (boolean|null);
 
@@ -2003,6 +2006,9 @@ export namespace google {
 
             /** FieldOptions lazy. */
             public lazy: boolean;
+
+            /** FieldOptions unverifiedLazy. */
+            public unverifiedLazy: boolean;
 
             /** FieldOptions deprecated. */
             public deprecated: boolean;
@@ -3290,7 +3296,7 @@ export namespace google {
                 namespace AlphaAnalyticsData {
 
                     /**
-                     * Callback as used by {@link google.analytics.data.v1alpha.AlphaAnalyticsData#runFunnelReport}.
+                     * Callback as used by {@link google.analytics.data.v1alpha.AlphaAnalyticsData|runFunnelReport}.
                      * @param error Error, if any
                      * @param [response] RunFunnelReportResponse
                      */
@@ -9605,49 +9611,49 @@ export namespace google {
                 namespace BetaAnalyticsData {
 
                     /**
-                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData#runReport}.
+                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData|runReport}.
                      * @param error Error, if any
                      * @param [response] RunReportResponse
                      */
                     type RunReportCallback = (error: (Error|null), response?: google.analytics.data.v1beta.RunReportResponse) => void;
 
                     /**
-                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData#runPivotReport}.
+                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData|runPivotReport}.
                      * @param error Error, if any
                      * @param [response] RunPivotReportResponse
                      */
                     type RunPivotReportCallback = (error: (Error|null), response?: google.analytics.data.v1beta.RunPivotReportResponse) => void;
 
                     /**
-                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData#batchRunReports}.
+                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData|batchRunReports}.
                      * @param error Error, if any
                      * @param [response] BatchRunReportsResponse
                      */
                     type BatchRunReportsCallback = (error: (Error|null), response?: google.analytics.data.v1beta.BatchRunReportsResponse) => void;
 
                     /**
-                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData#batchRunPivotReports}.
+                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData|batchRunPivotReports}.
                      * @param error Error, if any
                      * @param [response] BatchRunPivotReportsResponse
                      */
                     type BatchRunPivotReportsCallback = (error: (Error|null), response?: google.analytics.data.v1beta.BatchRunPivotReportsResponse) => void;
 
                     /**
-                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData#getMetadata}.
+                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData|getMetadata}.
                      * @param error Error, if any
                      * @param [response] Metadata
                      */
                     type GetMetadataCallback = (error: (Error|null), response?: google.analytics.data.v1beta.Metadata) => void;
 
                     /**
-                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData#runRealtimeReport}.
+                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData|runRealtimeReport}.
                      * @param error Error, if any
                      * @param [response] RunRealtimeReportResponse
                      */
                     type RunRealtimeReportCallback = (error: (Error|null), response?: google.analytics.data.v1beta.RunRealtimeReportResponse) => void;
 
                     /**
-                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData#checkCompatibility}.
+                     * Callback as used by {@link google.analytics.data.v1beta.BetaAnalyticsData|checkCompatibility}.
                      * @param error Error, if any
                      * @param [response] CheckCompatibilityResponse
                      */
