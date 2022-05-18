@@ -16,6 +16,8 @@
   * [Quickstart_json_credentials](#quickstart_json_credentials)
   * [Quickstart_oauth2](#quickstart_oauth2)
   * [Realtime](#realtime)
+  * [Run Report With Dimension Exclude Filter](#run-report-with-dimension-exclude-filter)
+  * [Run Report With Dimension In List Filter](#run-report-with-dimension-in-list-filter)
 
 ## Before you begin
 
@@ -93,6 +95,40 @@ __Usage:__
 
 
 `node samples/realtime.js`
+
+
+-----
+
+
+
+
+### Run Report With Dimension Exclude Filter
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithDimensionExcludeFilter.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithDimensionExcludeFilter.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithDimensionExcludeFilter.js`
+
+
+-----
+
+
+
+
+### Run Report With Dimension In List Filter
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithDimensionInListFilter.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithDimensionInListFilter.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithDimensionInListFilter.js`
 
 
 
