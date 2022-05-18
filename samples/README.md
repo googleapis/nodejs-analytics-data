@@ -17,10 +17,10 @@
   * [Quickstart_oauth2](#quickstart_oauth2)
   * [Realtime](#realtime)
   * [Run Report](#run-report)
-  * [Run Report With Date Ranges](#run-report-with-date-ranges)
-  * [Run Report With Named Date Ranges](#run-report-with-named-date-ranges)
   * [Run Report With Aggregations](#run-report-with-aggregations)
   * [Run Report With Cohorts](#run-report-with-cohorts)
+  * [Run Report With Date Ranges](#run-report-with-date-ranges)
+  * [Run Report With Named Date Ranges](#run-report-with-named-date-ranges)
 
 ## Before you begin
 
@@ -87,6 +87,7 @@ __Usage:__
 
 
 
+
 ### Realtime
 
 View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/realtime.js).
@@ -100,6 +101,58 @@ __Usage:__
 
 
 -----
+
+
+
+
+### Run Report
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReport.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReport.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReport.js`
+
+
+-----
+
+
+
+
+### Run Report With Aggregations
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithAggregations.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithAggregations.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithAggregations.js`
+
+
+-----
+
+
+
+
+### Run Report With Cohorts
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithCohorts.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithCohorts.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithCohorts.js`
+
+
+-----
+
 
 
 
@@ -118,18 +171,6 @@ __Usage:__
 -----
 
 
-### Run Report
-
-View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReport.js).
-
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReport.js,samples/README.md)
-
-__Usage:__
-
-`node samples/runReport.js`
-
-
------
 
 
 ### Run Report With Named Date Ranges
@@ -140,36 +181,11 @@ View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/
 
 __Usage:__
 
+
 `node samples/runReportWithNamedDateRanges.js`
 
 
------
 
-
-### Run Report With Aggregations
-
-View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithAggregations.js).
-
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithAggregations.js,samples/README.md)
-
-__Usage:__
-
-
-`node samples/runReportWithAggregations.js`
-
-
------
-
-### Run Report With Cohorts
-
-View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithCohorts.js).
-
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithCohorts.js,samples/README.md)
-
-__Usage:__
-
-
-`node samples/runReportWithCohorts.js`
 
 
 
