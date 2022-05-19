@@ -16,6 +16,8 @@
   * [Quickstart_json_credentials](#quickstart_json_credentials)
   * [Quickstart_oauth2](#quickstart_oauth2)
   * [Realtime](#realtime)
+  * [Run Batch Report](#run-batch-report)
+  * [Run Pivot Report](#run-pivot-report)
 
 ## Before you begin
 
@@ -93,6 +95,40 @@ __Usage:__
 
 
 `node samples/realtime.js`
+
+
+-----
+
+
+
+
+### Run Batch Report
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runBatchReport.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runBatchReport.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runBatchReport.js`
+
+
+-----
+
+
+
+
+### Run Pivot Report
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runPivotReport.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runPivotReport.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runPivotReport.js`
 
 
 
