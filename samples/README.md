@@ -2,190 +2,229 @@
 [//]: # "To regenerate it, use `python -m synthtool`."
 <img src="https://avatars2.githubusercontent.com/u/2810941?v=3&s=96" alt="Google Cloud Platform logo" title="Google Cloud Platform" align="right" height="96" width="96"/>
 
-# [Google Analytics Data: Node.js Client](https://github.com/googleapis/nodejs-analytics-data)
+# [Google Analytics Data: Node.js Samples](https://github.com/googleapis/nodejs-analytics-data)
 
-[![release level](https://img.shields.io/badge/release%20level-preview-yellow.svg?style=flat)](https://cloud.google.com/terms/launch-stages)
-[![npm version](https://img.shields.io/npm/v/@google-analytics/data.svg)](https://www.npmjs.org/package/@google-analytics/data)
-
+[![Open in Cloud Shell][shell_img]][shell_link]
 
 
 
-Data client for Node.js
+## Table of Contents
 
-
-A comprehensive list of changes in each version may be found in
-[the CHANGELOG](https://github.com/googleapis/nodejs-analytics-data/blob/main/CHANGELOG.md).
-
-* [Google Analytics Data Node.js Client API Reference][client-docs]
-* [Google Analytics Data Documentation][product-docs]
-* [github.com/googleapis/nodejs-analytics-data](https://github.com/googleapis/nodejs-analytics-data)
-
-Read more about the client libraries for Cloud APIs, including the older
-Google APIs Client Libraries, in [Client Libraries Explained][explained].
-
-[explained]: https://cloud.google.com/apis/docs/client-libraries-explained
-
-**Table of contents:**
-
-
-* [Quickstart](#quickstart)
-  * [Before you begin](#before-you-begin)
-  * [Installing the client library](#installing-the-client-library)
-  * [Using the client library](#using-the-client-library)
+* [Before you begin](#before-you-begin)
 * [Samples](#samples)
-* [Versioning](#versioning)
-* [Contributing](#contributing)
-* [License](#license)
+  * [Quickstart](#quickstart)
+  * [Quickstart_json_credentials](#quickstart_json_credentials)
+  * [Quickstart_oauth2](#quickstart_oauth2)
+  * [Realtime](#realtime)
+  * [Run Report](#run-report)
+  * [Run Report With Aggregations](#run-report-with-aggregations)
+  * [Run Report With Cohorts](#run-report-with-cohorts)
+  * [Run Report With Date Ranges](#run-report-with-date-ranges)
+  * [Run Report With Dimension Exclude Filter](#run-report-with-dimension-exclude-filter)
+  * [Run Report With Dimension In List Filter](#run-report-with-dimension-in-list-filter)
+  * [Run Report With Named Date Ranges](#run-report-with-named-date-ranges)
 
-## Quickstart
+## Before you begin
 
-### Before you begin
+Before running the samples, make sure you've followed the steps outlined in
+[Using the client library](https://github.com/googleapis/nodejs-analytics-data#using-the-client-library).
 
-1.  [Select or create a Cloud Platform project][projects].
-1.  [Enable the Google Analytics Data API][enable_api].
-1.  [Set up authentication with a service account][auth] so you can access the
-    API from your local workstation.
+`cd samples`
 
-### Installing the client library
+`npm install`
 
-```bash
-npm install @google-analytics/data
-```
-
-
-### Using the client library
-
-```javascript
-/**
- * TODO(developer): Uncomment this variable and replace with your
- *   Google Analytics 4 property ID before running the sample.
- */
-// propertyId = 'YOUR-GA4-PROPERTY-ID';
-
-// Imports the Google Analytics Data API client library.
-const {BetaAnalyticsDataClient} = require('@google-analytics/data');
-
-// Using a default constructor instructs the client to use the credentials
-// specified in GOOGLE_APPLICATION_CREDENTIALS environment variable.
-const analyticsDataClient = new BetaAnalyticsDataClient();
-
-// Runs a simple report.
-async function runReport() {
-  const [response] = await analyticsDataClient.runReport({
-    property: `properties/${propertyId}`,
-    dateRanges: [
-      {
-        startDate: '2020-03-31',
-        endDate: 'today',
-      },
-    ],
-    dimensions: [
-      {
-        name: 'city',
-      },
-    ],
-    metrics: [
-      {
-        name: 'activeUsers',
-      },
-    ],
-  });
-
-  console.log('Report result:');
-  response.rows.forEach(row => {
-    console.log(row.dimensionValues[0], row.metricValues[0]);
-  });
-}
-
-runReport();
-
-```
-
-
+`cd ..`
 
 ## Samples
 
-Samples are in the [`samples/`](https://github.com/googleapis/nodejs-analytics-data/tree/main/samples) directory. Each sample's `README.md` has instructions for running its sample.
-
-| Sample                      | Source Code                       | Try it |
-| --------------------------- | --------------------------------- | ------ |
-| Quickstart | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/quickstart.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/quickstart.js,samples/README.md) |
-| Quickstart_json_credentials | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/quickstart_json_credentials.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/quickstart_json_credentials.js,samples/README.md) |
-| Quickstart_oauth2 | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/quickstart_oauth2.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/quickstart_oauth2.js,samples/README.md) |
-| Realtime | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/realtime.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/realtime.js,samples/README.md) |
-| Run Report | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReport.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReport.js,samples/README.md) |
-| Run Report With Aggregations | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithAggregations.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithAggregations.js,samples/README.md) |
-| Run Report With Cohorts | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithCohorts.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithCohorts.js,samples/README.md) |
-| Run Report With Date Ranges | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithDateRanges.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithDateRanges.js,samples/README.md) |
-| Run Report With Dimension Exclude Filter | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithDimensionExcludeFilter.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithDimensionExcludeFilter.js,samples/README.md) |
-| Run Report With Dimension In List Filter | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithDimensionInListFilter.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithDimensionInListFilter.js,samples/README.md) |
-| Run Report With Named Date Ranges | [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithNamedDateRanges.js) | [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithNamedDateRanges.js,samples/README.md) |
 
 
+### Quickstart
 
-The [Google Analytics Data Node.js Client API Reference][client-docs] documentation
-also contains samples.
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/quickstart.js).
 
-## Supported Node.js Versions
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/quickstart.js,samples/README.md)
 
-Our client libraries follow the [Node.js release schedule](https://nodejs.org/en/about/releases/).
-Libraries are compatible with all current _active_ and _maintenance_ versions of
-Node.js.
-If you are using an end-of-life version of Node.js, we recommend that you update
-as soon as possible to an actively supported LTS version.
+__Usage:__
 
-Google's client libraries support legacy versions of Node.js runtimes on a
-best-efforts basis with the following warnings:
 
-* Legacy versions are not tested in continuous integration.
-* Some security patches and features cannot be backported.
-* Dependencies cannot be kept up-to-date.
+`node samples/quickstart.js`
 
-Client libraries targeting some end-of-life versions of Node.js are available, and
-can be installed through npm [dist-tags](https://docs.npmjs.com/cli/dist-tag).
-The dist-tags follow the naming convention `legacy-(version)`.
-For example, `npm install @google-analytics/data@legacy-8` installs client libraries
-for versions compatible with Node.js 8.
 
-## Versioning
-
-This library follows [Semantic Versioning](http://semver.org/).
+-----
 
 
 
 
+### Quickstart_json_credentials
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/quickstart_json_credentials.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/quickstart_json_credentials.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/quickstart_json_credentials.js`
+
+
+-----
 
 
 
-This library is considered to be in **preview**. This means it is still a
-work-in-progress and under active development. Any release is subject to
-backwards-incompatible changes at any time.
+
+### Quickstart_oauth2
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/quickstart_oauth2.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/quickstart_oauth2.js,samples/README.md)
+
+__Usage:__
 
 
-More Information: [Google Cloud Platform Launch Stages][launch_stages]
+`node samples/quickstart_oauth2.js`
 
-[launch_stages]: https://cloud.google.com/terms/launch-stages
 
-## Contributing
+-----
 
-Contributions welcome! See the [Contributing Guide](https://github.com/googleapis/nodejs-analytics-data/blob/main/CONTRIBUTING.md).
 
-Please note that this `README.md`, the `samples/README.md`,
-and a variety of configuration files in this repository (including `.nycrc` and `tsconfig.json`)
-are generated from a central template. To edit one of these files, make an edit
-to its templates in
-[directory](https://github.com/googleapis/synthtool).
 
-## License
 
-Apache Version 2.0
+### Realtime
 
-See [LICENSE](https://github.com/googleapis/nodejs-analytics-data/blob/main/LICENSE)
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/realtime.js).
 
-[client-docs]: https://googleapis.dev/nodejs/analytics-data/latest/index.html
-[product-docs]: https://developers.google.com/analytics/trusted-testing/analytics-data
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/realtime.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/realtime.js`
+
+
+-----
+
+
+
+
+### Run Report
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReport.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReport.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReport.js`
+
+
+-----
+
+
+
+
+### Run Report With Aggregations
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithAggregations.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithAggregations.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithAggregations.js`
+
+
+-----
+
+
+
+
+### Run Report With Cohorts
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithCohorts.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithCohorts.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithCohorts.js`
+
+
+-----
+
+
+
+
+### Run Report With Date Ranges
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithDateRanges.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithDateRanges.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithDateRanges.js`
+
+
+-----
+
+
+
+
+### Run Report With Dimension Exclude Filter
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithDimensionExcludeFilter.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithDimensionExcludeFilter.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithDimensionExcludeFilter.js`
+
+
+-----
+
+
+
+
+### Run Report With Dimension In List Filter
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithDimensionInListFilter.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithDimensionInListFilter.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithDimensionInListFilter.js`
+
+
+-----
+
+
+
+
+### Run Report With Named Date Ranges
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithNamedDateRanges.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithNamedDateRanges.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithNamedDateRanges.js`
+
+
+
+
+
+
 [shell_img]: https://gstatic.com/cloudssh/images/open-btn.png
-[projects]: https://console.cloud.google.com/project
-[billing]: https://support.google.com/cloud/answer/6293499#enable-billing
-[enable_api]: https://console.cloud.google.com/flows/enableapi?apiid=analyticsdata.googleapis.com
-[auth]: https://cloud.google.com/docs/authentication/getting-started
+[shell_link]: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/README.md
+[product-docs]: https://developers.google.com/analytics/trusted-testing/analytics-data
