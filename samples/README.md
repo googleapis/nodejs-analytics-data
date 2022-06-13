@@ -92,14 +92,14 @@ __Usage:__
 
 ### Realtime
 
-View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/realtime.js).
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runRealtimeReport.js).
 
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/realtime.js,samples/README.md)
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runRealtimeReport.js,samples/README.md)
 
 __Usage:__
 
 
-`node samples/realtime.js`
+`node samples/runRealtimeReport.js`
 
 
 -----
