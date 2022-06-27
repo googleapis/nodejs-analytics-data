@@ -1,4 +1,3 @@
-// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,4 +15,22 @@
 // ** https://github.com/googleapis/gapic-generator-typescript **
 // ** All changes to this file may be overwritten. **
 
-export {AlphaAnalyticsDataClient} from './alpha_analytics_data_client';
+'use strict';
+
+const cp = require('child_process');
+const {assert} = require('chai');
+const {describe, it} = require('mocha');
+
+const execSync = cmd => cp.execSync(cmd, {encoding: 'utf-8'});
+
+const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID || '222596558';
+
+describe('Realtime report with multiple dimensions', () => {
+  it('should run realtime with multiple dimensions', async () => {
+    // eslint-disable-next-line no-unused-vars
+    const stdout = execSync(
+      `node ./runRealtimeReportWithMultipleDimensions.js ${GA4_PROPERTY_ID}`
+    );
+    assert.match(stdout, /Report result/);
+  });
+});
