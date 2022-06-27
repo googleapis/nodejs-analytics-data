@@ -25,10 +25,12 @@ const execSync = cmd => cp.execSync(cmd, {encoding: 'utf-8'});
 
 const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID || '222596558';
 
-describe('Realtime report', () => {
-  it('should run realtime', async () => {
+describe('Realtime report with multiple metrics', () => {
+  it('should run realtime with multiple metrics', async () => {
     // eslint-disable-next-line no-unused-vars
-    const stdout = execSync(`node ./realtime.js ${GA4_PROPERTY_ID}`);
+    const stdout = execSync(
+      `node ./runRealtimeReportWithMultipleMetrics.js ${GA4_PROPERTY_ID}`
+    );
     assert.match(stdout, /Report result/);
   });
 });
