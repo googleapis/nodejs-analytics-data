@@ -1,7 +1,7 @@
 {
     "clientLibrary": {
         "name": "nodejs-data",
-        "version": "2.8.0",
+        "version": "3.0.0",
         "language": "TYPESCRIPT",
         "apis": [
             {
@@ -22,7 +22,7 @@
             "segments": [
                 {
                     "start": 25,
-                    "end": 118,
+                    "end": 120,
                     "type": "FULL"
                 }
             ],

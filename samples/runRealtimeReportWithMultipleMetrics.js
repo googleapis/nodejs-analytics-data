@@ -1,4 +1,4 @@
-// Copyright 2021 Google LLC
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,6 +16,10 @@
 
 /** This application demonstrates the usage of the Analytics Data API realtime
  reporting functionality using service account credentials.
+
+See
+https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runRealtimeReport
+for more information.
 
  Realtime report documentation:
 
@@ -56,12 +60,12 @@
 
  npm install
  cd ..
- node samples/realtime.js
+ node samples/runRealtimeReportWithMultipleMetrics.js
 
  */
 
 function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
-  // [START analytics_data_realtime]
+  // [START analyticsdata_run_realtime_report_with_multiple_metrics]
   /**
    * TODO(developer): Uncomment this variable and replace with your GA4
    *   property ID before running the sample.
@@ -74,32 +78,55 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
   // Creates a client.
   const analyticsDataClient = new BetaAnalyticsDataClient();
 
-  // Runs a realtime report.
-  async function runRealtimeReport() {
+  // Runs a realtime report on a Google Analytics 4 property.
+  async function runRealtimeReportWithMultipleMetrics() {
     const [response] = await analyticsDataClient.runRealtimeReport({
       // The property parameter value must be in the form `properties/1234`
       // where `1234` is a GA4 property Id.
       property: `properties/${propertyId}`,
       dimensions: [
         {
-          name: 'country',
+          name: 'unifiedScreenName',
         },
       ],
       metrics: [
         {
-          name: 'activeUsers',
+          name: 'screenPageViews',
+        },
+        {
+          name: 'conversions',
         },
       ],
     });
-
-    console.log('Report result:');
-    response.rows.forEach(row => {
-      console.log(row.dimensionValues[0], row.metricValues[0]);
-    });
+    printRunReportResponse(response);
   }
 
-  runRealtimeReport();
-  // [END analytics_data_realtime]
+  runRealtimeReportWithMultipleMetrics();
+
+  // Prints results of a runReport call.
+  function printRunReportResponse(response) {
+    //[START analyticsdata_print_run_report_response_header]
+    console.log(`${response.rowCount} rows received`);
+    response.dimensionHeaders.forEach(dimensionHeader => {
+      console.log(`Dimension header name: ${dimensionHeader.name}`);
+    });
+    response.metricHeaders.forEach(metricHeader => {
+      console.log(
+        `Metric header name: ${metricHeader.name} (${metricHeader.type})`
+      );
+    });
+    //[END analyticsdata_print_run_report_response_header]
+
+    // [START analyticsdata_print_run_report_response_rows]
+    console.log('Report result:');
+    response.rows.forEach(row => {
+      console.log(
+        `${row.dimensionValues[0].value}, ${row.metricValues[0].value}`
+      );
+    });
+    // [END analyticsdata_print_run_report_response_rows]
+  }
+  // [END analyticsdata_run_realtime_report_with_multiple_metrics]
 }
 
 process.on('unhandledRejection', err => {

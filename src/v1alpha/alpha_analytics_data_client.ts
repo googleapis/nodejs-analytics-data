@@ -60,7 +60,7 @@ export class AlphaAnalyticsDataClient {
    *
    * @param {object} [options] - The configuration object.
    * The options accepted by the constructor are described in detail
-   * in [this document](https://github.com/googleapis/gax-nodejs/blob/master/client-libraries.md#creating-the-client-instance).
+   * in [this document](https://github.com/googleapis/gax-nodejs/blob/main/client-libraries.md#creating-the-client-instance).
    * The common options are:
    * @param {object} [options.credentials] - Credentials object.
    * @param {string} [options.credentials.client_email]
@@ -83,11 +83,10 @@ export class AlphaAnalyticsDataClient {
    *     API remote host.
    * @param {gax.ClientConfig} [options.clientConfig] - Client configuration override.
    *     Follows the structure of {@link gapicConfig}.
-   * @param {boolean} [options.fallback] - Use HTTP fallback mode.
-   *     In fallback mode, a special browser-compatible transport implementation is used
-   *     instead of gRPC transport. In browser context (if the `window` object is defined)
-   *     the fallback mode is enabled automatically; set `options.fallback` to `false`
-   *     if you need to override this behavior.
+   * @param {boolean | "rest"} [options.fallback] - Use HTTP fallback mode.
+   *     Pass "rest" to use HTTP/1.1 REST API instead of gRPC.
+   *     For more information, please check the
+   *     {@link https://github.com/googleapis/gax-nodejs/blob/main/client-libraries.md#http11-rest-api-mode documentation}.
    */
   constructor(opts?: ClientOptions) {
     // Ensure that options include all the required fields.
@@ -325,9 +324,12 @@ export class AlphaAnalyticsDataClient {
    * @param {google.analytics.data.v1alpha.FunnelNextAction} request.funnelNextAction
    *   If specified, next action adds a dimension to the funnel visualization sub
    *   report response. This next action dimension expands each funnel step to the
-   *   unique values of the next action. For example a breakdown by the
+   *   unique values of the next action. For example a next action of the
    *   `eventName` dimension will create rows for several events (i.e.
    *   `session_start` & `click`) and the total.
+   *
+   *   Next action only supports `eventName` and most Page / Screen dimensions
+   *   like `pageTitle` and `pagePath`.
    * @param {google.analytics.data.v1alpha.RunFunnelReportRequest.FunnelVisualizationType} request.funnelVisualizationType
    *   The funnel visualization type controls the dimensions present in the funnel
    *   visualization sub report response. If not specified, `STANDARD_FUNNEL` is
