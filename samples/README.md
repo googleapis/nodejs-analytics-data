@@ -25,8 +25,6 @@
   * [Run Report With Dimension Exclude Filter](#run-report-with-dimension-exclude-filter)
   * [Run Report With Dimension In List Filter](#run-report-with-dimension-in-list-filter)
   * [Run Report With Named Date Ranges](#run-report-with-named-date-ranges)
-  * [Run Batch Report](#run-batch-report)
-  * [Run Pivot Report](#run-pivot-report)
 
 ## Before you begin
 
@@ -151,8 +149,8 @@ View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/
 
 [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReport.js,samples/README.md)
 
-
 __Usage:__
+
 
 `node samples/runReport.js`
 
@@ -160,19 +158,6 @@ __Usage:__
 -----
 
 
-
-### Run Pivot Report
-
-View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runPivotReport.js).
-
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runPivotReport.js,samples/README.md)
-
-__Usage:__
-
-
-`node samples/runPivotReport.js`
-
------
 
 
 ### Run Report With Aggregations
@@ -273,18 +258,6 @@ __Usage:__
 
 
 
-### Run Batch Report
-
-View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runBatchReport.js).
-
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runBatchReport.js,samples/README.md)
-
-__Usage:__
-
-`node samples/runBatchReport.js`
-
-
------
 
 
 
