@@ -92,7 +92,7 @@ function main(propertyId = 'YOUR-GA4-PROPERTY-ID') {
       ],
     });
 
-    console.log("Batch report results:");
+    console.log('Batch report results:');
     response.reports.forEach(report => {
       printRunReportResponse(report);
     });
