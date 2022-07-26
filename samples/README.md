@@ -257,42 +257,6 @@ __Usage:__
 `node samples/runReportWithNamedDateRanges.js`
 
 
------
-
-
-
-### Run Report With Multiple Dimensions
-
-View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithMultipleDimensions.js).
-
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithMultipleDimensions.js,samples/README.md)
-
-__Usage:__
-
-
-`node samples/runReportWithMultipleDimensions.js`
-
-
------
-
-
-
-### Run Report With Multiple Metrics
-
-View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithMultipleMetrics.js).
-
-[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithMultipleMetrics.js,samples/README.md)
-
-__Usage:__
-
-
-`node samples/runReportWithMultipleMetrics.js`
-
-
------
-
-
-
 
 
 
