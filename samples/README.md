@@ -12,9 +12,13 @@
 
 * [Before you begin](#before-you-begin)
 * [Samples](#samples)
+  * [Get Common Metadata](#get-common-metadata)
+  * [Get Metadata By Property Id](#get-metadata-by-property-id)
   * [Quickstart](#quickstart)
   * [Quickstart_json_credentials](#quickstart_json_credentials)
   * [Quickstart_oauth2](#quickstart_oauth2)
+  * [Run Batch Report](#run-batch-report)
+  * [Run Pivot Report](#run-pivot-report)
   * [Run Realtime Report](#run-realtime-report)
   * [Run Realtime Report With Multiple Dimensions](#run-realtime-report-with-multiple-dimensions)
   * [Run Realtime Report With Multiple Metrics](#run-realtime-report-with-multiple-metrics)
@@ -27,6 +31,8 @@
   * [Run Report With Dimension Filter](#run-report-with-dimension-filter)
   * [Run Report With Dimension In List Filter](#run-report-with-dimension-in-list-filter)
   * [Run Report With Multiple Dimension Filters](#run-report-with-multiple-dimension-filters)
+  * [Run Report With Multiple Dimensions](#run-report-with-multiple-dimensions)
+  * [Run Report With Multiple Metrics](#run-report-with-multiple-metrics)
   * [Run Report With Named Date Ranges](#run-report-with-named-date-ranges)
 
 ## Before you begin
@@ -41,6 +47,40 @@ Before running the samples, make sure you've followed the steps outlined in
 `cd ..`
 
 ## Samples
+
+
+
+### Get Common Metadata
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/getCommonMetadata.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/getCommonMetadata.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/getCommonMetadata.js`
+
+
+-----
+
+
+
+
+### Get Metadata By Property Id
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/getMetadataByPropertyId.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/getMetadataByPropertyId.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/getMetadataByPropertyId.js`
+
+
+-----
+
 
 
 
@@ -88,6 +128,40 @@ __Usage:__
 
 
 `node samples/quickstart_oauth2.js`
+
+
+-----
+
+
+
+
+### Run Batch Report
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runBatchReport.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runBatchReport.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runBatchReport.js`
+
+
+-----
+
+
+
+
+### Run Pivot Report
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runPivotReport.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runPivotReport.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runPivotReport.js`
 
 
 -----
@@ -292,6 +366,41 @@ __Usage:__
 
 
 `node samples/runReportWithMultipleDimensionFilters.js`
+
+
+-----
+
+
+
+
+### Run Report With Multiple Dimensions
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithMultipleDimensions.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithMultipleDimensions.js,samples/README.md)
+
+
+__Usage:__
+
+
+`node samples/runReportWithMultipleDimensions.js`
+
+
+-----
+
+
+
+
+### Run Report With Multiple Metrics
+
+View the [source code](https://github.com/googleapis/nodejs-analytics-data/blob/main/samples/runReportWithMultipleMetrics.js).
+
+[![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/nodejs-analytics-data&page=editor&open_in_editor=samples/runReportWithMultipleMetrics.js,samples/README.md)
+
+__Usage:__
+
+
+`node samples/runReportWithMultipleMetrics.js`
 
 
 -----
